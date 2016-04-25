@@ -1,5 +1,6 @@
 $(document).ready( function () {
-    var map = L.map('map').setView([21, 78], 4);
+    var map = L.map('map', { scrollWheelZoom: false })
+    .setView([21, 78], 4);
 
     var mapquestLayer = new L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', 
           {
