@@ -98,3 +98,42 @@ p.subhead {
 #crime-title {
 	margin: 0 0 0.8em 0;
 }
+
+.crime-box {
+	height: 300px;
+	width: 100%;
+	/*border: 1px solid #ddd;*/
+	margin: 1em auto;
+	background-color: rgba(244, 244, 244, .4);
+	overflow: hidden;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px #ccc;
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	-o-transition: all .3s;
+}
+
+.crime-box:hover {
+	cursor: pointer;
+    box-shadow: 3px 3px 4px #444;
+}
+
+h3.crime-categ {
+	text-align: center;
+	color: darkred;
+}
+
+img.crime-logo {
+	width: 200px;
+	height: 200px;
+	margin: .6em auto;
+	display: block;
+	border: 0;
+}
+
+p.explainer {
+	font-size: 2em;
+	margin: 1em 1em;
+}

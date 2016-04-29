@@ -6,9 +6,6 @@
     
     <!--Bootstrap styles-->
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
-
-    <!--Leaflet styles-->
-    <link rel="stylesheet" type="text/css" href="./node_modules/leaflet/dist/leaflet.css" />
     
     <!--Main stylesheet-->
     <link rel="stylesheet" type="text/css" href="./css/main.css" />
@@ -24,7 +21,7 @@
       <div class="container">
         <!--Navbar for mobile screens-->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-navbar">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -33,11 +30,11 @@
         </div>
 
         <!--Main navbar-->
-        <div class="collapse navbar-collapse" id="my-navbar">
+        <div class="collapse navbar-collapse" id="navbar-menu">
           <ul class="nav navbar-nav navbar-left">
             <li id="home" class="nav-item"><a href="#" target="blank">Home</a></li>
             <li id="about" class="nav-item"><a href="#" target="blank">Stories</a></li>
-            <li id="crimes" class="nav-item"><a href="#" target="blank">Crimes</a></li>
+            <li id="crimes" class="nav-item selected"><a href="#" target="blank">Crimes</a></li>
             <li id="cities" class="nav-item"><a href="#" target="blank">Cities</a></li>
           </ul>
 
@@ -54,24 +51,44 @@
 
     <!--Main content-->
     <div class="container">
-      <div class="row">
+      <div class="col-lg-12">
         <div id="main-header">
-          <h1 class="text-center">Crime in India</h1>
-        </div>
+          <h2 class="text-center" id="city-head">Crimes</h2>
+        </div>        
+        <p class="explainer">Choose a category of crime
       </div>
 
-      <div class="col-md-8 col-md-offset-2">
-        <p>Welcome to Crime.in, a comprehensive portal of India's crime data. You can compare crime statistics across different cities and years, starting from 2010.</p>
-        <p>Click on a city on the map to get started</p>
-        <div id="map"></div>        
-      </div> 
+      <div class="col-md-4">        
+        <div class="crime-box">
+          <h3 class="crime-categ">Violent Crimes</h3>
+          <img class="crime-logo" />
+        </div>     
+      </div>
+
+       <div class="col-md-4">        
+        <div class="crime-box">
+          <h3 class="crime-categ">Crimes Against Women</h3>
+          <img class="crime-logo" />
+        </div>     
+      </div>
+
+      <div class="col-md-4">        
+        <div class="crime-box">
+          <h3 class="crime-categ">Crimes Against Children</h3>
+          <img class="crime-logo" />
+        </div>     
+      </div>
+
+      <div class="col-md-4">        
+        <div class="crime-box">
+          <h3 class="crime-categ">Minor Crimes</h3>
+          <img class="crime-logo" />
+        </div>     
+      </div>
 
     </div>
 
+    <script src="./node_modules/bootstrap/dist/js/collapse.js"></script>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./node_modules/bootstrap/js/collapse.js"></script>
-    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./node_modules/leaflet/dist/leaflet.js"></script>
-    <script src="js/script.js"></script>
   </body>
 </html>
