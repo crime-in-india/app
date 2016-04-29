@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
     <!--Bootstrap styles-->
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
 
     <!--Leaflet styles-->
     <link rel="stylesheet" type="text/css" href="./node_modules/leaflet/dist/leaflet.css" />
@@ -35,9 +35,9 @@
         <!--Main navbar-->
         <div class="collapse navbar-collapse" id="my-navbar">
           <ul class="nav navbar-nav navbar-left">
-            <li id="home" class="nav-item"><a href="#" target="blank">Home</a></li>
+            <li id="home" class="nav-item"><a href="/index.html">Home</a></li>
             <li id="about" class="nav-item"><a href="#" target="blank">Stories</a></li>
-            <li id="crimes" class="nav-item"><a href="#" target="blank">Crimes</a></li>
+            <li id="crimes" class="nav-item"><a href="/crime-page.html" target="blank">Crimes</a></li>
             <li id="cities" class="nav-item"><a href="#" target="blank">Cities</a></li>
           </ul>
 
@@ -61,8 +61,8 @@
       </div>
 
       <div class="col-md-8 col-md-offset-2">
-        <p>Welcome to Crime.in, a comprehensive portal of India's crime data. You can compare crime statistics across different cities and years, starting from 2010.</p>
-        <p>Click on a city on the map to get started</p>
+        <h3 class="intro">Welcome to Crime.in, a comprehensive portal of India's crime data. Compare crime statistics across different cities and years.</h3>
+        <p>Click on a city on the map to get started.</p>
         <div id="map"></div>        
       </div> 
 
