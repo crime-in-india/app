@@ -49,13 +49,26 @@ h3.intro {
 
 #map {
 	width: 100%;
-	height: 500px;
+	height: 600px;
 	margin-top: 2em;
 }
 
+.state {
+	fill: none;
+	stroke: #636363;
+	stroke-width: 1px;
+	stroke-linejoin: round;
+}
+
+circle:hover{
+	cursor: pointer;
+	fill-opacity: .2;
+}
+
+
 #main-graph {
 	width: 100%;
-	height: 400px;
+	height: 100%;
 	background-color: #ddd;
 }
 
