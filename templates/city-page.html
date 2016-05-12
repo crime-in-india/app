@@ -1,0 +1,131 @@
+{% include 'partials/head.html' %}
+<body>
+{% include 'partials/navbar.html' %}
+	<div class="container">
+		<div class="row">
+      <div id="main-header">
+        <h1 class="text-center">{{ city }}</h1>
+      </div>
+    </div>
+
+		<section id="violent">	
+			<h3>Violent crimes</h3>
+			<p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2011. To compare how {{ city }} fares nationally in violent crimes, click <a href="#">here</a></p>
+		  <div id="main-graph"></div>
+		</section> 
+
+		<section id="women">
+			<h3>Crimes Against Women</h3>
+			<p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2011. To compare how {{ city }} fares nationally in crimes against women, click <a href="#"> here</a></p>
+		  <div id="women-graph"></div>			
+		</section> 
+
+		<section id="property">
+			<h3>Property Crimes</h3>
+			<p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2011. To compare how {{ city }} fares nationally in property crimes, click <a href="#">here</a></p>
+		  <div id="property-graph"></div>			
+		</section>
+		
+		<div class="table-responsive">
+			<table class="table table-condensed table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Crime</th>
+						<th>Year</th>
+						<th>Incidences</th>
+						<th>Rate</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for d in data %}
+					<tr>
+						<td>{{ d.crime_name }}</td>
+						<td>{{ d.year }}</td>
+						<td>{{ d.incidences }}</td>
+						<td>{{ d.rate }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>
+	<script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+	<script src="{{url_for('static', filename='highcharts.js')}}"></script>
+
+	<script type="text/javascript">
+		var cityData = {{ data|tojson }};
+
+		var violentCrimes = ["Murder","Attempt to commit murder","Culpable homicide not amounting to murder","Attempt to commit culpable homicide","Kidnapping & abduction"];
+
+		var violentData = cityData.filter(function(d) {
+			return violentCrimes.indexOf(d.crime_name) > -1; 
+		});
+
+		var wrangled = d3.nest()
+		.key(function(d) {return d.crime_name; })
+		.entries(violentData);
+
+		var temp = {};
+
+		wrangled.forEach(function(d) {
+			temp[d.key] = d.values;
+		});
+
+		var displayViolent = {};
+
+		for (var crime in temp) {
+			displayViolent[crime] = [];			
+			temp[crime].forEach(function(d) {
+				displayViolent[crime].push(parseFloat(d.rate));
+			});
+		}
+
+		var chartsToShow = [];
+		var chartObj = {};
+		var chartTitle = 'Rate of violent crimes in {{ city }}';
+
+		var keys = d3.keys(displayViolent)
+
+		keys.forEach(function(k) {
+			chartObj = {name: k, data: displayViolent[k] }
+			chartsToShow.push(chartObj);
+		});	 
+
+		$(function () {
+			$('#main-graph').highcharts({
+        title: {
+            text: chartTitle,
+            x: -20 //center
+        },
+        xAxis: {
+            categories: ['2010', '2011', '2012', '2013', '2014']
+        },
+        yAxis: {
+            title: {
+                text: 'Rate of violent crimes'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: ''
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            borderWidth: 0,
+            floating: true
+        },
+        series: chartsToShow
+	    });
+	});
+		
+	</script>	
+</body>
+</html>

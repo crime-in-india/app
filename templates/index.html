@@ -1,0 +1,30 @@
+{% include 'partials/head.html' %}
+
+<body>
+  {% include 'partials/navbar.html' %}
+  
+  <!--Main content-->
+  <div class="container">
+    <div class="row">
+      <div id="main-header">
+        <h1 class="text-center">Crime in India</h1>
+      </div>
+    </div>
+
+    <div class="col-md-8 col-md-offset-2">
+      <h3 class="intro">Welcome to Crime.in, a comprehensive portal of India's crime data. Compare crime statistics across different cities and years.</h3>
+      <p class="intro">Click on a city on the map to get started.</p>
+      <div id="map"></div>        
+    </div> 
+
+  </div>
+
+  <script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='collapse.js')}}"></script>
+  <script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>
+  <script src="{{url_for('static', filename='d3/d3-queue.min.js')}}"></script>
+  <script src="{{url_for('static', filename='d3/topojson.v1.js')}}"></script>
+  <script src="{{url_for('static', filename='data/cities.js')}}"></script>
+  <script src="{{url_for('static', filename='script.js')}}"></script>
+</body>
+</html>
