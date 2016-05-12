@@ -8,6 +8,12 @@
       </div>
     </div>
 
+    <div class="categories">
+		  <h3><a href="#violent">Violent Crimes</a></h3>
+		  <h3><a href="#women">Crimes Against Women</a></h3>
+		  <h3><a href="#property">Property Crimes</a></h3>
+		</div>  
+
 		<section id="violent">	
 			<h3>Violent crimes</h3>
 			<p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2011. To compare how {{ city }} fares nationally in violent crimes, click <a href="#">here</a></p>
@@ -27,6 +33,7 @@
 		</section>
 		
 		<div class="table-responsive">
+			<h3 class="text-center">All Crimes in {{ city }}</h3>
 			<table class="table table-condensed table-striped table-bordered">
 				<thead>
 					<tr>
@@ -56,6 +63,10 @@
 
 	<script type="text/javascript">
 		var cityData = {{ data|tojson }};
+
+		/**************************************************
+		/********** VIOLENT CRIMES ************************
+		**************************************************/
 
 		var violentCrimes = ["Murder","Attempt to commit murder","Culpable homicide not amounting to murder","Attempt to commit culpable homicide","Kidnapping & abduction"];
 

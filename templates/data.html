@@ -8,24 +8,25 @@
       </div>
     </div>
 
-    <p class="desc">This chart is about top 10 cities with highest {{ crime }} rate</p>
-    <div id="main-chart"></div>
+    <p class="desc">Here is a table of the entire crime data for India. You can download it <a href="#">here</a>.</p>
 		
 		<div class="table-responsive">
-			<h3 class="text-center">{{ crime }} rates in all cities</h3>
+			<h3 class="text-center">Crime in India</h3>
 			<table class="table table-condensed table-striped table-bordered">
 				<thead>
 					<tr>
 						<th>City</th>
+						<th>Crime</th>
 						<th>Year</th>
 						<th>Incidences</th>
 						<th>Rate</th>
 					</tr>
 				</thead>
 				<tbody>
-					{% for d in crime_data %}
+					{% for d in master %}
 					<tr>
 						<td>{{ d.city }}</td>
+						<td>{{ d.crime_name }}</td>
 						<td>{{ d.year }}</td>
 						<td>{{ d.incidences }}</td>
 						<td>{{ d.rate }}</td>
@@ -33,12 +34,12 @@
 					{% endfor %}
 				</tbody>
 			</table>
+			</div>
 		</div>
-	</div>
 
-	<script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>
+	<!-- <script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>
 	<script src="{{url_for('static', filename='jquery.min.js')}}"></script>
-	<script src="{{url_for('static', filename='highcharts.js')}}"></script>
+	<script src="{{url_for('static', filename='highcharts.js')}}"></script> -->
 
 	<script type="text/javascript">
 	
