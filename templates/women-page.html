@@ -1,0 +1,110 @@
+{% include 'partials/head.html' %}
+<body>
+	{% include 'partials/navbar.html' %}
+	<div class="container">
+		<div class="row">
+			<div id="main-header">
+				<h1 class="text-center">Crimes Against Women in India</h1>
+			</div>
+		</div>
+
+		<p class="desc">Crimes against women include, among others, the following: 
+				<strong>
+						<ul>Rape</ul>, 
+						<ul>Dowry deaths</ul> 
+						<ul>cruelty by husbands and relatives</ul> 
+						<ul>Kidnapping & abduction of women/girls</ul> 
+						<ul>Molestation</ul>
+						<ul>Sexual harassment</ul>
+				</strong>
+		</p>
+
+		<h3>Crimes against women</h3>
+		<p class="desc">The chart below shows the rate of violent crimes in the entire country.</p>
+		<div class="graph" id="women-graph"></div>
+
+		<h3>Cities with highest rape rates</h3>
+		<p class="desc">This chart shows the cities with the highest rape rate</p>
+		<div class="graph" id="rape-graph"></div>
+
+		<h3>Cities with most dowry deaths</h3>
+		<p class="desc">This chart shows the cities with the highest rates of dowry deaths</p>
+		<div class="graph" id="dowry-graph"></div>
+
+		<h3>Cities with highest rates of kidnapping women and girls</h3>
+		<p class="desc">This chart shows the cities which city has the most number of abductions of girls and women</p>
+		<div class="graph" id="women-kidnap-graph"></div>
+
+		<h3>Cities with highest rates of sexual harassment and molestation</h3>
+		<p class="desc">Here are the cities where women face the most sexual harassment and molestation in their everyday lives.</p>
+		<div class="graph" id="molest-graph"></div>
+	</div>
+
+	<script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>
+	<script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+	<script src="{{url_for('static', filename='highcharts.js')}}"></script>
+
+	<script type="text/javascript">
+	// 	var violentData = {{ violent|tojson }};
+	// 	var indiaMurder = violentData.filter(function(d) {
+	// 		return d.city === "India";
+	// 	});
+		
+	// 	// Coerce to numbers
+	// 	indiaMurder.forEach(function(d) {
+	// 		d.rate = +d.rate;
+	// 		d.incidences = +d.incidences;
+	// 		//d.year = +d.year;
+	// 	});
+
+	// 	// Group by crime name
+	// 	var indiaList = d3.nest()
+	// 	.key(function(d){ return d.crime_name; })
+	// 	.entries(indiaMurder);
+
+	// 	var chartList = [];
+
+	// 	// Make a list of chart objects to feed to Highcharts
+	// 	indiaList.forEach(function(d) {
+	// 		chartList.push({
+	// 			name: d.key, 
+	// 			data: d.values.map(function(k){ return k.rate; })
+	// 		});
+	// 	});
+
+	// 	$(function () {
+	// 		$('#violent-graph').highcharts({
+	// 			title: {
+	// 					text: "",
+	// 					x: -20 //center
+	// 			},
+	// 			xAxis: {
+	// 					categories: ['2010', '2011', '2012', '2013', '2014']
+	// 			},
+	// 			yAxis: {
+	// 					title: {
+	// 							text: 'Rate of violent crimes'
+	// 					},
+	// 					plotLines: [{
+	// 							value: 0,
+	// 							width: 1,
+	// 							color: '#808080'
+	// 					}]
+	// 			},
+	// 			tooltip: {
+	// 					valueSuffix: ''
+	// 			},
+	// 			legend: {
+	// 					layout: 'vertical',
+	// 					align: 'left',
+	// 					verticalAlign: 'top',
+	// 					borderWidth: 0,
+	// 					floating: true
+	// 			},
+	// 			series: chartList
+	// 		});
+	// });
+
+	</script>
+</body>
+</html>

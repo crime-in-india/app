@@ -21,11 +21,12 @@ def city_page(city):
   template = 'city-page.html'
   temp = get_data()
   data = []
-
   for row in temp:
     if row['city'] == city or row['city'] == 'India':
       data.append(row)
   return render_template(template, data=data, city=city, total=temp)
+
+
 
 # Route to crime page
 @app.route("/crime/<crime>/")
@@ -52,13 +53,14 @@ def city_landing():
   with open('static/data/cities-overall.csv', 'r') as csvin:
     datarows = list(csv.DictReader(csvin))
 
-  # Don't show India on the list
-  only_cities = datarows[:-1]
+  only_cities = datarows[:-1]   # Don't show India on the list
 
   india = datarows[-1]['avg']
   citylist = [d for d in datarows if d['avg'] > india ]
   citylist.append(datarows[-1])
   return render_template(template,cities=only_cities,chartdata=citylist)
+
+
 
 # Route for violent crimes page
 @app.route("/violent-crimes")
@@ -71,6 +73,21 @@ def violent_landing_page():
   data = get_data()
   violent_data = [d for d in data if d['crime_name'] in categs]
   return render_template(template,violent=violent_data)
+
+
+# Route for crimes against women page
+@app.route("/women-crimes")
+def women_landing_page():
+  template = 'women-page.html'
+  with open('static/data/crime-categories.csv', 'r') as csvin:
+    categs = list(csv.DictReader(csvin))
+
+  categs = [c['crime'] for c in categs if c['category'] == 'Crime Against Women']
+  data = get_data()
+  women_data = [d for d in data if d['crime_name'] in categs]
+  return render_template(template,w_data=women_data)
+
+
 
 # Route to the data dump page
 @app.route("/data")
