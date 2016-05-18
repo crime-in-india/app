@@ -11,11 +11,60 @@
       </div>
     </div>
 
-    <div class="col-md-8 col-md-offset-2">
-      <h3 class="intro">Welcome to Crime.in, a comprehensive portal of India's crime data. Compare crime statistics across different cities and years.</h3>
-      <p class="intro">Click on a city on the map to get started.</p>
-      <div id="map"></div>        
-    </div> 
+    <section id="map-section">
+      <div class="col-md-8 col-md-offset-2">
+        <h3 class="intro">Welcome to Crime.in, a comprehensive portal of India's crime data. Compare crime statistics across different cities and years.</h3>
+        <p class="intro">Click on a city on the map to get started or <a href="#scroll-point">click here to choose crime categories</p></a>
+        <div id="map"></div>        
+      </div>
+    </section>
+    
+    <section id="crime-section">
+      <div class="col-lg-12">
+        <div id="main-header">
+          <h2 class="text-center" id="city-head">Crimes</h2>
+        </div>        
+        <p class="explainer">Choose a category of crime</p>
+
+        <a href="/violent-crimes">
+          <div class="col-md-4">        
+            <div class="crime-box">
+              <h3 class="crime-categ">Violent Crimes</h3>
+              <img class="crime-logo" />
+            </div>     
+          </div>
+        </a>  
+        
+        <a href="/women-crimes">
+          <div class="col-md-4">        
+            <div class="crime-box">
+              <h3 class="crime-categ">Crimes Against Women</h3>
+              <img class="crime-logo" />
+            </div>     
+          </div>
+        </a>  
+
+        <a href="/economic-crimes">  
+          <div class="col-md-4">        
+            <div class="crime-box">
+              <h3 class="crime-categ">Economic Crimes</h3>
+              <img class="crime-logo" />
+            </div>     
+          </div>
+        </a>  
+
+        <a href="/other-crimes">  
+          <div class="col-md-4">        
+            <div class="crime-box">
+              <h3 class="crime-categ">Other Crimes</h3>
+              <img class="crime-logo" />
+            </div>     
+          </div>
+        </a>  
+      </div>
+    </section> 
+
+    <div id="scroll-point"></div>
 
   </div>
 

@@ -97,7 +97,7 @@
 		var chartObj = {};
 		var chartTitle = 'Rate of violent crimes in {{ city }}';
 
-		var keys = d3.keys(displayViolent)
+		var keys = d3.keys(displayViolent);
 
 		keys.forEach(function(k) {
 			chartObj = {name: k, data: displayViolent[k] }

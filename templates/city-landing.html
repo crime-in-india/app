@@ -1,0 +1,117 @@
+{% include 'partials/head.html' %}
+
+<body>
+	{% include 'partials/navbar.html' %}
+	<div class="container">
+		<div class="row">
+      <div id="main-header">
+        <h1 class="text-center">Cities</h1>
+      </div>
+    </div>
+
+		<h3>Overall crime rate</h3>
+    <div id="cities-graph" class="graph">
+    	This graph will show the overall crime rate for all those cities that are above the average national crime rate over the last five years.
+    </div>
+		<p class="desc">The chart above shows how the top 10 cities that have an average overall crime rate greater than the average overall crime rate for the entire country.</p>
+
+		<p class="desc">The table below lists the overall crime rate of all the cities in India and how it has changed from 2010 to 2014. Click on a city name below to navigate to the city page.</p>
+
+		<div class="table-responsive">
+			<h3 class="text-center">Overall crime rates in cities</h3>
+			<table class="table table-condensed table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>City</th>
+						<th>2010</th>
+						<th>2011</th>
+						<th>2012</th>
+						<th>2013</th>
+						<th>2014</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for c in cities %}
+					<tr>
+						<td><a href="{{ c.city }}" target="_blank">{{ c.city }}</a></td>
+						<td>{{ c.y2010 }}</td>
+						<td>{{ c.y2011 }}</td>
+						<td>{{ c.y2012 }}</td>
+						<td>{{ c.y2013 }}</td>
+						<td>{{ c.y2014 }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+	<script src="{{url_for('static', filename='highcharts.js')}}"></script>
+
+	<script type="text/javascript">
+		var chartData = {{ chartdata|tojson }};
+		var toShow = [];
+		var obj = {};
+
+		chartData.forEach(function(d) {
+			d.y2010 = +d.y2010;
+			d.y2011 = +d.y2011;
+			d.y2012 = +d.y2012;
+			d.y2013 = +d.y2013;
+			d.y2014 = +d.y2014;
+			d.avg = +d.avg;
+		});
+
+		chartData.sort(function(a,b) { return b.avg - a.avg; });
+		//console.log(chartData);
+
+		var topTen = chartData.slice(0,10)
+		
+		//Push the India object to the array to show it on the graph
+		topTen.push(chartData[chartData.length-1]); 
+
+		topTen.forEach(function(d) {
+			obj = {name:d.city, data: [d.y2010,d.y2011,d.y2012,d.y2013,d.y2014]};
+			toShow.push(obj);
+		});
+
+		$(function () {
+			$('#cities-graph').highcharts({
+        title: {
+            text: "India's most dangerous cities",
+            x: -20 //center
+        },
+        xAxis: {
+        		title: {
+                text: 'Year'
+            },
+            categories: ['2010', '2011', '2012', '2013', '2014']
+        },
+        yAxis: {
+            title: {
+                text: 'Overall crime rate'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: ''
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            borderWidth: 0,
+            floating: true
+        },
+        series: toShow
+	    });
+	});
+	</script>
+
+</body>	
+
