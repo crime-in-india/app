@@ -3,12 +3,12 @@
 {% include 'partials/navbar.html' %}
 	<div class="container">
 		<div class="row">
-      <div id="main-header">
-        <h1 class="text-center">{{ city }}</h1>
-      </div>
-    </div>
+	      <div id="main-header">
+	        <h1 class="text-center">{{ city }}</h1>
+	      </div>
+	    </div>
 
-    <div class="categories">
+    	<div class="categories">
 		  <h3><a href="#violent">Violent Crimes</a></h3>
 		  <h3><a href="#women">Crimes Against Women</a></h3>
 		  <h3><a href="#property">Property Crimes</a></h3>
@@ -16,17 +16,17 @@
 
 		<section id="violent">	
 			<h3>Violent crimes</h3>
-			<p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2011. To compare how {{ city }} fares nationally in violent crimes, click <a href="#">here</a></p>
-		  <div id="main-graph"></div>
+			<p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2011. To compare how {{ city }} fares nationally in violent crimes, click <a href="/violent-crimes">here</a>.</p>
+		  <div id="main-graph" class="graph"></div>
 		</section> 
 
 		<section id="women">
 			<h3>Crimes Against Women</h3>
 			<p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2011. To compare how {{ city }} fares nationally in crimes against women, click <a href="#"> here</a></p>
-		  <div id="women-graph"></div>
+		  <div id="women-graph" class="graph"></div>
 
-			<h3>Comparison with national average</h3>
-		  <p class="desc">The following chart shows a comparison of the heinous crimes against women recorded in {{ city }} to the national average over the past five years.</p>
+		  <h3>Comparison with national average</h3>
+		  <p class="desc">The following chart shows a comparison of the heinous crimes against women recorded in {{ city }} to the national average over the past five years. These crimes have been categorized separately since they are more serious in nature.</p>
 
 		  <div id="women-compare" class="graph"></div>			
 		</section> 
@@ -34,7 +34,7 @@
 		<section id="property">
 			<h3>Property Crimes</h3>
 			<p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2011. To compare how {{ city }} fares nationally in property crimes, click <a href="#">here</a></p>
-		  <div id="property-graph"></div>			
+		  <div id="property-graph" class="graph"></div>			
 		</section>
 		
 		<div class="table-responsive">
