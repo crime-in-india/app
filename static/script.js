@@ -33,7 +33,7 @@ var india = map.append("svg:g")
 .attr("id", "india");
 
 // Call the zoom function on svg
-map.call(zoom);
+//map.call(zoom);
 
 function makeMap(err, json) {
 	if (err) console.error(err);
@@ -53,7 +53,7 @@ function makeMap(err, json) {
 	.data(cities)
 	.enter()
 	.append("a")
-	.attr("xlink:href", function (d) { return d.city; })
+	.attr("xlink:href", function (d) { return 'cities/' + d.city; })
 	.attr("xlink:target", "_blank")
 	.attr("class", "city-dot")
 	.append("circle")

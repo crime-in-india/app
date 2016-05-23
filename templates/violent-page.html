@@ -34,70 +34,96 @@
   </div>
 
   <script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>
-	<script src="{{url_for('static', filename='jquery.min.js')}}"></script>
-	<script src="{{url_for('static', filename='highcharts.js')}}"></script>
+  <script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='highcharts.js')}}"></script>
 
-	<script type="text/javascript">
-		var violentData = {{ violent|tojson }};
-		var indiaMurder = violentData.filter(function(d) {
-			return d.city === "India";
-		});
-		
-		// Coerce to numbers
-		indiaMurder.forEach(function(d) {
-			d.rate = +d.rate;
-			d.incidences = +d.incidences;
-			//d.year = +d.year;
-		});
+  <script type="text/javascript">
+  	var violentData = {{ violent|tojson }};
+  	var indiaViolent = violentData.filter(function(d) {
+  		return d.city === "India";
+  	});
 
-		// Group by crime name
-		var indiaList = d3.nest()
-		.key(function(d){ return d.crime_name; })
-		.entries(indiaMurder);
+    var indiaMurder = violentData.filter(function(d) {
+      return d.crime_name == "Murder" && d.city !== "India";
+    });
 
-		var chartList = [];
+    drawViolent(indiaViolent);
+    drawMurder(indiaMurder);
+    
 
-		// Make a list of chart objects to feed to Highcharts
-		indiaList.forEach(function(d) {
-			chartList.push({
-				name: d.key, 
-				data: d.values.map(function(k){ return k.rate; })
-			});
-		});
+    function drawViolent(indiaViolent) {
+  		// Coerce to numbers
+  		indiaViolent.forEach(function(d) {
+  			d.rate = +d.rate;
+  			d.incidences = +d.incidences;
+  			//d.year = +d.year;
+  		});
 
-		$(function () {
-			$('#violent-graph').highcharts({
-        title: {
-            text: "",
-            x: -20 //center
-        },
-        xAxis: {
-            categories: ['2010', '2011', '2012', '2013', '2014']
-        },
-        yAxis: {
-            title: {
-                text: 'Rate of violent crimes'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        tooltip: {
-            valueSuffix: ''
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'left',
-            verticalAlign: 'top',
-            borderWidth: 0,
-            floating: true
-        },
-        series: chartList
-	    });
-	});
+  		// Group by crime name
+  		var indiaList = d3.nest()
+  		.key(function(d){ return d.crime_name; })
+  		.entries(indiaViolent);
 
-	</script>
+  		var chartList = [];
+
+  		// Make a list of chart objects to feed to Highcharts
+  		indiaList.forEach(function(d) {
+  			chartList.push({
+  				name: d.key, 
+  				data: d.values.map(function(k){ return k.rate; })
+  			});
+  		});
+
+  		$(function () {
+  			$('#violent-graph').highcharts({
+          title: {
+              text: "",
+              x: -20 //center
+          },
+          xAxis: {
+              categories: ['2010', '2011', '2012', '2013', '2014']
+          },
+          yAxis: {
+              title: {
+                  text: 'Rate of violent crimes'
+              },
+              plotLines: [{
+                  value: 0,
+                  width: 1,
+                  color: '#808080'
+              }]
+          },
+          tooltip: {
+              valueSuffix: ''
+          },
+          legend: {
+              layout: 'vertical',
+              align: 'left',
+              verticalAlign: 'top',
+              borderWidth: 0,
+              floating: true
+          },
+          series: chartList
+  	    });
+    	});
+    }
+
+    function drawMurder(indiaMurder) {
+      indiaMurder.forEach(function(d) {
+        d.rate = +d.rate;
+        d.incidences = +d.incidences;
+        //d.year = +d.year;
+      });
+
+      var cityList = d3.nest()
+      .key(function(d){ return d.city; })
+      .entries(indiaMurder);
+
+      console.log(cityList)
+
+
+    }
+
+    </script>
 </body>
 </html>

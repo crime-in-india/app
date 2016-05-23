@@ -23,7 +23,12 @@
 		<section id="women">
 			<h3>Crimes Against Women</h3>
 			<p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2011. To compare how {{ city }} fares nationally in crimes against women, click <a href="#"> here</a></p>
-		  <div id="women-graph"></div>			
+		  <div id="women-graph"></div>
+
+			<h3>Comparison with national average</h3>
+		  <p class="desc">The following chart shows a comparison of the heinous crimes against women recorded in {{ city }} to the national average over the past five years.</p>
+
+		  <div id="women-compare" class="graph"></div>			
 		</section> 
 
 		<section id="property">
@@ -38,18 +43,22 @@
 				<thead>
 					<tr>
 						<th>Crime</th>
-						<th>Year</th>
-						<th>Incidences</th>
-						<th>Rate</th>
+						<th>2010</th>
+						<th>2011</th>
+						<th>2012</th>
+						<th>2013</th>
+						<th>2014</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for d in data %}
 					<tr>
 						<td>{{ d.crime_name }}</td>
-						<td>{{ d.year }}</td>
-						<td>{{ d.incidences }}</td>
-						<td>{{ d.rate }}</td>
+						<td>{{ d['2010'] }}</td>
+						<td>{{ d['2011'] }}</td>
+						<td>{{ d['2012'] }}</td>
+						<td>{{ d['2013'] }}</td>
+						<td>{{ d['2014'] }}</td>
 					</tr>
 					{% endfor %}
 				</tbody>
@@ -63,79 +72,221 @@
 
 	<script type="text/javascript">
 		var cityData = {{ data|tojson }};
-
-		/**************************************************
-		/********** VIOLENT CRIMES ************************
-		**************************************************/
-
-		var violentCrimes = ["Murder","Attempt to commit murder","Culpable homicide not amounting to murder","Attempt to commit culpable homicide","Kidnapping & abduction"];
+		var indiaData = {{ india|tojson }};
+		var violentCrimes = {{ v|tojson }};
+		var womenCrimes = {{ w|tojson }};
+		var propCrimes = {{ p|tojson }};
+		var womenSerious = ["Dowry deaths", "Rape", "Sexual harassment", "Cruelty by husband or his relatives", "Molestation" ]
+		
+		// Encoding hack, to be fixed
+		violentCrimes[2] = "Kidnapping & abduction"; 
+		
 
 		var violentData = cityData.filter(function(d) {
 			return violentCrimes.indexOf(d.crime_name) > -1; 
 		});
 
-		var wrangled = d3.nest()
-		.key(function(d) {return d.crime_name; })
-		.entries(violentData);
-
-		var temp = {};
-
-		wrangled.forEach(function(d) {
-			temp[d.key] = d.values;
+		var womenData = cityData.filter(function(d) {
+			return womenCrimes.indexOf(d.crime_name) > -1;
 		});
 
-		var displayViolent = {};
+		var indiaWomen = indiaData.filter(function(d) {
+			return womenSerious.indexOf(d.crime_name) > -1;
+		});
 
-		for (var crime in temp) {
-			displayViolent[crime] = [];			
-			temp[crime].forEach(function(d) {
-				displayViolent[crime].push(parseFloat(d.rate));
+		var cityWomen = cityData.filter(function(d) {
+			return womenSerious.indexOf(d.crime_name) > -1;
+		});
+
+		drawViolent(violentData);
+		drawWomen(womenData);
+		drawNational(cityWomen,indiaWomen);
+
+		/**************************************************
+		/********** VIOLENT CRIMES ************************
+		**************************************************/
+
+
+		function drawViolent(violentData) {
+
+			var chartsToShow = [];
+			var chartObj = {};
+			var chartTitle = 'Rate of violent crimes in {{ city }}';
+
+			violentData.forEach(function(d) {
+				chartObj = { 
+					name: d.crime_name, 
+					data: [+d['2010'], +d['2011'], +d['2012'], +d['2013'], +d['2014']] 
+				};
+				chartsToShow.push(chartObj);
+			});
+
+			$(function () {
+				$('#main-graph').highcharts({
+	        title: {
+	            text: chartTitle,
+	            x: -20 //center
+	        },
+	        xAxis: {
+	            categories: ['2010', '2011', '2012', '2013', '2014']
+	        },
+	        yAxis: {
+	            title: {
+	                text: 'Rate of violent crimes'
+	            },
+	            plotLines: [{
+	                value: 0,
+	                width: 1,
+	                color: '#808080'
+	            }]
+	        },
+	        tooltip: {
+	            valueSuffix: ''
+	        },
+	        legend: {
+	            layout: 'vertical',
+	            align: 'left',
+	            verticalAlign: 'top',
+	            borderWidth: 0,
+	            floating: true
+	        },
+	        series: chartsToShow
+		    });
 			});
 		}
 
-		var chartsToShow = [];
-		var chartObj = {};
-		var chartTitle = 'Rate of violent crimes in {{ city }}';
+		/*****************************************************
+		/**********  CRIMES AGAINST WOMEN ************************
+		*****************************************************/
+		
 
-		var keys = d3.keys(displayViolent);
+		function drawWomen(womenData) {
 
-		keys.forEach(function(k) {
-			chartObj = {name: k, data: displayViolent[k] }
-			chartsToShow.push(chartObj);
-		});	 
+			var chartsToShow = [];
+			var chartObj = {};
+			var chartTitle = 'Rates of crimes against women in {{ city }}';
 
-		$(function () {
-			$('#main-graph').highcharts({
-        title: {
-            text: chartTitle,
-            x: -20 //center
-        },
-        xAxis: {
-            categories: ['2010', '2011', '2012', '2013', '2014']
-        },
-        yAxis: {
-            title: {
-                text: 'Rate of violent crimes'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        tooltip: {
-            valueSuffix: ''
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'left',
-            verticalAlign: 'top',
-            borderWidth: 0,
-            floating: true
-        },
-        series: chartsToShow
-	    });
-	});
+			womenData.forEach(function(d) {
+				chartObj = { 
+					name: d.crime_name, 
+					data: [+d['2010'], +d['2011'], +d['2012'], +d['2013'], +d['2014']] 
+				};
+				chartsToShow.push(chartObj);
+			});
+
+			$(function () {
+				$('#women-graph').highcharts({
+	        title: {
+	            text: chartTitle,
+	            x: -20 //center
+	        },
+	        xAxis: {
+	            categories: ['2010', '2011', '2012', '2013', '2014']
+	        },
+	        yAxis: {
+	            title: {
+	                text: 'Rate of crimes against women'
+	            },
+	            plotLines: [{
+	                value: 0,
+	                width: 1,
+	                color: '#808080'
+	            }]
+	        },
+	        tooltip: {
+	            valueSuffix: ''
+	        },
+	        legend: {
+	            layout: 'vertical',
+	            align: 'right',
+	            verticalAlign: 'top',
+	            borderWidth: 0,
+	            floating: true
+	        },
+	        series: chartsToShow
+		    });
+			});
+
+		}
+
+		/*****************************************************
+		/**********  HEINOUS CRIMES COMPARE NATIONAL *********************
+		*****************************************************/
+
+		function drawNational(cityWomen, indiaWomen) {
+			console.log(cityWomen)
+			console.log(indiaWomen)
+
+			var categories = [],
+					cityData = [],
+					natData = [];
+
+			cityWomen.forEach(function(d) {
+				categories.push(d.crime_name);
+				cityData.push(+d.avg); 
+			});
+			
+			indiaWomen.forEach(function(d) {
+				natData.push(+d.avg);
+			})
+
+			var chartObj = {};
+			var chartTitle = 'Crimes against women in {{ city }} v/s India';
+
+			var cityChart = {
+				name: '{{ city }}',
+				data: cityData 
+			};
+
+			var indiaChart = {
+				name: 'India',
+				data: natData
+			};
+
+			var chartsToShow = [cityChart, indiaChart];
+
+
+			$(function () {
+		    $('#women-compare').highcharts({
+		        chart: {
+		            type: 'column'
+		        },
+		        title: {
+		            text: chartTitle
+		        },
+		        // subtitle: {
+		        //     text: 'Source: WorldClimate.com'
+		        // },
+		        xAxis: {
+		            categories: categories,
+		            crosshair: true
+		        },
+		        yAxis: {
+		            min: 0,
+		            title: {
+		                text: 'Crime rate per 100,000 people'
+		            }
+		        },
+		        // tooltip: {
+		        //     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+		        //     pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+		        //         '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+		        //     footerFormat: '</table>',
+		        //     shared: true,
+		        //     useHTML: true
+		        // },
+		        plotOptions: {
+		            column: {
+		                pointPadding: 0.2,
+		                borderWidth: 0
+		            }
+		        },
+		        series: chartsToShow
+		    });
+			});
+
+		}
+
 		
 	</script>	
 </body>

@@ -1,0 +1,33 @@
+# This script makes a file of a year-wise rates of each crime category for India, the entire country. 
+# This script has to be run from the scripts folder
+
+import csv
+from os.path import join, basename
+from glob import glob
+from statistics import mean
+
+def get_avg(row):
+  # If there are no numbers in the column, don't take them into account
+  # while calculating average
+  # E.g. don't do (0+0+0+2.4+2.5)/5. Do (2.4+2.5) / 2
+  row = [float(r) for r in row if r is not '']
+  return round(mean(row),1)
+
+DATADIR = '../static/data'
+f = join(DATADIR, 'cities', 'India.csv')
+
+with open(f, 'r') as infile:
+  print("currently reading", f)
+  datarows = csv.reader(infile)
+  headers = next(datarows)
+  headers.append('avg')
+  name = join('temp',basename(f)[:-4] + '.csv')
+
+  with open(name, 'w') as outfile:
+    writer = csv.writer(outfile)
+    writer.writerow(headers)
+
+    for row in datarows:
+      avg = get_avg(row[1:]) #Skip the crime name column
+      row.append(avg)
+      writer.writerow(row)
