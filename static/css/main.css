@@ -107,14 +107,14 @@ section {
 .graph {
 	width: 100%;
 	height: 400px;
-	margin: 2em 0;
+	margin: 2em 0 4em 0;
 	box-shadow: 5px 5px 5px #888888;
 }
 
 .half {
 	width: 50%;
 	height: 400px;
-	margin: 2em 0;
+	margin: 2em 0 4em 0;
 	box-shadow: 5px 5px 5px #888888;
 	display: inline-block;
 }
