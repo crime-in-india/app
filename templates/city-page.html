@@ -98,9 +98,14 @@
 			return womenSerious.indexOf(d.crime_name) > -1;
 		});
 
+		var propData = cityData.filter(function(d) {
+			return propCrimes.indexOf(d.crime_name) > -1;
+		});
+
 		drawViolent(violentData);
 		drawWomen(womenData);
 		drawNational(cityWomen,indiaWomen);
+		drawProperty(propData);
 
 		/**************************************************
 		/********** VIOLENT CRIMES ************************
@@ -210,7 +215,7 @@
 		}
 
 		/*****************************************************
-		/**********  HEINOUS CRIMES COMPARE NATIONAL *********************
+		/**********  WOMEN CRIMES V/S NATIONAL AVG ************
 		*****************************************************/
 
 		function drawNational(cityWomen, indiaWomen) {
@@ -286,6 +291,68 @@
 			});
 
 		}
+
+		/*****************************************************
+		/*****************  PROPERTY CRIMES ******************
+		*****************************************************/
+
+		function drawProperty(propData) {
+
+			var chartsToShow = [];
+			var chartObj = {};
+			var chartTitle = 'Rate of property crimes in {{ city }}';
+
+			propData.forEach(function(d) {
+				chartObj = { 
+					name: d.crime_name, 
+					data: [+d['2010'], +d['2011'], +d['2012'], +d['2013'], +d['2014']] 
+				};
+				chartsToShow.push(chartObj);
+			});
+
+			$(function () {
+				$('#property-graph').highcharts({
+	        title: {
+	            text: chartTitle,
+	            x: -20 //center
+	        },
+	        xAxis: {
+	            categories: ['2010', '2011', '2012', '2013', '2014']
+	        },
+	        yAxis: {
+	            title: {
+	                text: 'Rate of violent crimes'
+	            },
+	            plotLines: [{
+	                value: 0,
+	                width: 1,
+	                color: '#808080'
+	            }]
+	        },
+	        legend: {
+	            layout: 'vertical',
+	            align: 'right',
+	            verticalAlign: 'top',
+	            borderWidth: 0,
+	            floating: true
+	        },
+	        series: chartsToShow
+		    });
+			});
+		}
+
+		$('a[href^="#"]').on('click',function (e) {
+	    e.preventDefault();
+
+	    var target = this.hash;
+	    var $target = $(target);
+
+	    $('html, body').stop().animate({
+	        'scrollTop': $target.offset().top
+	    }, 900, 'swing', function () {
+	        window.location.hash = target;
+	    });
+		});
 
 		
 	</script>	

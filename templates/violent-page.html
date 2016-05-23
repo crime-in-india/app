@@ -12,17 +12,16 @@
 
     <p class="desc">Rape, attempt to rape, dowry deaths have been categorized into crimes against women. Dowry deaths are counted separately in the Indian Penal Code and we have decided to follow the same nomenclature.</p>
 
+    <strong><p class="desc">Please note that all rates are per 100,000 people</p></strong>
+
     <h3>Violent crimes in India</h3>
     <p class="desc">The chart below shows the rate of violent crimes in the entire country.</p>
     <div class="graph" id="violent-graph"></div>
 
-    <h3>Cities with highest murder rates</h3>
-    <p class="desc">This chart shows the cities with the highest murder rate</p>
-    <div class="graph" id="murder-graph"></div>
-
-    <h3>Cities with highest attempt to commit murder rates</h3>
-    <p class="desc">This chart shows the cities with the highest rates of attempt to commit murder cases</p>
-    <div class="graph" id="attempt-graph"></div>
+    <h3>Cities with highest murder &amp; attempt to murder rates</h3>
+    <p class="desc">The charts below show the top ten cities in the country with the highest average crime rates of murder and attempt to murder, from 2011 to 2014.</p>
+    <div class="col-md-6 half" id="murder-graph"></div>
+    <div class="col-md-6 half" id="attempt-graph"></div>
 
     <h3>Cities with highest kidnapping rates</h3>
     <p class="desc">This chart shows the cities with the highest kidnapping rates</p>
@@ -39,39 +38,37 @@
 
   <script type="text/javascript">
   	var violentData = {{ violent|tojson }};
-  	var indiaViolent = violentData.filter(function(d) {
-  		return d.city === "India";
-  	});
+    var nationalData = {{ n|tojson }};
 
-    var indiaMurder = violentData.filter(function(d) {
-      return d.crime_name == "Murder" && d.city !== "India";
+    var indiaViolent = violentData.filter(function(d) {
+      return d.city === "India";
+    });
+
+    var indiaMurder = nationalData.filter(function(d) {
+      return (d.crime_name === "Murder" || d.crime_name === "Attempt to commit murder") && d.city !== "India";
+    });
+
+    var natAvg = nationalData.filter(function(d) {
+      return (d.crime_name === "Murder" || d.crime_name === "Attempt to commit murder") && d.city === "India";
     });
 
     drawViolent(indiaViolent);
-    drawMurder(indiaMurder);
+    drawMurder(indiaMurder, natAvg);
+
+    //console.log(natAvg)
     
 
     function drawViolent(indiaViolent) {
+      var chartsToShow = [];
+      var chartObj = {};
+
   		// Coerce to numbers
   		indiaViolent.forEach(function(d) {
-  			d.rate = +d.rate;
-  			d.incidences = +d.incidences;
-  			//d.year = +d.year;
-  		});
-
-  		// Group by crime name
-  		var indiaList = d3.nest()
-  		.key(function(d){ return d.crime_name; })
-  		.entries(indiaViolent);
-
-  		var chartList = [];
-
-  		// Make a list of chart objects to feed to Highcharts
-  		indiaList.forEach(function(d) {
-  			chartList.push({
-  				name: d.key, 
-  				data: d.values.map(function(k){ return k.rate; })
-  			});
+        chartObj = {
+          name: d.crime_name,
+          data: [+d['2010'], +d['2011'], +d['2012'], +d['2013'], +d['2014']]
+        }
+        chartsToShow.push(chartObj);
   		});
 
   		$(function () {
@@ -94,7 +91,7 @@
               }]
           },
           tooltip: {
-              valueSuffix: ''
+              valueSuffix: ' crimes per 100,000'
           },
           legend: {
               layout: 'vertical',
@@ -103,25 +100,159 @@
               borderWidth: 0,
               floating: true
           },
-          series: chartList
+          series: chartsToShow
   	    });
     	});
     }
 
-    function drawMurder(indiaMurder) {
-      indiaMurder.forEach(function(d) {
-        d.rate = +d.rate;
-        d.incidences = +d.incidences;
-        //d.year = +d.year;
+    function drawMurder(indiaMurder, natAvg) {
+
+     var murder = indiaMurder.filter(function(d) {
+      return d.crime_name == "Murder";
+     });
+
+     var attempt = indiaMurder.filter(function(d) {
+      return d.crime_name == "Attempt to commit murder";
+     });
+
+     murder.sort(function(a,b) {
+      return +b.avg - +a.avg;
+     });
+
+     attempt.sort(function(a,b) {
+      return +b.avg - +a.avg;
+     });
+
+     // Top 10 murder rates
+     var m10 = murder.slice(0,10);
+     var mCategories = [],
+        mdata = [];
+
+    // Top 10 attempt to murder rates
+     var attempt10 = attempt.slice(0,10);
+     var aCategories = [],
+        adata = [];
+     
+     m10.forEach(function(d) {
+      mCategories.push(d.city);
+      mdata.push(+d.avg);
+     });
+
+     attempt10.forEach(function(d) {
+      aCategories.push(d.city);
+      adata.push(+d.avg);
+     });    
+     
+     $(function () {
+        $('#murder-graph').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Top 10 average murder rates'
+            },
+            // subtitle: {
+            //     text: 'Source: WorldClimate.com'
+            // },
+            xAxis: {
+                categories: mCategories
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Crime rate per 100,000 people',
+                    align: 'high'
+                },
+                labels: {
+                  overflow: 'justify'
+                },
+                plotLines: [{
+                    value: +natAvg[1].avg,
+                    color: 'green',
+                    dashStyle: 'shortdash',
+                    width: 2,
+                    label: {
+                        text: 'National average: ' + natAvg[1].avg,
+                        rotation: 0,
+                        y: -5,
+                        x: -10
+                    }
+                }]
+            },
+            // tooltip: {
+            //     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            //     pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            //         '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            //     footerFormat: '</table>',
+            //     shared: true,
+            //     useHTML: true
+            // },
+
+
+            plotOptions: {
+              bar: {
+                dataLabels: {
+                    enabled: true
+                }
+              }
+            },
+            series: [{
+              name: 'Murder',
+              data: mdata
+            }]
+        });
       });
 
-      var cityList = d3.nest()
-      .key(function(d){ return d.city; })
-      .entries(indiaMurder);
+     $(function () {
+        $('#attempt-graph').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Top 10 average attempt to murder rates'
+            },
+            // subtitle: {
+            //     text: 'Source: WorldClimate.com'
+            // },
+            xAxis: {
+                categories: aCategories
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Crime rate per 100,000 people',
+                    align: 'high'
+                },
+                labels: {
+                  overflow: 'justify'
+                },
+                plotLines: [{
+                    value: +natAvg[0].avg,
+                    color: 'green',
+                    dashStyle: 'shortdash',
+                    width: 2,
+                    label: {
+                        text: 'National average: ' + natAvg[0].avg,
+                        rotation: 0,
+                        y: -5,
+                        x: -10
+                    }
+                }]
+            },
 
-      console.log(cityList)
-
-
+            plotOptions: {
+              bar: {
+                dataLabels: {
+                    enabled: true
+                }
+              }
+            },
+            series: [{
+              name: 'Attempt to commit murder',
+              data: adata
+            }]
+        });
+      });
     }
 
     </script>

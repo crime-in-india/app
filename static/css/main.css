@@ -7,6 +7,10 @@ th {
 	color: darkred;
 }
 
+h2.head {
+	color: #990033;
+}
+
 ul {
 	list-style-type: none;
 }
@@ -105,7 +109,14 @@ section {
 	height: 400px;
 	margin: 2em 0;
 	box-shadow: 5px 5px 5px #888888;
+}
 
+.half {
+	width: 50%;
+	height: 400px;
+	margin: 2em 0;
+	box-shadow: 5px 5px 5px #888888;
+	display: inline-block;
 }
 
 #main-graph, #women-graph, #property-graph, #main-chart {

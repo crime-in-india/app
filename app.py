@@ -11,12 +11,17 @@ def get_data():
     datarows = list(csv.DictReader(infile))
   return datarows
 
+#################################################################
+
 # Route to home page
 @app.route("/")
 def homepage():
   template='index.html'
   return render_template(template)
 
+
+
+#################################################################
 
 
 
@@ -37,15 +42,18 @@ def city_page(city):
 
   template = 'city-page.html'
   
+  # Get data of selected city
   with open(citypath, 'r') as csvin:
     data = list(csv.DictReader(csvin))
 
+  # Get national average data
   with open(indiapath, 'r') as i:
     india = list(csv.DictReader(i))
 
   return render_template(template, data=data, city=city, v=violent_categs,w=women_categs,p=prop_categs, india=india)
 
 
+#################################################################
 
 # Route to crime page
 @app.route("/crime/<crime>/")
@@ -58,11 +66,16 @@ def crime_page(crime):
   return render_template(template, crime_data=data, total=temp, crime=crime)
 
 
+#################################################################
+
 # Route to crime landing page
 @app.route("/crime-landing")
 def crime_landing():
   template = 'crime-landing.html'
   return render_template(template)
+
+
+#################################################################
 
 
 # Route to the city landing page
@@ -80,19 +93,32 @@ def city_landing():
   citylist.append(india)
   return render_template(template,cities=only_cities,chartdata=citylist)
 
-
+#################################################################
 
 # Route for violent crimes page
 @app.route("/violent-crimes")
 def violent_landing_page():
+  DATADIR = './static/data'
+  fname = join(DATADIR, 'total.csv')
+
+  # Get national data
+  with open(fname, 'r') as i:
+    national = list(csv.DictReader(i)) 
+  
   template = 'violent-page.html'
   with open('static/data/crime-categories.csv', 'r') as csvin:
     categs = list(csv.DictReader(csvin))
 
   categs = [c['crime'] for c in categs if c['category'] == 'Violent Crime']
   data = get_data()
-  violent_data = [d for d in data if d['crime_name'] in categs]
-  return render_template(template,violent=violent_data)
+  violent_data = [d for d in national if d['crime_name'] in categs]
+  
+  return render_template(template,violent=violent_data,n=national)
+
+
+
+#################################################################
+
 
 
 # Route for crimes against women page
@@ -109,12 +135,23 @@ def women_landing_page():
 
 
 
+#################################################################
+
+
+
 # Route to the data dump page
 @app.route("/data")
 def data_table():
+  DATADIR = './static/data'
+  indiapath = join(DATADIR, 'total.csv')
   template = 'data.html'
-  data = get_data()
+
+  with open(indiapath, 'r') as i:
+    data = list(csv.DictReader(i))  
+
   return render_template(template, master=data)
+
+
 
 if __name__ == '__main__':
   app.run(debug=True, use_reloader=True)
