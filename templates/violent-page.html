@@ -73,6 +73,9 @@
 
     //console.log(natAvg)
     
+    /* --------------------------------------------------
+    ------------------ VIOLENT CRIMES -------------------
+    ----------------------------------------------------*/
 
     function drawViolent(indiaViolent) {
       var chartsToShow = [];
@@ -120,6 +123,10 @@
   	    });
     	});
     }
+
+    /* --------------------------------------------------
+    ----------- MURDER/ATTEMPT TO MURDER -----------------
+    ----------------------------------------------------*/
 
     function drawMurder(indiaMurder, natAvg) {
        var murder = indiaMurder.filter(function(d) {
@@ -263,6 +270,10 @@
           });
         });
       }
+
+    /* --------------------------------------------------
+    ------------------ KIDNAPPING -----------------------
+    --------------------------------------------------- */
 
     function drawKidnap(indiaKidnap, natAvg) {
       var chartsToShow = [];
@@ -461,6 +472,10 @@
         });
     }
 
+     /* --------------------------------------------------
+    ----------------------- RIOTS -----------------------
+    ----------------------------------------------------*/
+
     function drawRiot(indiaRiot, natAvg) {
       var chartsToShow = [];
       var chartObj = {};
@@ -495,7 +510,7 @@
           },
           yAxis: {
               title: {
-                  text: 'Rate of kidnapping'
+                  text: 'Crime rate'
               },
               plotLines: [{
                   value: 0,
@@ -508,7 +523,7 @@
           },
           legend: {
               layout: 'vertical',
-              align: 'left',
+              align: 'right',
               verticalAlign: 'top',
               borderWidth: 0,
               floating: true
@@ -516,7 +531,6 @@
           series: chartsToShow
         });
       });
-
     }
 
     </script>

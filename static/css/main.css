@@ -32,6 +32,11 @@ p.desc {
 	color: #545454;
 }
 
+p.note {
+	font-size: 1em;
+	color: darkred;
+}
+
 #main-header { 
 	background-color: #fff; 
 }

@@ -124,14 +124,22 @@ def violent_landing_page():
 # Route for crimes against women page
 @app.route("/women-crimes")
 def women_landing_page():
+  DATADIR = './static/data'
+  fname = join(DATADIR, 'total.csv')
+
   template = 'women-page.html'
+
+  # Get national data
+  with open(fname, 'r') as i:
+    national = list(csv.DictReader(i))
+  
   with open('static/data/crime-categories.csv', 'r') as csvin:
     categs = list(csv.DictReader(csvin))
 
   categs = [c['crime'] for c in categs if c['category'] == 'Crime Against Women']
   data = get_data()
-  women_data = [d for d in data if d['crime_name'] in categs]
-  return render_template(template,w_data=women_data)
+  women_data = [d for d in national if d['crime_name'] in categs]
+  return render_template(template,w_data=women_data, n=national)
 
 
 
