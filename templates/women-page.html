@@ -35,16 +35,21 @@
 		<div class="half col-md-6" id="nm-rape"></div>
 
 		<h3>Dowry deaths</h3>
-		<p class="desc">This chart shows the cities with the highest rates of dowry deaths</p>
+		<p class="desc">Again, cities in north India dominate dowry deaths. Agra has the highest average rate of dowry deaths from 2010 to 2014, followed by Patna and Gwalior.</p>
 		<div class="graph" id="dowry-graph"></div>
 
-		<h3>Cities with highest rates of kidnapping women and girls</h3>
-		<p class="desc">This chart shows the cities which city has the most number of abductions of girls and women</p>
-		<div class="graph" id="women-kidnap-graph"></div>
+    <p class="desc">Delhi has the highest rate of dowry deaths. Two south Indian cities, Bengaluru and Hyderabad, follow. As for the non-metro cities, four of the cities are from Uttar Pradesh. As we have seen from the other charts, cities from Madhya Pradesh also figure high on the list of crimes against women. Three of them (Jabalpur, Gwalior, Indore) show up here as well.</p>
+    <div class="half col-md-6" id="metro-dowry"></div>
+    <div class="half col-md-6" id="nm-dowry"></div>
 
 		<h3>Cities with highest rates of sexual harassment and molestation</h3>
-		<p class="desc">Here are the cities where women face the most sexual harassment and molestation in their everyday lives.</p>
-		<div class="graph" id="molest-graph"></div>
+		<p class="desc">Here are the cities where women face the most sexual harassment and molestation in their everyday lives. Vijayawada is among the top cities in both sexual harassment and molestation cases. Again, note that Kollam, a city from Kerala, a state with a matriarchial societal structure, figures in the top three of both sexual harassment and molestation.</p>
+		<div class="half col-md-6" id="metro-sh"></div>
+    <div class="half col-md-6" id="nm-sh"></div>
+
+    <h3>Cities with highest rates of kidnapping women and girls</h3>
+    <p class="desc">This chart shows the cities which city has the most number of abductions of girls and women</p>
+    <div class="graph" id="women-kidnap-graph"></div>
 	</div>
 
 	<script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>
@@ -63,8 +68,10 @@
 		drawWomen(indiaWomen);
 		drawRape(womenData);
 		drawDowry(womenData);
+    drawMolest(womenData);
+    drawKidnapWomen(womenData);
 
-		 /* --------------------------------------------------
+		/* --------------------------------------------------
     --------------- TOTAL CRIMES AGAINST WOMEN ----------
     ----------------------------------------------------*/
 
@@ -376,7 +383,7 @@
       var d10 = indiaDowry.slice(0,10);
       d10.push(natAvg[0]);
 
-      //console.log(d10)
+      console.log(d10)
 
       d10.forEach(function(d) {
         chartObj = {
@@ -405,7 +412,7 @@
       });
 
 
-      // Main rape graph
+      // Main dowry graph
       $(function () {
         $('#dowry-graph').highcharts({
           title: {
@@ -442,14 +449,14 @@
         });
       });
 
-      // Metro graph
+      // Metro graph for dowries
       $(function () {
-        $('#container').highcharts({
+        $('#metro-dowry').highcharts({
             chart: {
                 type: 'bar'
             },
             title: {
-                text: 'Rate of rape in metros'
+                text: 'Rate of dowry deaths in metros'
             },
             // subtitle: {
             //     text: 'Source: WorldClimate.com'
@@ -475,7 +482,7 @@
                         text: 'National average: ' + natAvg[0].avg,
                         rotation: 0,
                         y: -5,
-                        x: -10
+                        x: -50
                     }
                 }]
               },
@@ -490,20 +497,20 @@
               }
             },
             series: [{
-              name: 'Rape',
+              name: 'Dowry',
               data: metroData
             }]
           });
         });
 
-      // Metro graph
+      // Non metro graph for dowries
       $(function () {
-        $('#container').highcharts({
+        $('#nm-dowry').highcharts({
             chart: {
                 type: 'bar'
             },
             title: {
-                text: 'Rate of rape in non-metro cities'
+                text: 'Rate of dowry deaths in non-metro cities'
             },
             // subtitle: {
             //     text: 'Source: WorldClimate.com'
@@ -544,12 +551,253 @@
               }
             },
             series: [{
-              name: 'Kidnapping & abduction',
+              name: 'Dowry',
               data: nonMetroData
             }]
           });
         });
     	}
+
+    /* --------------------------------------------------
+    ------------- MOLESTATION AND SEXUAL HARASSMENT ----------
+    ----------------------------------------------------*/
+
+    function drawMolest(indiaWomen) {
+      var chartsToShow = [];
+      var chartObj = {};
+
+      var indiaHarass = womenData.filter(function(d) {
+        return d.crime_name === "Sexual harassment";
+      });
+      var natHarass = indiaHarass.filter(function(d) {
+        return d.city === "India";
+      });
+
+      var indiaMolest = womenData.filter(function(d) {
+        return d.crime_name === "Molestation";
+      });
+      var natMolest = indiaMolest.filter(function(d) {
+        return d.city === "India";
+      });
+
+      // Sort in descending order
+      indiaHarass.sort(function(a,b) {
+        return +b.avg - +a.avg;
+      });
+      indiaMolest.sort(function(a,b) {
+        return +b.avg - +a.avg;
+      });
+
+      // Get top 10
+      indiaHarass = indiaHarass.slice(0,10);
+      indiaMolest = indiaMolest.slice(0,10);
+
+      var harassCategs = [],
+          harassData = [],
+          molestCategs = [],
+          molestData = [];
+
+      indiaHarass.forEach(function(d) {
+        harassCategs.push(d.city);
+        harassData.push(+d.avg);
+      });
+
+      indiaMolest.forEach(function(d) {
+        molestCategs.push(d.city);
+        molestData.push(+d.avg);
+      });
+
+      $(function () {
+        $('#metro-sh').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Rate of sexual harassment crimes'
+            },
+            
+            xAxis: {
+                categories: harassCategs,
+                crosshair: true,
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Crime rate per 100,000 people'
+                },
+                plotLines: [{
+                    value: +natHarass[0].avg,
+                    color: 'green',
+                    dashStyle: 'shortdash',
+                    width: 2,
+                    label: {
+                        text: 'National average: ' + natHarass[0].avg,
+                        rotation: -90,
+                        y: -10,
+                        x: 10
+                    }
+                }]
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    dataLabels: {
+                      enabled: true
+                  } 
+                }
+            },
+            credits: {
+               enabled: false
+            },
+            series: [{
+                name: 'Sexual harassment',
+                data: harassData,
+                dataLabels: {
+                      enabled: true
+                  }
+            }]
+          });
+      });
+
+      $(function () {
+        $('#nm-sh').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Rate of molestation'
+            },
+            
+            xAxis: {
+                categories: molestCategs,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Crime rate per 100,000 people'
+                },
+                plotLines: [{
+                    value: +natMolest[0].avg,
+                    color: 'green',
+                    dashStyle: 'shortdash',
+                    width: 2,
+                    label: {
+                        text: 'National average: ' + natMolest[0].avg,
+                        rotation: -90,
+                        y: -10,
+                        x: 10
+                    }
+                }]
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    dataLabels: {
+                      enabled: true
+                  }
+                }
+            },
+            credits: {
+               enabled: false
+            },
+            series: [{
+                name: 'Molestation',
+                data: molestData
+
+            }]
+          });
+      });
+    }
+
+    /* --------------------------------------------------
+    --------------- KIDNAPPING OF WOMEN/GIRLS ----------
+    ----------------------------------------------------*/
+
+    function drawKidnapWomen(womenData) {
+      var chartsToShow = [];
+      var chartObj = {};
+
+      var wKidnap = womenData.filter(function(d) {
+        return d.crime_name === "Kidnapping \u0026 abduction of women and girls";
+      });
+
+      var natKidnap = wKidnap.filter(function(d) {
+        return d.city === "India";
+      });
+
+      wKidnap.sort(function(a,b) {
+        return +b.avg - +a.avg;
+      });
+
+      wKidnap = wKidnap.slice(0,20);
+
+      var kidnapCategs = []
+          kidnapData = [];
+
+      wKidnap.forEach(function(d) {
+        kidnapCategs.push(d.city);
+        kidnapData.push(+d.avg);
+      });
+
+      $(function () {
+        $('#women-kidnap-graph').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Rate of kidnapping of women and girls'
+            },
+            
+            xAxis: {
+                categories: kidnapCategs,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Crime rate per 100,000 people'
+                },
+                plotLines: [{
+                    value: +natKidnap[0].avg,
+                    color: 'green',
+                    dashStyle: 'shortdash',
+                    width: 2,
+                    label: {
+                        text: 'National average: ' + natKidnap[0].avg,
+                        rotation: -90,
+                        y: -10,
+                        x: 10
+                    }
+                }]
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    dataLabels: {
+                      enabled: true
+                    }
+                }
+            },
+            credits: {
+               enabled: false
+            },
+            series: [{
+                name: 'Kidnapping/abduction of women and girls',
+                data: kidnapData
+
+            }]
+          });
+      });
+
+
+
+    }
+
+
 
     $('a[href^="#"]').on('click',function (e) {
 		  e.preventDefault();
