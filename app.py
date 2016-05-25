@@ -106,7 +106,7 @@ def crime_landing():
 
 
 # Route to the city landing page
-@app.route("/cities")
+@app.route("/city-list")
 def city_landing():
   template = 'city-landing.html'
   with open('static/data/cities-overall.csv', 'r') as csvin:

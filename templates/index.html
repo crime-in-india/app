@@ -15,7 +15,7 @@
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
           <h3 class="intro">Welcome to Crime.in, a comprehensive portal of India's crime data. Compare crime statistics across different cities and years.</h3>
-          <p class="intro">Click on a city on the map or choose from the menu to get started. You can also <a href="#scroll-point">choose crime categories</p>
+          <p class="intro">Click on a city on the map or choose from the menu to get started. You can also <a href="#scroll-point">choose crime categories</a></p>
 
           <form id="user-location" action="{{ url_for('city_form') }}" method="GET">  
             <select name="city-name" class="form-control" id="city-name">
@@ -92,50 +92,219 @@
         </div>
 
         <a href="/violent-crimes">
-          <div class="col-md-4">        
+          <div class="col-md-4 col-sm-4">        
             <div class="crime-box">
               <h3 class="crime-categ">Violent Crimes</h3>
-              <img class="crime-logo" src="{{url_for('static', filename='assets/violent.png')}}"/>
+              <img class="img-responsive crime-logo" src="{{url_for('static', filename='assets/violent.png')}}"/>
             </div>     
           </div>
         </a>  
         
         <a href="/women-crimes">
-          <div class="col-md-4">        
+          <div class="col-md-4 col-sm-4">        
             <div class="crime-box">
               <h3 class="crime-categ">Crimes Against Women</h3>
-              <img class="crime-logo" src="{{url_for('static', filename='assets/women.png')}}"/>
+              <img class="img-responsive crime-logo" src="{{url_for('static', filename='assets/women.png')}}"/>
             </div>     
           </div>
         </a> 
 
         <a href="/property-crimes">  
-          <div class="col-md-4">        
+          <div class="col-md-4 col-sm-4">        
             <div class="crime-box">
               <h3 class="crime-categ">Property Crimes</h3>
-              <img class="crime-logo" src="{{url_for('static', filename='assets/property.png')}}"/>
+              <img class="img-responsive crime-logo" src="{{url_for('static', filename='assets/property.png')}}"/>
             </div>     
           </div>
         </a>  
 
         <a href="/economic-crimes">  
-          <div class="col-md-4">        
+          <div class="col-md-4 col-sm-4">        
             <div class="crime-box">
               <h3 class="crime-categ">Economic Crimes</h3>
-              <img class="crime-logo" src="{{url_for('static', filename='assets/economic.png')}}"/>
+              <img class="img-responsive crime-logo" src="{{url_for('static', filename='assets/economic.png')}}"/>
             </div>     
           </div>
-        </a>  
+        </a>
 
         <a href="/other-crimes">  
           <div class="col-md-4">        
             <div class="crime-box">
               <h3 class="crime-categ">Other Crimes</h3>
-              <img class="crime-logo" src="{{url_for('static', filename='assets/other.png')}}"/>
+              <img class="img-responsive crime-logo" src="{{url_for('static', filename='assets/other.png')}}"/>
             </div>     
           </div>
         </a>  
       </div>
+    </section>
+
+    <section id="list-section">
+      <div class="row">
+
+        <h2 class="head">Crime rates in cities</h2>
+        <p class="desc">Here are the top five cities with the highest average crime rates in different crime categories. The average has been calculated using crime rates from 2010 to 2014. You can <a href="/city-list">click here to see the entire list of cities</a>.</p>
+        <div class="col-md-4">
+          <h3 class="list-head">Overall Crime</h3>
+          <ul class="list">
+            <li>
+              <a href="/cities/Kochi">Kochi</a>
+              <p class="list-sub">1,159 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Indore">Indore</a>
+              <p class="list-sub">799.2 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Gwalior">Gwalior</a>
+              <p class="list-sub">740.3 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Jaipur">Jaipur</a>
+              <p class="list-sub">714.2 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Kollam">Kollam</a>
+              <p class="list-sub">689.1 per 100,000 people</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-4">
+          <h3 class="list-head">Robberies</h3>
+          <ul class="list">
+            <li>
+              <a href="/cities/Nagpur">Nagpur</a>
+              <p class="list-sub">15.9 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Aurangabad">Aurangabad</a>
+              <p class="list-sub">14.8 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Pune">Pune</a>
+              <p class="list-sub">14.3 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Vasai-Virar">Vasai-Virar</a>
+              <p class="list-sub">12.8 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Indore">Indore</a>
+              <p class="list-sub">11.2 per 100,000 people</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-4">
+          <h3 class="list-head">Murders</h3>
+          <ul class="list">
+            <li>
+              <a href="/cities/Patna">Patna</a>
+              <p class="list-sub">8.9 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Ranchi">Ranchi</a>
+              <p class="list-sub">5.7 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Meerut">Meerut</a>
+              <p class="list-sub">5.2 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Faridabad">Faridabad</a>
+              <p class="list-sub">5 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Gwalior">Gwalior</a>
+              <p class="list-sub">4.9 per 100,000 people</p>
+            </li>
+          </ul>
+        </div>
+        
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <h3 class="list-head">Cheating</h3>
+          <ul class="list">
+            <li>
+              <a href="/cities/Jaipur">Jaipur</a>
+              <p class="list-sub">118.3 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Kota">Kota</a>
+              <p class="list-sub">76.8 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Jodhpur">Jodhpur</a>
+              <p class="list-sub">61.5 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Bengaluru">Bengaluru</a>
+              <p class="list-sub">39.7 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Patna">Patna</a>
+              <p class="list-sub">32.3 per 100,000 people</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-4">
+          <h3 class="list-head">Sexual harassment</h3>
+          <ul class="list">
+            <li>
+              <a href="/cities/Vijayawada">Vijayawada</a>
+              <p class="list-sub">32 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Kollam">Kollam</a>
+              <p class="list-sub">26.4 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Bhopal">Bhopal</a>
+              <p class="list-sub">18 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Aurangabad">Aurangabad</a>
+              <p class="list-sub">12.2 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Faridabad">Faridabad</a>
+              <p class="list-sub">10.3 per 100,000 people</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-4">
+          <h3 class="list-head">Kidnapping</h3>
+          <ul class="list">
+            <li>
+              <a href="/cities/Delhi">Delhi</a>
+              <p class="list-sub">34.3 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Indore">Indore</a>
+              <p class="list-sub">17.1 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Raipur">Raipur</a>
+              <p class="list-sub">12.9 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Agra">Agra</a>
+              <p class="list-sub">11.3 per 100,000 people</p>
+            </li>
+            <li>
+              <a href="/cities/Durg-Bhilainagar">Durg-Bhilainagar</a>
+              <p class="list-sub">10.8 per 100,000 people</p>
+            </li>
+          </ul>
+        </div>
+        
+      </div>
+      
     </section>
 
   </div>
@@ -143,7 +312,7 @@
   <script src="{{url_for('static', filename='jquery.min.js')}}"></script>
   <script src="{{url_for('static', filename='collapse.js')}}"></script>
   <script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>
-  <script src="{{url_for('static', filename='d3/d3-queue.min.js')}}"></script>
+  <!-- <script src="{{url_for('static', filename='d3/d3-queue.min.js')}}"></script> -->
   <script src="{{url_for('static', filename='d3/topojson.v1.js')}}"></script>
   <script src="{{url_for('static', filename='data/cities.js')}}"></script>
   <script src="{{url_for('static', filename='script.js')}}"></script>

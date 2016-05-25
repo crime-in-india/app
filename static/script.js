@@ -24,13 +24,25 @@
 	.attr("preserveAspectRatio", "xMinYMin");
 
 	// Make sure all elements load together
-	var q = d3_queue.queue();
+	// var q = d3_queue.queue();
 
-	q.defer(d3.json, "static/data/india-states.json")
-		.await(makeMap);
+	// q.defer(d3.json, "static/data/india-states.json")
+	// 	.await(makeMap);
 
 	var india = map.append("svg:g")
 	.attr("id", "india");
+
+	var colors = ['#ffffb2','#fecc5c','#fd8d3c','#f03b20','#bd0026'];
+
+	var heatmapColour = d3.scale.linear()
+	  .domain(d3.range(0, 1, 1.0 / (colors.length - 1)))
+	  .range(colors);
+
+	var colorScale = d3.scale.linear()
+	.domain([127.9,1159])
+	.range([0,1]);
+
+	d3.json("static/data/india-states.json", makeMap);	
 
 	// Call the zoom function on svg
 	//map.call(zoom);
@@ -60,7 +72,9 @@
 		.attr("cx", function (d) { return proj([d.longitude,d.latitude])[0]; })
 		.attr("cy", function (d) { return proj([d.longitude,d.latitude])[1]; })
 		.attr("r", 7)
-		.attr("class", "city-dot");
+		.style("fill", function(d) {
+			return heatmapColour(colorScale(d.rate));
+		});
 	}
 
 	function zoomed() {
