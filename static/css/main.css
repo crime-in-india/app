@@ -63,6 +63,16 @@ h3.intro {
 	color: #336699 !important;
 }
 
+#city-name {
+	width: 200px;
+	display: inline-block;
+	text-align: center;	
+}
+
+#user-location {
+	padding: 2vh 0;
+	text-align: center;
+}
 
 #map {
 	width: 100%;

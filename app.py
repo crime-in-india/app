@@ -1,4 +1,4 @@
-from flask import Flask, render_template, abort
+from flask import Flask, render_template, abort, request
 import csv
 from os.path import join
 
@@ -52,6 +52,33 @@ def city_page(city):
 
   return render_template(template, data=data, city=city, v=violent_categs,w=women_categs,p=prop_categs, india=india)
 
+@app.route("/cities")
+def city_form():
+  city = request.args.get('city-name')
+
+  DATADIR = 'static/data/city-avg'
+  citypath = join(DATADIR, city + '.csv')
+  indiapath = join(DATADIR, 'India.csv')
+
+  # Get categories of crimes
+  with open('static/data/crime-categories.csv', 'r') as csvin:
+    categs = list(csv.DictReader(csvin))
+
+  violent_categs = [c['crime'] for c in categs if c['category'] == 'Violent Crime']
+  women_categs = [d['crime'] for d in categs if d['category'] == 'Crime Against Women']
+  prop_categs = [p['crime'] for p in categs if p['category'] == 'Property Crime']
+
+  template = 'city-page.html'
+  
+  # Get data of selected city
+  with open(citypath, 'r') as csvin:
+    data = list(csv.DictReader(csvin))
+
+  # Get national average data
+  with open(indiapath, 'r') as i:
+    india = list(csv.DictReader(i))
+
+  return render_template(template, data=data, city=city, v=violent_categs,w=women_categs,p=prop_categs, india=india)
 
 #################################################################
 

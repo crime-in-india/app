@@ -14,7 +14,69 @@
     <section id="map-section">
       <div class="col-md-8 col-md-offset-2">
         <h3 class="intro">Welcome to Crime.in, a comprehensive portal of India's crime data. Compare crime statistics across different cities and years.</h3>
-        <p class="intro">Click on a city on the map to get started or <a href="#scroll-point">click here to choose crime categories</p></a>
+        <p class="intro">Click on a city on the map or choose from the menu to get started.</p>
+
+        <form id="user-location" action="{{ url_for('city_form') }}" method="GET">  
+          <select name="city-name" class="form-control" id="city-name">
+            <option value="Agra">Agra</option>
+            <option value="Ahmedabad">Ahmedabad</option>
+            <option value="Allahabad">Allahabad</option>
+            <option value="Amritsar">Amritsar</option>
+            <option value="Asansol">Asansol</option>
+            <option value="Aurangabad">Aurangabad</option>
+            <option value="Bengaluru">Bengaluru</option>
+            <option value="Bhopal">Bhopal</option>
+            <option value="Chandigarh">Chandigarh</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Coimbatore">Coimbatore</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Dhanbad">Dhanbad</option>
+            <option value="Durg-Bhilainagar">Durg-Bhilainagar</option>
+            <option value="Faridabad">Faridabad</option>
+            <option value="Ghaziabad">Ghaziabad</option>
+            <option value="Gwalior">Gwalior</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Indore">Indore</option>
+            <option value="Jabalpur">Jabalpur</option>
+            <option value="Jaipur">Jaipur</option>
+            <option value="Jamshedpur">Jamshedpur</option>
+            <option value="Jodhpur">Jodhpur</option>
+            <option value="Kannur">Kannur</option>
+            <option value="Kanpur">Kanpur</option>
+            <option value="Kochi">Kochi</option>
+            <option value="Kolkata">Kolkata</option>
+            <option value="Kollam">Kollam</option>
+            <option value="Kota">Kota</option>
+            <option value="Kozhikode">Kozhikode</option>
+            <option value="Lucknow">Lucknow</option>
+            <option value="Ludhiana">Ludhiana</option>
+            <option value="Madurai">Madurai</option>
+            <option value="Malappuram">Malappuram</option>
+            <option value="Meerut">Meerut</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Nagpur">Nagpur</option>
+            <option value="Nasik">Nasik</option>
+            <option value="Patna">Patna</option>
+            <option value="Pune">Pune</option>
+            <option value="Raipur">Raipur</option>
+            <option value="Rajkot">Rajkot</option>
+            <option value="Ranchi">Ranchi</option>
+            <option value="Srinagar">Srinagar</option>
+            <option value="Surat">Surat</option>
+            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+            <option value="Thrissur">Thrissur</option>
+            <option value="Tiruchirappalli">Tiruchirappalli</option>
+            <option value="Vadodara">Vadodara</option>
+            <option value="Varanasi">Varanasi</option>
+            <option value="Vasai-Virar">Vasai-Virar</option>
+            <option value="Vijayawada">Vijayawada</option>
+            <option value="Vishakhapatnam">Vishakhapatnam</option>
+          </select>
+          <input type="submit" class="btn btn-primary" value="Show me" />
+        </form>
+
+        <p class="intro">You can also <a href="#scroll-point">click here to choose crime categories</p></a>
+        
         <div id="map"></div>        
       </div>
     </section>
