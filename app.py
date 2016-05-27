@@ -1,6 +1,7 @@
 from flask import Flask, render_template, abort, request
 import csv
 from os.path import join
+from operator import itemgetter
 
 app = Flask(__name__)
 
@@ -36,49 +37,37 @@ def city_page(city):
   with open('static/data/crime-categories.csv', 'r') as csvin:
     categs = list(csv.DictReader(csvin))
 
+  cat_list = {}
+
+  for el in categs:
+    if not cat_list.get(el['crime']):
+      cat_list[el['crime']] = el['category']
+
   violent_categs = [c['crime'] for c in categs if c['category'] == 'Violent Crime']
   women_categs = [d['crime'] for d in categs if d['category'] == 'Crime Against Women']
   prop_categs = [p['crime'] for p in categs if p['category'] == 'Property Crime']
+  econ_categs = [p['crime'] for p in categs if p['category'] == 'Economic Crime']
+  total_categs = violent_categs + women_categs + prop_categs + econ_categs
 
   template = 'city-page.html'
   
   # Get data of selected city
   with open(citypath, 'r') as csvin:
     data = list(csv.DictReader(csvin))
-
-  # Get national average data
-  with open(indiapath, 'r') as i:
-    india = list(csv.DictReader(i))
-
-  return render_template(template, data=data, city=city, v=violent_categs,w=women_categs,p=prop_categs, india=india)
-
-@app.route("/cities")
-def city_form():
-  city = request.args.get('city-name')
-
-  DATADIR = 'static/data/city-avg'
-  citypath = join(DATADIR, city + '.csv')
-  indiapath = join(DATADIR, 'India.csv')
-
-  # Get categories of crimes
-  with open('static/data/crime-categories.csv', 'r') as csvin:
-    categs = list(csv.DictReader(csvin))
-
-  violent_categs = [c['crime'] for c in categs if c['category'] == 'Violent Crime']
-  women_categs = [d['crime'] for d in categs if d['category'] == 'Crime Against Women']
-  prop_categs = [p['crime'] for p in categs if p['category'] == 'Property Crime']
-
-  template = 'city-page.html'
   
-  # Get data of selected city
-  with open(citypath, 'r') as csvin:
-    data = list(csv.DictReader(csvin))
+  for r in data:
+    if r['crime_name'] in total_categs:
+      r['categ'] = cat_list[r['crime_name']]
+
+  table_data = [row for row in data if row['crime_name'] in total_categs]
+  table_data = sorted(table_data, key=lambda r:r['categ'])
 
   # Get national average data
   with open(indiapath, 'r') as i:
     india = list(csv.DictReader(i))
 
-  return render_template(template, data=data, city=city, v=violent_categs,w=women_categs,p=prop_categs, india=india)
+  return render_template(template, data=data, city=city, v=violent_categs,w=women_categs,p=prop_categs,e=econ_categs, india=india,table_data=table_data)
+
 
 #################################################################
 
@@ -152,7 +141,7 @@ def violent_landing_page():
 @app.route("/women-crimes")
 def women_landing_page():
   DATADIR = './static/data'
-  fname = join(DATADIR, 'total.csv')
+  fname = join(DATADIR, 'total-final-2.csv')
 
   template = 'women-page.html'
 
@@ -178,7 +167,7 @@ def women_landing_page():
 @app.route("/data")
 def data_table():
   DATADIR = './static/data'
-  indiapath = join(DATADIR, 'total.csv')
+  indiapath = join(DATADIR, 'total-final-2.csv')
   template = 'data.html'
 
   with open(indiapath, 'r') as i:

@@ -17,12 +17,12 @@
 					<tr>
 						<th>City</th>
 						<th>Crime</th>
-						<th>2010</th>
-						<th>2011</th>
-						<th>2012</th>
-						<th>2013</th>
-						<th>2014</th>
-						<th>Average</th>
+						<th class="text-right">2010</th>
+						<th class="text-right">2011</th>
+						<th class="text-right">2012</th>
+						<th class="text-right">2013</th>
+						<th class="text-right">2014</th>
+						<th class="text-right">Average</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -30,12 +30,12 @@
 					<tr>
 						<td>{{ d.city }}</td>
 						<td>{{ d.crime_name }}</td>
-						<td>{{ d['2010'] }}</td>
-						<td>{{ d['2011'] }}</td>
-						<td>{{ d['2012'] }}</td>
-						<td>{{ d['2013'] }}</td>
-						<td>{{ d['2014'] }}</td>
-						<td>{{ d.avg }}</td>
+						<td class="text-right">{{ d['2010'] }}</td>
+						<td class="text-right">{{ d['2011'] }}</td>
+						<td class="text-right">{{ d['2012'] }}</td>
+						<td class="text-right">{{ d['2013'] }}</td>
+						<td class="text-right">{{ d['2014'] }}</td>
+						<td class="text-right">{{ d.avg }}</td>
 					</tr>
 					{% endfor %}
 				</tbody>

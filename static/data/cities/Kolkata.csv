@@ -2,7 +2,7 @@ crime_name,2010,2011,2012,2013,2014
 Acid attack,,,,,0.0
 Agrarian riots,,,,,0.0
 Arson,0.0,0.0,0.0,0.0,0.0
-Assault on women with intent to outrage her modesty,,,7.2,10.4,8.5
+Assault on women with intent to outrage her modesty,3.3,3.7,7.2,10.4,8.5
 Attempt to acid attack,,,,,0.0
 Attempt to commit culpable homicide not amounting to murder,,,,,0.0
 Attempt to commit murder,0.4,0.6,1.1,0.8,0.7
@@ -20,7 +20,7 @@ Counterfeiting currency - notes or bank notes,,,,,0.1
 Counterfeiting government stamp,,,,,0.0
 Criminal breach of trust,2.5,2.4,3.0,2.4,2.4
 Criminal trespass/burglary,,,,,0.3
-Cruelty by husband or his relatives,6.5,8.2,12.7,14.8,16.8
+Cruelty by husband or his relatives,5.9,8.2,12.7,14.8,16.8
 Culpable homicide not amounting to murder,0.3,0.2,0.2,0.3,0.2
 Custodial rape,0.0,0.0,0.0,0.0,0.0
 Dacoity,0.0,0.0,0.1,0.0,0.0
@@ -34,30 +34,28 @@ Forgery,,,,,0.0
 Gang rape,,,,,0.0
 Gang rape other than custodial,,,,,0.1
 Grievous hurt,,,,,6.4
-Grievous hurt total,,,,,6.4
 House trespass & house breaking,,,,,0.1
 Human trafficking,,,,,0.1
-Hurt,15.2,16.1,24.9,24.8,
+Hurt,15.2,16.1,24.9,24.8,6.4
 Importation of girls from foreign country,0.0,0.0,0.1,0.1,0.0
-"Imputation, assertions prejudicial to national integration",,,,,0.0
+Imputation or assertions prejudicial to national integration,,,,,0.0
 Industrial riots,,,,,0.0
 Insult to modesty of women at office premises,,,,,0.0
 Insult to modesty of women at other places,,,,,4.0
 Insult to modesty of women in other places related to work,,,,,0.0
 Insult to modesty of women in public transport system,,,,,0.1
-Insult to the modesty of women,,,5.5,6.1,4.2
+Insult to the modesty of women,2.0,2.1,5.5,6.1,4.2
 Kidnapping,,,,,0.8
 Kidnapping & abduction,0.9,1.0,1.9,1.5,2.4
 Kidnapping & abduction in order to murder,,,,,0.0
 Kidnapping & abduction of others,0.3,0.2,,0.5,
-Kidnapping & abduction of women and girls,1.5,1.7,3.1,2.1,
+Kidnapping & abduction of women and girls,1.3,1.7,3.1,2.1,
 Kidnapping & abduction of women to compel her for marriage,,,,,1.6
 Kidnapping for ransom,,,,,0.1
 Kidnapping of others,,,0.4,,
 Making or possessing materials for forged currency/bank notes,,,,,0.0
 Making or using documents resembling currency notes/bank notes,,,,,0.0
 Making preparation and assembly for committing dacoity,,,,,0.1
-Molestation,3.7,3.7,,,
 Murder,0.4,0.4,0.6,0.5,0.5
 Offences against state,,,,,0.0
 Offences promoting enmity between different groups,,,,,0.0
@@ -81,7 +79,8 @@ Robbery,0.1,0.2,0.3,0.3,0.2
 SCs/STs vs Non-SCs/STs riots,,,,,0.0
 Sectarian riots,,,,,0.0
 Sedition,,,,,0.0
-Sexual harassment,2.2,2.1,,,2.0
+Sexual harassment,,,,,2.0
+Sexual harassment and molestation of women,5.3,5.9,12.7,16.5,12.7
 Stalking,,,,,1.7
 Student riots,,,,,0.0
 Theft,23.6,25.0,35.1,34.8,32.4

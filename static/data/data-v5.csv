@@ -71,31 +71,31 @@ Dhanbad,2010,Theft,441,41.4
 Asansol,2010,Theft,323,29.6
 Amritsar,2010,Theft,257,25.4
 Kochi,2010,Theft,233,17.2
-India,2010,Sexual harassment,9961,2.0
-Vijayawada,2010,Sexual harassment,219,42.8
-Bhopal,2010,Sexual harassment,139,20.1
-Mumbai,2010,Sexual harassment,138,1.9
-Kolkata,2010,Sexual harassment,133,2.2
-Pune,2010,Sexual harassment,91,0.5
-Faridabad,2010,Sexual harassment,78,16.4
-Delhi,2010,Sexual harassment,73,1.3
-Agra,2010,Sexual harassment,61,10.0
-Hyderabad,2010,Sexual harassment,60,3.2
-Vishakhapatnam,2010,Sexual harassment,52,7.9
-Bengaluru,2010,Sexual harassment,50,1.8
-Jabalpur,2010,Sexual harassment,49,9.5
-Nagpur,2010,Sexual harassment,48,4.7
-Indore,2010,Sexual harassment,47,6.5
-Chennai,2010,Sexual harassment,23,0.7
-Kochi,2010,Sexual harassment,23,3.4
-Madurai,2010,Sexual harassment,20,3.4
-Nasik,2010,Sexual harassment,18,3.4
-Ludhiana,2010,Sexual harassment,11,1.8
-Ahmedabad,2010,Sexual harassment,9,0.4
-Kanpur,2010,Sexual harassment,7,0.6
-Rajkot,2010,Sexual harassment,7,1.5
-Amritsar,2010,Sexual harassment,4,0.9
-Patna,2010,Sexual harassment,3,0.4
+India,2010,Sexual harassment,9961,1.7
+Vijayawada,2010,Sexual harassment,219,29.6
+Bhopal,2010,Sexual harassment,139,15.5
+Mumbai,2010,Sexual harassment,138,1.6
+Kolkata,2010,Sexual harassment,133,2.0
+Pune,2010,Sexual harassment,91,3.8
+Faridabad,2010,Sexual harassment,78,11.9
+Delhi,2010,Sexual harassment,73,1.0
+Agra,2010,Sexual harassment,61,7.6
+Hyderabad,2010,Sexual harassment,60,1.6
+Vishakhapatnam,2010,Sexual harassment,52,6.1
+Bengaluru,2010,Sexual harassment,50,1.2
+Jabalpur,2010,Sexual harassment,49,8.1
+Nagpur,2010,Sexual harassment,48,3.9
+Indore,2010,Sexual harassment,47,4.5
+Chennai,2010,Sexual harassment,23,0.5
+Kochi,2010,Sexual harassment,23,2.1
+Madurai,2010,Sexual harassment,20,2.7
+Nasik,2010,Sexual harassment,18,2.4
+Ludhiana,2010,Sexual harassment,11,1.5
+Ahmedabad,2010,Sexual harassment,9,0.3
+Kanpur,2010,Sexual harassment,7,0.5
+Rajkot,2010,Sexual harassment,7,1.1
+Amritsar,2010,Sexual harassment,4,0.7
+Patna,2010,Sexual harassment,3,0.3
 Coimbatore,2010,Sexual harassment,1,0.1
 Jamshedpur,2010,Sexual harassment,1,0.2
 Surat,2010,Sexual harassment,1,0.1
@@ -179,42 +179,42 @@ Vijayawada,2010,Riots,8,0.8
 Vishakhapatnam,2010,Riots,2,0.2
 Amritsar,2010,Riots,0,0
 Ludhiana,2010,Riots,0,0
-India,2010,Rape,22172,4.5
-Delhi,2010,Rape,414,7.1
-Mumbai,2010,Rape,194,2.6
-Pune,2010,Rape,91,0.5
-Jabalpur,2010,Rape,81,15.6
-Bhopal,2010,Rape,73,10.6
-Jaipur,2010,Rape,71,6.5
-Indore,2010,Rape,69,9.6
-Bengaluru,2010,Rape,65,2.4
-Nagpur,2010,Rape,58,5.6
-Vishakhapatnam,2010,Rape,53,8.1
-Lucknow,2010,Rape,52,4.9
-Ludhiana,2010,Rape,52,8.6
-Faridabad,2010,Rape,51,10.7
-Ahmedabad,2010,Rape,49,2.3
-Chennai,2010,Rape,47,1.5
-Hyderabad,2010,Rape,45,2.4
-Kanpur,2010,Rape,42,3.4
+India,2010,Rape,22172,3.8
+Delhi,2010,Rape,414,5.5
+Mumbai,2010,Rape,194,2.3
+Pune,2010,Rape,91,3.8
+Jabalpur,2010,Rape,81,13.4
+Bhopal,2010,Rape,73,8.1
+Jaipur,2010,Rape,71,4.9
+Indore,2010,Rape,69,6.6
+Bengaluru,2010,Rape,65,1.6
+Nagpur,2010,Rape,58,4.7
+Vishakhapatnam,2010,Rape,53,6.2
+Lucknow,2010,Rape,52,3.8
+Ludhiana,2010,Rape,52,7.0
+Faridabad,2010,Rape,51,7.8
+Ahmedabad,2010,Rape,49,1.6
+Chennai,2010,Rape,47,1.1
+Hyderabad,2010,Rape,45,1.2
+Kanpur,2010,Rape,42,3.1
 Kolkata,2010,Rape,32,0.5
-Nasik,2010,Rape,30,5.6
-Patna,2010,Rape,25,3.2
-Vijayawada,2010,Rape,25,4.9
-Amritsar,2010,Rape,24,5.2
-Surat,2010,Rape,23,1.9
-Kochi,2010,Rape,20,2.9
-Meerut,2010,Rape,19,3.5
-Asansol,2010,Rape,18,3.6
-Jamshedpur,2010,Rape,16,3.1
-Coimbatore,2010,Rape,15,2.1
-Agra,2010,Rape,13,2.1
-Rajkot,2010,Rape,12,2.5
-Allahabad,2010,Rape,7,1.5
-Vadodara,2010,Rape,7,1.0
-Dhanbad,2010,Rape,5,1.0
-Madurai,2010,Rape,3,0.5
-Varanasi,2010,Rape,2,0.4
+Nasik,2010,Rape,30,4.1
+Patna,2010,Rape,25,2.6
+Vijayawada,2010,Rape,25,3.4
+Amritsar,2010,Rape,24,4.3
+Surat,2010,Rape,23,1.2
+Kochi,2010,Rape,20,1.9
+Meerut,2010,Rape,19,2.8
+Asansol,2010,Rape,18,3.0
+Jamshedpur,2010,Rape,16,2.5
+Coimbatore,2010,Rape,15,1.4
+Agra,2010,Rape,13,1.6
+Rajkot,2010,Rape,12,1.8
+Allahabad,2010,Rape,7,1.2
+Vadodara,2010,Rape,7,0.8
+Dhanbad,2010,Rape,5,0.9
+Madurai,2010,Rape,3,0.4
+Varanasi,2010,Rape,2,0.3
 India,2010,Preparation & assembly for dacoity,2615,0.2
 Bengaluru,2010,Preparation & assembly for dacoity,246,4.3
 Faridabad,2010,Preparation & assembly for dacoity,70,6.6
@@ -287,42 +287,42 @@ Varanasi,2010,Other theft,150,12.4
 Asansol,2010,Other theft,148,13.6
 Kochi,2010,Other theft,134,9.9
 Allahabad,2010,Other theft,133,12.7
-India,2010,Other rape,22166,4.5
-Delhi,2010,Other rape,414,7.1
-Mumbai,2010,Other rape,194,2.6
-Pune,2010,Other rape,91,0.5
-Jabalpur,2010,Other rape,81,15.6
-Bhopal,2010,Other rape,73,10.6
-Jaipur,2010,Other rape,71,6.5
-Indore,2010,Other rape,69,9.6
-Bengaluru,2010,Other rape,65,2.4
-Nagpur,2010,Other rape,58,5.6
-Vishakhapatnam,2010,Other rape,53,8.1
-Lucknow,2010,Other rape,52,4.9
-Ludhiana,2010,Other rape,52,8.6
-Faridabad,2010,Other rape,51,10.7
-Ahmedabad,2010,Other rape,49,2.3
-Chennai,2010,Other rape,47,1.5
-Hyderabad,2010,Other rape,45,2.4
-Kanpur,2010,Other rape,42,3.4
+India,2010,Other rape,22166,3.8
+Delhi,2010,Other rape,414,5.5
+Mumbai,2010,Other rape,194,2.3
+Pune,2010,Other rape,91,3.8
+Jabalpur,2010,Other rape,81,13.4
+Bhopal,2010,Other rape,73,8.1
+Jaipur,2010,Other rape,71,4.9
+Indore,2010,Other rape,69,6.6
+Bengaluru,2010,Other rape,65,1.6
+Nagpur,2010,Other rape,58,4.7
+Vishakhapatnam,2010,Other rape,53,6.2
+Lucknow,2010,Other rape,52,3.8
+Ludhiana,2010,Other rape,52,7.0
+Faridabad,2010,Other rape,51,7.8
+Ahmedabad,2010,Other rape,49,1.6
+Chennai,2010,Other rape,47,1.1
+Hyderabad,2010,Other rape,45,1.2
+Kanpur,2010,Other rape,42,3.1
 Kolkata,2010,Other rape,32,0.5
-Nasik,2010,Other rape,30,5.6
-Patna,2010,Other rape,25,3.2
-Vijayawada,2010,Other rape,25,4.9
-Amritsar,2010,Other rape,24,5.2
-Surat,2010,Other rape,23,1.9
-Kochi,2010,Other rape,20,2.9
-Meerut,2010,Other rape,19,3.5
-Asansol,2010,Other rape,18,3.6
-Jamshedpur,2010,Other rape,16,3.1
-Coimbatore,2010,Other rape,15,2.1
-Agra,2010,Other rape,13,2.1
-Rajkot,2010,Other rape,12,2.5
-Allahabad,2010,Other rape,7,1.5
-Vadodara,2010,Other rape,7,1.0
-Dhanbad,2010,Other rape,5,1.0
-Madurai,2010,Other rape,3,0.5
-Varanasi,2010,Other rape,2,0.4
+Nasik,2010,Other rape,30,4.1
+Patna,2010,Other rape,25,2.6
+Vijayawada,2010,Other rape,25,3.4
+Amritsar,2010,Other rape,24,4.3
+Surat,2010,Other rape,23,1.2
+Kochi,2010,Other rape,20,1.9
+Meerut,2010,Other rape,19,2.8
+Asansol,2010,Other rape,18,3.0
+Jamshedpur,2010,Other rape,16,2.5
+Coimbatore,2010,Other rape,15,1.4
+Agra,2010,Other rape,13,1.6
+Rajkot,2010,Other rape,12,1.8
+Allahabad,2010,Other rape,7,1.2
+Vadodara,2010,Other rape,7,0.8
+Dhanbad,2010,Other rape,5,0.9
+Madurai,2010,Other rape,3,0.4
+Varanasi,2010,Other rape,2,0.3
 India,2010,Other IPC crimes,924072,77.9
 Kochi,2010,Other IPC crimes,24227,1788
 Delhi,2010,Other IPC crimes,12165,95.1
@@ -395,78 +395,78 @@ Coimbatore,2010,Murder,22,1.5
 Dhanbad,2010,Murder,17,1.6
 Varanasi,2010,Murder,15,1.2
 Kochi,2010,Murder,4,0.3
-India,2010,Molestation,40613,8.2
-Delhi,2010,Molestation,550,9.5
-Mumbai,2010,Molestation,475,6.4
-Bengaluru,2010,Molestation,308,11.4
-Kolkata,2010,Molestation,226,3.7
-Indore,2010,Molestation,211,29.3
-Vijayawada,2010,Molestation,172,33.6
-Hyderabad,2010,Molestation,171,9.3
-Kanpur,2010,Molestation,118,9.4
-Jaipur,2010,Molestation,115,10.6
-Jabalpur,2010,Molestation,114,22.0
-Lucknow,2010,Molestation,97,9.2
-Nagpur,2010,Molestation,87,8.5
-Pune,2010,Molestation,78,0.4
-Ahmedabad,2010,Molestation,73,3.4
-Kochi,2010,Molestation,67,9.8
-Vishakhapatnam,2010,Molestation,59,9.0
-Agra,2010,Molestation,54,8.8
-Nasik,2010,Molestation,46,8.6
-Chennai,2010,Molestation,45,1.4
-Coimbatore,2010,Molestation,35,4.9
-Meerut,2010,Molestation,34,6.3
-Faridabad,2010,Molestation,27,5.7
-Ludhiana,2010,Molestation,27,4.5
-Surat,2010,Molestation,24,2.0
-Bhopal,2010,Molestation,21,3.0
-Vadodara,2010,Molestation,18,2.5
-Rajkot,2010,Molestation,14,2.9
-Asansol,2010,Molestation,13,2.6
-Madurai,2010,Molestation,12,2.0
-Amritsar,2010,Molestation,10,2.1
-Allahabad,2010,Molestation,9,1.9
-Dhanbad,2010,Molestation,6,1.2
-Jamshedpur,2010,Molestation,6,1.1
-Patna,2010,Molestation,4,0.5
-Varanasi,2010,Molestation,3,0.5
-India,2010,Kidnapping & abduction of women and girls,29795,6.0
-Delhi,2010,Kidnapping & abduction of women and girls,1422,24.5
-Kanpur,2010,Kidnapping & abduction of women and girls,263,21.0
-Lucknow,2010,Kidnapping & abduction of women and girls,246,23.3
-Jaipur,2010,Kidnapping & abduction of women and girls,193,17.8
-Ahmedabad,2010,Kidnapping & abduction of women and girls,177,8.3
-Mumbai,2010,Kidnapping & abduction of women and girls,146,2.0
-Agra,2010,Kidnapping & abduction of women and girls,145,23.7
-Ludhiana,2010,Kidnapping & abduction of women and girls,102,16.9
-Pune,2010,Kidnapping & abduction of women and girls,94,0.5
-Kolkata,2010,Kidnapping & abduction of women and girls,91,1.5
-Faridabad,2010,Kidnapping & abduction of women and girls,86,18.1
-Meerut,2010,Kidnapping & abduction of women and girls,75,13.9
-Vijayawada,2010,Kidnapping & abduction of women and girls,65,12.7
-Surat,2010,Kidnapping & abduction of women and girls,63,5.2
-Patna,2010,Kidnapping & abduction of women and girls,58,7.5
-Bhopal,2010,Kidnapping & abduction of women and girls,53,7.7
-Amritsar,2010,Kidnapping & abduction of women and girls,43,9.2
-Hyderabad,2010,Kidnapping & abduction of women and girls,41,2.2
-Dhanbad,2010,Kidnapping & abduction of women and girls,40,8.2
-Nagpur,2010,Kidnapping & abduction of women and girls,34,3.3
-Varanasi,2010,Kidnapping & abduction of women and girls,34,6.1
-Rajkot,2010,Kidnapping & abduction of women and girls,32,6.7
-Allahabad,2010,Kidnapping & abduction of women and girls,30,6.4
-Chennai,2010,Kidnapping & abduction of women and girls,30,0.9
-Vadodara,2010,Kidnapping & abduction of women and girls,30,4.2
-Bengaluru,2010,Kidnapping & abduction of women and girls,29,1.1
-Jabalpur,2010,Kidnapping & abduction of women and girls,25,4.8
-Jamshedpur,2010,Kidnapping & abduction of women and girls,25,4.8
-Vishakhapatnam,2010,Kidnapping & abduction of women and girls,24,3.6
-Indore,2010,Kidnapping & abduction of women and girls,23,3.2
-Nasik,2010,Kidnapping & abduction of women and girls,19,3.5
-Asansol,2010,Kidnapping & abduction of women and girls,13,2.6
-Coimbatore,2010,Kidnapping & abduction of women and girls,10,1.4
-Madurai,2010,Kidnapping & abduction of women and girls,9,1.5
-Kochi,2010,Kidnapping & abduction of women and girls,5,0.7
+India,2010,Molestation,40613,6.9
+Delhi,2010,Molestation,550,7.3
+Mumbai,2010,Molestation,475,5.6
+Bengaluru,2010,Molestation,308,7.6
+Kolkata,2010,Molestation,226,3.3
+Indore,2010,Molestation,211,20.3
+Vijayawada,2010,Molestation,172,23.2
+Hyderabad,2010,Molestation,171,4.5
+Kanpur,2010,Molestation,118,8.8
+Jaipur,2010,Molestation,115,7.9
+Jabalpur,2010,Molestation,114,18.9
+Lucknow,2010,Molestation,97,7.0
+Nagpur,2010,Molestation,87,7.1
+Pune,2010,Molestation,78,3.3
+Ahmedabad,2010,Molestation,73,2.4
+Kochi,2010,Molestation,67,6.2
+Vishakhapatnam,2010,Molestation,59,6.9
+Agra,2010,Molestation,54,6.7
+Nasik,2010,Molestation,46,6.2
+Chennai,2010,Molestation,45,1.0
+Coimbatore,2010,Molestation,35,3.3
+Meerut,2010,Molestation,34,5.1
+Faridabad,2010,Molestation,27,4.1
+Ludhiana,2010,Molestation,27,3.7
+Surat,2010,Molestation,24,1.2
+Bhopal,2010,Molestation,21,2.3
+Vadodara,2010,Molestation,18,2.1
+Rajkot,2010,Molestation,14,2.1
+Asansol,2010,Molestation,13,2.2
+Madurai,2010,Molestation,12,1.6
+Amritsar,2010,Molestation,10,1.8
+Allahabad,2010,Molestation,9,1.6
+Dhanbad,2010,Molestation,6,1.1
+Jamshedpur,2010,Molestation,6,0.9
+Patna,2010,Molestation,4,0.4
+Varanasi,2010,Molestation,3,0.4
+India,2010,Kidnapping & abduction of women and girls,29795,5.1
+Delhi,2010,Kidnapping & abduction of women and girls,1422,18.8
+Kanpur,2010,Kidnapping & abduction of women and girls,263,19.7
+Lucknow,2010,Kidnapping & abduction of women and girls,246,17.8
+Jaipur,2010,Kidnapping & abduction of women and girls,193,13.3
+Ahmedabad,2010,Kidnapping & abduction of women and girls,177,5.9
+Mumbai,2010,Kidnapping & abduction of women and girls,146,1.7
+Agra,2010,Kidnapping & abduction of women and girls,145,18.0
+Ludhiana,2010,Kidnapping & abduction of women and girls,102,13.8
+Pune,2010,Kidnapping & abduction of women and girls,94,3.9
+Kolkata,2010,Kidnapping & abduction of women and girls,91,1.3
+Faridabad,2010,Kidnapping & abduction of women and girls,86,13.1
+Meerut,2010,Kidnapping & abduction of women and girls,75,11.2
+Vijayawada,2010,Kidnapping & abduction of women and girls,65,8.8
+Surat,2010,Kidnapping & abduction of women and girls,63,3.2
+Patna,2010,Kidnapping & abduction of women and girls,58,6.0
+Bhopal,2010,Kidnapping & abduction of women and girls,53,5.9
+Amritsar,2010,Kidnapping & abduction of women and girls,43,7.8
+Hyderabad,2010,Kidnapping & abduction of women and girls,41,1.1
+Dhanbad,2010,Kidnapping & abduction of women and girls,40,7.1
+Nagpur,2010,Kidnapping & abduction of women and girls,34,2.8
+Varanasi,2010,Kidnapping & abduction of women and girls,34,5.0
+Rajkot,2010,Kidnapping & abduction of women and girls,32,4.9
+Allahabad,2010,Kidnapping & abduction of women and girls,30,5.3
+Chennai,2010,Kidnapping & abduction of women and girls,30,0.7
+Vadodara,2010,Kidnapping & abduction of women and girls,30,3.4
+Bengaluru,2010,Kidnapping & abduction of women and girls,29,0.7
+Jabalpur,2010,Kidnapping & abduction of women and girls,25,4.1
+Jamshedpur,2010,Kidnapping & abduction of women and girls,25,3.9
+Vishakhapatnam,2010,Kidnapping & abduction of women and girls,24,2.8
+Indore,2010,Kidnapping & abduction of women and girls,23,2.2
+Nasik,2010,Kidnapping & abduction of women and girls,19,2.6
+Asansol,2010,Kidnapping & abduction of women and girls,13,2.2
+Coimbatore,2010,Kidnapping & abduction of women and girls,10,0.9
+Madurai,2010,Kidnapping & abduction of women and girls,9,1.2
+Kochi,2010,Kidnapping & abduction of women and girls,5,0.5
 India,2010,Kidnapping & abduction of others,8645,0.7
 Delhi,2010,Kidnapping & abduction of others,1207,9.4
 Bengaluru,2010,Kidnapping & abduction of others,484,8.5
@@ -611,39 +611,39 @@ Asansol,2010,Hurt,69,6.3
 Lucknow,2010,Hurt,35,1.5
 Patna,2010,Hurt,34,2
 Meerut,2010,Hurt,12,1
-India,2010,Dowry deaths,8391,1.7
-Delhi,2010,Dowry deaths,112,1.9
-Kanpur,2010,Dowry deaths,92,7.4
-Bengaluru,2010,Dowry deaths,52,1.9
-Lucknow,2010,Dowry deaths,50,4.7
-Hyderabad,2010,Dowry deaths,44,2.4
-Agra,2010,Dowry deaths,39,6.4
-Jaipur,2010,Dowry deaths,30,2.8
-Patna,2010,Dowry deaths,30,3.9
-Indore,2010,Dowry deaths,26,3.6
-Bhopal,2010,Dowry deaths,25,3.6
-Jabalpur,2010,Dowry deaths,25,4.8
-Faridabad,2010,Dowry deaths,23,4.8
-Mumbai,2010,Dowry deaths,21,0.3
-Asansol,2010,Dowry deaths,19,3.8
-Vijayawada,2010,Dowry deaths,17,3.3
-Chennai,2010,Dowry deaths,16,0.5
-Allahabad,2010,Dowry deaths,14,3.0
-Meerut,2010,Dowry deaths,14,2.6
-Jamshedpur,2010,Dowry deaths,13,2.5
-Ahmedabad,2010,Dowry deaths,12,0.6
-Dhanbad,2010,Dowry deaths,12,2.5
+India,2010,Dowry deaths,8391,1.4
+Delhi,2010,Dowry deaths,112,1.5
+Kanpur,2010,Dowry deaths,92,6.9
+Bengaluru,2010,Dowry deaths,52,1.3
+Lucknow,2010,Dowry deaths,50,3.6
+Hyderabad,2010,Dowry deaths,44,1.2
+Agra,2010,Dowry deaths,39,4.9
+Jaipur,2010,Dowry deaths,30,2.1
+Patna,2010,Dowry deaths,30,3.1
+Indore,2010,Dowry deaths,26,2.5
+Bhopal,2010,Dowry deaths,25,2.8
+Jabalpur,2010,Dowry deaths,25,4.1
+Faridabad,2010,Dowry deaths,23,3.5
+Mumbai,2010,Dowry deaths,21,0.2
+Asansol,2010,Dowry deaths,19,3.2
+Vijayawada,2010,Dowry deaths,17,2.3
+Chennai,2010,Dowry deaths,16,0.4
+Allahabad,2010,Dowry deaths,14,2.5
+Meerut,2010,Dowry deaths,14,2.1
+Jamshedpur,2010,Dowry deaths,13,2.0
+Ahmedabad,2010,Dowry deaths,12,0.4
+Dhanbad,2010,Dowry deaths,12,2.1
 Kolkata,2010,Dowry deaths,12,0.2
-Madurai,2010,Dowry deaths,11,1.9
-Varanasi,2010,Dowry deaths,11,2.0
-Vishakhapatnam,2010,Dowry deaths,11,1.7
-Amritsar,2010,Dowry deaths,10,2.1
-Nagpur,2010,Dowry deaths,8,0.8
-Ludhiana,2010,Dowry deaths,7,1.2
-Pune,2010,Dowry deaths,4,0.0
+Madurai,2010,Dowry deaths,11,1.5
+Varanasi,2010,Dowry deaths,11,1.6
+Vishakhapatnam,2010,Dowry deaths,11,1.3
+Amritsar,2010,Dowry deaths,10,1.8
+Nagpur,2010,Dowry deaths,8,0.7
+Ludhiana,2010,Dowry deaths,7,0.9
+Pune,2010,Dowry deaths,4,0.2
 Surat,2010,Dowry deaths,3,0.2
-Kochi,2010,Dowry deaths,2,0.3
-Nasik,2010,Dowry deaths,2,0.4
+Kochi,2010,Dowry deaths,2,0.2
+Nasik,2010,Dowry deaths,2,0.3
 Coimbatore,2010,Dowry deaths,1,0.1
 Rajkot,2010,Dowry deaths,0,0.0
 Vadodara,2010,Dowry deaths,0,0.0
@@ -755,42 +755,42 @@ Vijayawada,2010,Culpable homicide not amounting to murder,1,0.1
 Coimbatore,2010,Culpable homicide not amounting to murder,0,0
 Jabalpur,2010,Culpable homicide not amounting to murder,0,0
 Madurai,2010,Culpable homicide not amounting to murder,0,0
-India,2010,Cruelty by husband or his relatives,94041,18.9
-Hyderabad,2010,Cruelty by husband or his relatives,1420,76.8
-Delhi,2010,Cruelty by husband or his relatives,1273,21.9
-Ahmedabad,2010,Cruelty by husband or his relatives,1230,57.9
-Jaipur,2010,Cruelty by husband or his relatives,720,66.4
-Vijayawada,2010,Cruelty by husband or his relatives,626,122.2
-Lucknow,2010,Cruelty by husband or his relatives,605,57.3
-Kanpur,2010,Cruelty by husband or his relatives,447,35.7
-Kolkata,2010,Cruelty by husband or his relatives,400,6.5
-Bengaluru,2010,Cruelty by husband or his relatives,398,14.7
-Vishakhapatnam,2010,Cruelty by husband or his relatives,393,59.7
-Mumbai,2010,Cruelty by husband or his relatives,312,4.2
-Asansol,2010,Cruelty by husband or his relatives,310,61.7
-Rajkot,2010,Cruelty by husband or his relatives,294,61.6
-Agra,2010,Cruelty by husband or his relatives,285,46.7
-Surat,2010,Cruelty by husband or his relatives,268,22.1
-Indore,2010,Cruelty by husband or his relatives,259,36.0
-Faridabad,2010,Cruelty by husband or his relatives,224,47.2
-Vadodara,2010,Cruelty by husband or his relatives,216,30.5
-Meerut,2010,Cruelty by husband or his relatives,215,39.8
-Pune,2010,Cruelty by husband or his relatives,214,1.2
-Patna,2010,Cruelty by husband or his relatives,197,25.4
-Bhopal,2010,Cruelty by husband or his relatives,191,27.7
-Nagpur,2010,Cruelty by husband or his relatives,175,17.0
-Kochi,2010,Cruelty by husband or his relatives,146,21.3
-Chennai,2010,Cruelty by husband or his relatives,125,3.9
-Nasik,2010,Cruelty by husband or his relatives,124,23.1
-Jabalpur,2010,Cruelty by husband or his relatives,118,22.8
-Ludhiana,2010,Cruelty by husband or his relatives,109,18.0
-Amritsar,2010,Cruelty by husband or his relatives,87,18.7
-Madurai,2010,Cruelty by husband or his relatives,69,11.6
-Allahabad,2010,Cruelty by husband or his relatives,64,13.7
-Varanasi,2010,Cruelty by husband or his relatives,50,8.9
-Coimbatore,2010,Cruelty by husband or his relatives,45,6.3
-Jamshedpur,2010,Cruelty by husband or his relatives,22,4.2
-Dhanbad,2010,Cruelty by husband or his relatives,11,2.3
+India,2010,Cruelty by husband or his relatives,94041,16.0
+Hyderabad,2010,Cruelty by husband or his relatives,1420,37.7
+Delhi,2010,Cruelty by husband or his relatives,1273,16.8
+Ahmedabad,2010,Cruelty by husband or his relatives,1230,40.9
+Jaipur,2010,Cruelty by husband or his relatives,720,49.5
+Vijayawada,2010,Cruelty by husband or his relatives,626,84.5
+Lucknow,2010,Cruelty by husband or his relatives,605,43.8
+Kanpur,2010,Cruelty by husband or his relatives,447,33.5
+Kolkata,2010,Cruelty by husband or his relatives,400,5.9
+Bengaluru,2010,Cruelty by husband or his relatives,398,9.8
+Vishakhapatnam,2010,Cruelty by husband or his relatives,393,46.0
+Mumbai,2010,Cruelty by husband or his relatives,312,3.7
+Asansol,2010,Cruelty by husband or his relatives,310,52.1
+Rajkot,2010,Cruelty by husband or his relatives,294,44.6
+Agra,2010,Cruelty by husband or his relatives,285,35.4
+Surat,2010,Cruelty by husband or his relatives,268,13.6
+Indore,2010,Cruelty by husband or his relatives,259,24.9
+Faridabad,2010,Cruelty by husband or his relatives,224,34.2
+Vadodara,2010,Cruelty by husband or his relatives,216,24.8
+Meerut,2010,Cruelty by husband or his relatives,215,32.1
+Pune,2010,Cruelty by husband or his relatives,214,9.0
+Patna,2010,Cruelty by husband or his relatives,197,20.5
+Bhopal,2010,Cruelty by husband or his relatives,191,21.3
+Nagpur,2010,Cruelty by husband or his relatives,175,14.3
+Kochi,2010,Cruelty by husband or his relatives,146,13.6
+Chennai,2010,Cruelty by husband or his relatives,125,2.9
+Nasik,2010,Cruelty by husband or his relatives,124,16.8
+Jabalpur,2010,Cruelty by husband or his relatives,118,19.5
+Ludhiana,2010,Cruelty by husband or his relatives,109,14.7
+Amritsar,2010,Cruelty by husband or his relatives,87,15.7
+Madurai,2010,Cruelty by husband or his relatives,69,9.5
+Allahabad,2010,Cruelty by husband or his relatives,64,11.4
+Varanasi,2010,Cruelty by husband or his relatives,50,7.4
+Coimbatore,2010,Cruelty by husband or his relatives,45,4.2
+Jamshedpur,2010,Cruelty by husband or his relatives,22,3.4
+Dhanbad,2010,Cruelty by husband or his relatives,11,2.0
 India,2010,Criminal breach of trust,16678,1.4
 Mumbai,2010,Criminal breach of trust,482,2.9
 Lucknow,2010,Criminal breach of trust,432,19.1

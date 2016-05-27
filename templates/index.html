@@ -17,8 +17,8 @@
           <h3 class="intro">Welcome to Crime.in, a comprehensive portal of India's crime data. Compare crime statistics across different cities and years.</h3>
           <p class="intro">Click on a city on the map or choose from the menu to get started. You can also <a href="#scroll-point">choose crime categories</a></p>
 
-          <form id="user-location" action="{{ url_for('city_form') }}" method="GET">  
-            <select name="city-name" class="form-control" id="city-name">
+          <form id="user-location">  
+            <select name="/city/" class="form-control" id="city-name">
               <option value="Agra">Agra</option>
               <option value="Ahmedabad">Ahmedabad</option>
               <option value="Allahabad">Allahabad</option>
@@ -73,7 +73,7 @@
               <option value="Vijayawada">Vijayawada</option>
               <option value="Vishakhapatnam">Vishakhapatnam</option>
             </select>
-            <input type="submit" class="btn btn-primary" value="Show me" />
+            <input type="submit" id="city-button" class="btn btn-primary" value="Show me" />
           </form>
 
           <!-- <p class="intro">You can also <a href="#scroll-point">choose crime categories</p></a> -->

@@ -2,7 +2,7 @@ crime_name,2010,2011,2012,2013,2014,avg
 Acid attack,,,,,0.0,0.0
 Agrarian riots,,,,,0.0,0.0
 Arson,,1.1,1.1,2.4,1.0,1.4
-Assault on women with intent to outrage her modesty,,,8.0,26.2,39.4,24.5
+Assault on women with intent to outrage her modesty,,10.6,8.0,26.2,39.4,21.1
 Attempt to acid attack,,,,,0.0,0.0
 Attempt to commit culpable homicide not amounting to murder,,,,,0.4,0.4
 Attempt to commit murder,,4.7,6.1,9.7,7.6,7.0
@@ -34,18 +34,17 @@ Forgery,,,,,46.7,46.7
 Gang rape,,,,,0.0,0.0
 Gang rape other than custodial,,,,,0.2,0.2
 Grievous hurt,,,,,0.9,0.9
-Grievous hurt total,,,,,0.9,0.9
 House trespass & house breaking,,,,,14.6,14.6
 Human trafficking,,,,,0.0,0.0
-Hurt,,56.3,61.8,75.4,,64.5
+Hurt,,56.3,61.8,75.4,0.9,48.6
 Importation of girls from foreign country,,0.0,0.0,0.0,0.0,0.0
-"Imputation, assertions prejudicial to national integration",,,,,0.0,0.0
+Imputation or assertions prejudicial to national integration,,,,,0.0,0.0
 Industrial riots,,,,,0.0,0.0
 Insult to modesty of women at office premises,,,,,0.0,0.0
 Insult to modesty of women at other places,,,,,0.6,0.6
 Insult to modesty of women in other places related to work,,,,,0.0,0.0
 Insult to modesty of women in public transport system,,,,,0.0,0.0
-Insult to the modesty of women,,,0.0,0.0,0.6,0.2
+Insult to the modesty of women,,0.2,0.0,0.0,0.6,0.2
 Kidnapping,,,,,1.2,1.2
 Kidnapping & abduction,,5.1,3.9,11.4,9.5,7.5
 Kidnapping & abduction in order to murder,,,,,0.0,0.0
@@ -57,7 +56,6 @@ Kidnapping of others,,,0.7,,,0.7
 Making or possessing materials for forged currency/bank notes,,,,,0.0,0.0
 Making or using documents resembling currency notes/bank notes,,,,,0.0,0.0
 Making preparation and assembly for committing dacoity,,,,,0.1,0.1
-Molestation,,10.6,,,,10.6
 Murder,,2.5,2.4,4.0,3.6,3.1
 Offences against state,,,,,0.0,0.0
 Offences promoting enmity between different groups,,,,,0.2,0.2
@@ -81,7 +79,8 @@ Robbery,,1.5,3.4,7.8,10.5,5.8
 SCs/STs vs Non-SCs/STs riots,,,,,0.0,0.0
 Sectarian riots,,,,,0.0,0.0
 Sedition,,,,,0.0,0.0
-Sexual harassment,,0.2,,,4.3,2.2
+Sexual harassment,,,,,4.3,4.3
+Sexual harassment and molestation of women,,10.8,8.0,26.2,39.9,21.2
 Stalking,,,,,2.8,2.8
 Student riots,,,,,0.0,0.0
 Theft,,83.0,91.7,107.8,87.3,92.5

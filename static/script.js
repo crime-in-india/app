@@ -84,6 +84,15 @@
 	}
 
 $(document).ready(function(){ 	
+	$('form').submit(function(e) {
+		var city = $('#city-name').val();
+		e.preventDefault();
+
+		var url = window.location.href;
+		window.location.href = url + 'cities/' + city;
+		//console.log(window.location.url)
+	});
+
 	$('a[href^="#"]').on('click',function (e) {
 	  e.preventDefault();
 

@@ -92,6 +92,9 @@
 
   		$(function () {
   			$('#violent-graph').highcharts({
+          chart: {
+                type: 'column'
+            },
           title: {
               text: "",
               x: -20 //center
@@ -116,11 +119,11 @@
             enabled: false
           },
           legend: {
-              layout: 'vertical',
+              layout: 'horizontal',
               align: 'left',
-              verticalAlign: 'top',
+              verticalAlign: 'bottom',
               borderWidth: 0,
-              floating: true
+              floating: false
           },
           series: chartsToShow
   	    });
@@ -310,11 +313,11 @@
         return +b.avg - +a.avg;
       });
 
-      // Top 10 kidnapping cities + India
-      var k10 = indiaKidnap.slice(0,10);
-      k10.push(natAvg[0]);
+      // Top 5 kidnapping cities + India
+      var k5 = indiaKidnap.slice(0,5);
+      //k5.push(natAvg[0]);
 
-      k10.forEach(function(d) {
+      k5.forEach(function(d) {
         chartObj = {
           name: d.city,
           data: [+d['2010'], +d['2011'], +d['2012'], +d['2013'], +d['2014']]
@@ -322,6 +325,7 @@
         chartsToShow.push(chartObj);
       });
 
+     
       // Build data for metro chart
       metros.forEach(function(d) {
         metroCategs.push(d.city);
@@ -344,8 +348,11 @@
       // Main kidnap graph
       $(function () {
         $('#kidnap-graph').highcharts({
+          chart: {
+                type: 'column'
+            },
           title: {
-              text: "",
+              text: "Top five cities with highest kidnapping rates",
               x: -20 //center
           },
           xAxis: {
@@ -356,23 +363,37 @@
                   text: 'Rate of kidnapping'
               },
               plotLines: [{
-                  value: 0,
-                  width: 1,
-                  color: '#808080'
-              }]
+                    value: +natAvg[0].avg,
+                    color: 'green',
+                    dashStyle: 'shortdash',
+                    width: 2,
+                    label: {
+                        text: 'National average: ' + natAvg[0].avg,
+                        rotation: 0,
+                        y: -5,
+                        x: 130
+                    }
+                }]
           },
           credits: {
             enabled: false
           },
+          plotOptions: {
+              column: {
+                dataLabels: {
+                    enabled: true
+                }
+              }
+            },
           tooltip: {
               valueSuffix: ' crimes per 100,000'
           },
           legend: {
-              layout: 'vertical',
-              align: 'left',
-              verticalAlign: 'top',
+              layout: 'horizontal',
+              align: 'right',
+              verticalAlign: 'bottom',
               borderWidth: 0,
-              floating: true
+              floating: false
           },
           series: chartsToShow
         });
@@ -433,7 +454,7 @@
           });
         });
 
-      // Metro graph
+      // Non-metro graph
       $(function () {
         $('#smaller-graph').highcharts({
             chart: {
@@ -446,10 +467,11 @@
             //     text: 'Source: WorldClimate.com'
             // },
             xAxis: {
-                categories: nonMetroCategs
+                categories: nonMetroCategs,
             },
             yAxis: {
                 min: 0,
+                max: 30,
                 title: {
                     text: 'Crime rate per 100,000 people',
                     align: 'high'
@@ -504,12 +526,12 @@
         return +b.avg - +a.avg;
       });
 
-      var riot10 = indiaRiot.slice(0,10);
-      riot10.push(natAvg[0]);
-      riot10.forEach(function(d) {
+      var riot5 = indiaRiot.slice(0,5);
+      //riot5.push(natAvg[0]);
+      riot5.forEach(function(d) {
         chartObj = {
           name: d.city,
-          data: [+d['2010'], +d['2011'], +d['2012'], +d['2013'], +d['2014']]
+          data: [+d['2011'], +d['2012'], +d['2013'], +d['2014']]
         }
         chartsToShow.push(chartObj);
       });
@@ -517,22 +539,32 @@
       // Main riot graph
       $(function () {
         $('#riot-graph').highcharts({
+          chart: {
+                type: 'column'
+            },
           title: {
               text: "",
               x: -20 //center
           },
           xAxis: {
-              categories: ['2010', '2011', '2012', '2013', '2014']
+              categories: ['2011', '2012', '2013', '2014']
           },
           yAxis: {
               title: {
                   text: 'Crime rate'
               },
               plotLines: [{
-                  value: 0,
-                  width: 1,
-                  color: '#808080'
-              }]
+                    value: +natAvg[0].avg,
+                    color: 'green',
+                    dashStyle: 'shortdash',
+                    width: 2,
+                    label: {
+                        text: 'National average: ' + natAvg[0].avg,
+                        rotation: -90,
+                        y: -5,
+                        x: 30
+                    }
+                }],
           },
           tooltip: {
               valueSuffix: ' crimes per 100,000'
@@ -540,12 +572,13 @@
           credits: {
             enabled: false
           },
+          
           legend: {
-              layout: 'vertical',
-              align: 'right',
-              verticalAlign: 'top',
+              layout: 'horizontal',
+              align: 'left',
+              verticalAlign: 'bottom',
               borderWidth: 0,
-              floating: true
+              floating: false
           },
           series: chartsToShow
         });

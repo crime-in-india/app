@@ -73,6 +73,10 @@ h3.intro {
 	color: #990033;
 }
 
+text {
+	font-family: 'Lato', helvetica, sans-serif;
+}
+
 
 .nav-item a {
 	color: #336699 !important;
@@ -237,8 +241,4 @@ p.explainer {
 
 #crime-select {
 	margin-left: 1.5em;
-}
-
-table, th {
-	text-align: center;
 }
