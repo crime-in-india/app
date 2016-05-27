@@ -5,7 +5,7 @@ import csv
 from os.path import join
 
 DATADIR = '../static/data'
-pop_file = 'female-2010.csv'
+pop_file = 'female-2011.csv'
 data_file = 'data-v4.csv'
 year = '2010'
 f_crimes = ['Cruelty by husband or his relatives', 'Custodial rape', 'Dowry deaths', 'Kidnapping & abduction of women and girls', 'Molestation', 'Other rape', 'Rape', 'Sexual harassment']
@@ -38,5 +38,6 @@ with open(join(DATADIR,'data-v5.csv'), 'w') as f:
     writer = csv.DictWriter(f, headers)
     writer.writeheader()
     for r in datarows:
+        # r['rate'] = round(float(r['rate']), 1)
         print('Writing', r)
         writer.writerow(r)

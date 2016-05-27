@@ -1,5 +1,5 @@
-# This script makes a master file of a year-wise rates of each crime category. 
-# This script has to be run from the scripts folder
+# This script combines all the city files (the ones with average rates) into one big master file.
+# This script has to be run from the scripts folder and the file is saved in the data folder
 
 import csv
 from os.path import join, basename
@@ -24,4 +24,4 @@ for f in files:
       for row in datarows:
         row.insert(0, city)
         master.append(row)
-    writer.writerows(master) 
+    writer.writerows(master)

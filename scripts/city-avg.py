@@ -1,5 +1,5 @@
-# This script inserts a new column for average crime rate in each city file in the 2010 data set. 
-# This script has to be run from the scripts folder
+# This script inserts a new column for average crime rate in each city file in the data set. 
+# This script has to be run from the scripts folder and writes files to the 'temp' folder inside the 'scripts' folder. 
 
 import csv
 from os.path import join, basename
@@ -17,19 +17,35 @@ DATADIR = '../static/data'
 
 files = glob(join(DATADIR,'cities','*.csv'))
 
-for f in files:
-  with open(f, 'r') as infile:
-    print("currently reading", f)
-    datarows = csv.reader(infile)
-    headers = next(datarows)
-    headers.append('avg')
-    name = join('temp',basename(f)[:-4] + '.csv')
+# for f in files:
+#   with open(f, 'r') as infile:
+#     print("currently reading", f)
+#     datarows = csv.reader(infile)
+#     headers = next(datarows)
+#     headers.append('avg')
+#     name = join('temp',basename(f)[:-4] + '.csv')
 
-    with open(name, 'w') as outfile:
-      writer = csv.writer(outfile)
-      writer.writerow(headers)
+#     with open(name, 'w') as outfile:
+#       writer = csv.writer(outfile)
+#       writer.writerow(headers)
 
-      for row in datarows:
-        avg = get_avg(row[1:]) # Skip the crime name column
-        row.append(avg)
-        writer.writerow(row)
+#       for row in datarows:
+#         avg = get_avg(row[1:]) # Skip the crime name column
+#         row.append(avg)
+#         writer.writerow(row)
+
+with open(join(DATADIR,'cities','India.csv'), 'r') as infile:
+  # print("currently reading", f)
+  datarows = csv.reader(infile)
+  headers = next(datarows)
+  headers.append('avg')
+  name = join('temp','India.csv')
+
+  with open(name, 'w') as outfile:
+    writer = csv.writer(outfile)
+    writer.writerow(headers)
+
+    for row in datarows:
+      avg = get_avg(row[1:]) # Skip the crime name column
+      row.append(avg)
+      writer.writerow(row)

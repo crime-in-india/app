@@ -1,5 +1,5 @@
 # This script makes a file of a year-wise rates of each crime category for India, the entire country. 
-# This script has to be run from the scripts folder
+# This script has to be run from the scripts folder and writes the file to the temp folder in scripts
 
 import csv
 from os.path import join, basename
