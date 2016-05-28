@@ -9,7 +9,7 @@
     </div>
 
     <h3>Introduction</h3>
-    <p class="desc">This application was built by <a href="http://ssdatar.github.io" target="_blank">Saurabh Datar</a> as part of his thesis for the <a href="http://journalism.stanford.edu/" target="_blank">Stanford Journalism</a> program. It would not have been possible without the guidance of <a href="twitter.com/dancow" target="_blank">Dan Nguyen</a> and all other professors at the Department of Communication at Stanford University.</p>
+    <p class="desc">This application was built by <a href="http://ssdatar.github.io" target="_blank">Saurabh Datar</a> as part of his thesis for the <a href="http://journalism.stanford.edu/" target="_blank">Stanford Journalism</a> program. It would not have been possible without the guidance of <a href="https://stanford.edu/~dun/" target="_blank">Dan Nguyen</a> and all other professors at the Department of Communication at Stanford University.</p>
 
     <p class="desc">The icons used on the home page have been designed by <a href="https://thenounproject.com/naripuru/collection/crimes-and-justice-outlines/" target="_blank">parkjisun from The Noun Project</a>.</p>
 
@@ -22,6 +22,10 @@
 
     <p class="desc">There are some assumptions and modifications that are necessary to point out.</p>
     <ul class="about">
+      <li class="about">
+        <p><strong>Cities and average crime rate</strong>: The Bureau didn't report crimes for 18 cities in 2010. These cities were added in consequent years. While calculating average for such cities (Chandigarh, for instance), the average is for over a four-year period (2011 - 2014). This is still a better choice than to consider 0 as the value for 2010 because it would present a drastically skewed picture.</p>
+      </li>
+
       <li class="about">
         <p><strong>Categories</strong>: The Bureau categorizes crimes as 'violent', 'crimes against women', 'property crime', 'economic crime', and so on. We have followed the same nomenclature. You can see their categorization <a href="http://ncrb.gov.in/StatPublications/CII/CII2014/Table_Contents.htm" target="_blank">here<sup>[pdf]</sup></a>.
         </p>
@@ -56,19 +60,16 @@
 
         <p><strong>Property crimes</strong>: Arson, auto theft, burglary, dacoity, Other theft, and robbery</p>
 
-        <p><strong>Economic crimes</strong>: Cheating, criminal breach of trust, and forgery</p>
+        <p><strong>Economic crimes</strong>: Cheating, criminal breach of trust, counterfeiting and forgery</p>
       </li>
     </ul>
 
     <h3>Technical details</h3>
-    <p class="desc">The data cleaning was done in Python, with the occasional use of <a href="http://pandas.pydata.org/" target="_blank">Pandas</a> for wrangling and pivot tables.</p>
-    <p class="desc">The app itself is powered by Python's <a href="http://flask.pocoo.org/" target="_blank">Flask framework</a>. The website mainly uses <a href="http://www.getbootstrap.com" target="_blank">Bootstrap</a> for styling and responsive design.</p>
-    <p class="desc">The visualizations are powered by <a href="http://www.highcharts.com/" target="_blank">Highcharts</a>. The map on the front page is in <a href="https://d3js.org" target="_blank">D3</a>.</p>    
+    <p class="desc">Since the data came in PDFs, ABBYY FineReader (courtesy <a href="https://stanford.edu/~dun/" target="_blank">Dan Nguyen</a>) was used to convert them into spreadsheet format. The data cleaning was done in Python, with the occasional use of <a href="http://pandas.pydata.org/" target="_blank">Pandas</a> for wrangling and pivot tables.</p>
+    <p class="desc">The app itself is powered by Python's <a href="http://flask.pocoo.org/" target="_blank">Flask framework</a>. The website mainly uses <a href="http://www.getbootstrap.com" target="_blank">Bootstrap</a> for styling and responsive design. The visualizations are powered by <a href="http://www.highcharts.com/" target="_blank">Highcharts</a>. The map on the front page is made in <a href="https://d3js.org" target="_blank">D3</a>.</p>    
     
   </div>
-  <!-- <script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>
-  <script src="{{url_for('static', filename='jquery.min.js')}}"></script>
-  <script src="{{url_for('static', filename='highcharts.js')}}"></script> -->
 
+  {% include 'partials/footer.html' %}
 </body>
 </html>
