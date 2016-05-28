@@ -84,15 +84,6 @@ def crime_page(crime):
 
 #################################################################
 
-# Route to crime landing page
-@app.route("/crime-landing")
-def crime_landing():
-  template = 'crime-landing.html'
-  return render_template(template)
-
-
-#################################################################
-
 
 # Route to the city landing page
 @app.route("/city-list")
@@ -115,7 +106,7 @@ def city_landing():
 @app.route("/violent-crimes")
 def violent_landing_page():
   DATADIR = './static/data'
-  fname = join(DATADIR, 'total.csv')
+  fname = join(DATADIR, 'total-final-2.csv')
 
   # Get national data
   with open(fname, 'r') as i:
@@ -160,8 +151,15 @@ def women_landing_page():
 
 
 #################################################################
+# ROUTE FOR ABOUT PAGE
+
+@app.route("/about")
+def about():
+  template = 'about.html'
+  return render_template(template)
 
 
+#################################################################
 
 # Route to the data dump page
 @app.route("/data")

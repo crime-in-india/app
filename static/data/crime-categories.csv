@@ -13,13 +13,13 @@ Caste conflict riots,NA,na
 Causing death by negligence,Other Crime,other-crime
 Causing injuries under rash driving/road rage,Other Crime,other-crime
 Cheating,Economic Crime,econ-crime
-CommuNA,nal riots,NA,na
+Communal riots,NA,na
 Counterfeit currency & bank notes total,NA,na
 Counterfeiting,Other Crime,other-crime
 Counterfeiting currency - notes or bank notes,NA,na
 Counterfeiting government stamp,NA,na
-CrimiNA,nal breach of trust,Economic Crime,econ-crime
-CrimiNA,nal trespass/burglary,NA,na
+Criminal breach of trust,Economic Crime,econ-crime
+Criminal trespass/burglary,NA,na
 Cruelty by husband or his relatives,Crime Against Women,women-crime
 Culpable homicide not amounting to murder,Violent Crime,violent-crime
 Custodial rape,NA,na
@@ -38,20 +38,20 @@ House trespass & house breaking,NA,na
 Human trafficking,NA,na
 Hurt,Other Crime,other-crime
 Importation of girls from foreign country,NA,na
-Imputation, assertions prejudicial to NA,natioNA,nal integration,NA,na
+Imputation or assertions prejudicial to national integration,NA,na
 Industrial riots,NA,na
 Insult to modesty of women at office premises,NA,na
 Insult to modesty of women at other places,NA,na
 Insult to modesty of women in other places related to work,NA,na
 Insult to modesty of women in public transport system,NA,na
 Insult to the modesty of women,NA,na
-KidNA,napping & abduction,Violent Crime,violent-crime
-KidNA,napping & abduction in order to murder,NA,na
-KidNA,napping & abduction of others,NA,na
-KidNA,napping & abduction of women and girls,NA,na
-KidNA,napping & abduction of women to compel her for marriage,NA,na
-KidNA,napping for ransom,NA,na
-KidNA,napping of others,NA,na
+Kidnapping & abduction,Violent Crime,violent-crime
+Kidnapping & abduction in order to murder,NA,na
+Kidnapping & abduction of others,NA,na
+Kidnapping & abduction of women and girls,NA,na
+Kidnapping & abduction of women to compel her for marriage,NA,na
+Kidnapping for ransom,NA,na
+Kidnapping of others,NA,na
 Making or possessing materials for forged currency/bank notes,NA,na
 Making or using documents resembling currency notes/bank notes,NA,na
 Making preparation and assembly for committing dacoity,NA,na
@@ -64,7 +64,7 @@ Other cases of assault on women to outrage her modesty,NA,na
 Other caste conflict riots,NA,na
 Other dacoity,NA,na
 Other IPC crimes,Other Crime,other-crime
-Other kidNA,napping & abduction,NA,na
+Other Kidnapping & abduction,NA,na
 Other offences against state,NA,na
 Other rape,NA,na
 Other rape other than custodial,NA,na
@@ -72,8 +72,7 @@ Other theft,Property Crime,prop-crime
 Political riots,NA,na
 Possession of forged or counterfeiting currency/bank notes,NA,na
 Preparation & assembly for dacoity,NA,na
-Promoting enmity between different groups on ground of religion, race, place of birth, etc
-Promoting enmity between different groups on ground of religion, race, place of birth, etc.
+"Promoting enmity between different groups on ground of religion, race, place of birth, etc.",NA,na
 Rape,Crime Against Women,women-crime
 Rape other than custodial,NA,na
 Riots,Violent Crime,violent-crime
@@ -89,7 +88,7 @@ Student riots,NA,na
 Theft,NA,na
 Total cognizable crimes under IPC,NA,na
 Unlawful assembly,Other Crime,other-crime
-UnNA,natural offences,NA,na
-Use of crimiNA,nal force with intent to disrobe women,NA,na
-Using as genuine, forged or counterfeiting currency/bank notes,NA,na
+Unnatural offences,NA,na
+Use of Criminal force with intent to disrobe women,NA,na
+"Using as genuine, forged or counterfeiting currency/bank notes",NA,na
 Voyeurism,NA,na
