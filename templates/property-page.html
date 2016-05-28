@@ -27,7 +27,7 @@
 
 
     <h3>Highest arson rates</h3>
-    <p class="desc">This chart shows the cities with the highest riot rates. What is stunning is that <mark>six cities</mark> among the top ten are from Kerala, a state known for having a 100 percent literacy rate. The top five cities in this list are all from "God's own country".</p>
+    <p class="desc">Two of the top three cities are from Chhattisgarh &mdash; Raipur and Durg-Bhilainagar.</p>
     <div class="graph" id="arson-graph"></div>
   </div>
 
@@ -106,7 +106,7 @@
           yAxis: {
               max: 175,
               title: {
-                  text: 'Rate of arson'
+                  text: 'Theft incidences per 100,000 people'
               },
               plotLines: [{
                     value: +natAvg[0].avg,
@@ -190,7 +190,7 @@
           },
           yAxis: {
               title: {
-                  text: 'Rate of auto thefts'
+                  text: 'Auto thefts per 100,000 people'
               },
               plotLines: [{
                     value: +natAvg[0].avg,
@@ -234,7 +234,7 @@
     }
 
      /* --------------------------------------------------
-    ------------------- ARSON ------------------------------
+    ------------------- ROBBERIES ------------------------------
     ----------------------------------------------------*/
 
     function drawRobbery(propData) {
@@ -274,7 +274,7 @@
           },
           yAxis: {
               title: {
-                  text: 'Rate of arson'
+                  text: 'Robberies per 100,000 people'
               },
               plotLines: [{
                     value: +natAvg[0].avg,
@@ -318,7 +318,7 @@
     }
 
     /* --------------------------------------------------
-    ------------------- ARSON ------------------------------
+    ------------------- DACOITY ------------------------------
     ----------------------------------------------------*/
 
 
@@ -359,7 +359,7 @@
           },
           yAxis: {
               title: {
-                  text: 'Crime rate'
+                  text: 'Dacoity incidences per 100,000 people'
               },
               plotLines: [{
                     value: +natAvg[0].avg,
@@ -444,7 +444,7 @@
           },
           yAxis: {
               title: {
-                  text: 'Rate of arson'
+                  text: 'Arson crimes per 100,000 people'
               },
               plotLines: [{
                     value: +natAvg[0].avg,

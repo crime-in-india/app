@@ -1,0 +1,389 @@
+{% include 'partials/head.html' %}
+<body>
+	{% include 'partials/navbar.html' %}
+	<div class="container">
+		<div class="row">
+      <div id="main-header">
+        <h1 class="text-center">Economic Crimes in India</h1>
+      </div>
+    </div>
+
+    <p class="desc">We have classified the following crimes as economic crimes: <strong>Cheating, criminal breach of trust, counterfeiting, and forgery</strong>.</p>
+
+    <strong><p class="desc">Please note that all rates are per 100,000 people</p></strong>
+
+    <h3>Cheating and forgery</h3>
+    <p class="desc">The charts below show the top ten cities in the country with the highest average crime rates for cheating cases from 2010 to 2014. All top three cities are from Rajasthan, with Bengaluru following suit in fourth position and Patna in fifth.</p>
+
+    <p class="desc">As for forgery, Jodhpur has an extraordinarily high forgery rate. Please note that forgery was reported separately as a crime only in the year 2014. The chart here only shows the figures for 2014.</p>
+    <div class="col-md-6 half" id="cheat-graph"></div>
+    <div class="col-md-6 half" id="forgery-graph"></div>
+
+    <h3>Counterfeiting and criminal breach of trust</h3>
+    <p class="desc">Criminal breach of trust involves misappropriation of a property or a document someone has entrusted to you, as explained by <a href="https://indiankanoon.org/doc/1249173/">Indian Kanoon</a>. Say, for example, you sell someone's car that had been entrusted to you for safekeeping. Or you, as an executor of the will of a deceased person, appropriate the will to your own use.</p>
+
+    <p class="desc">Small towns have trumped the big cities when it comes to counterfeiting cases. While Madurai has a high average rate of counterfeiting cases, Lucknow has ten times the national average rate for criminal breach of trust incidences.</p>
+    <div class="col-md-6 half" id="counterfeit-graph"></div>
+    <div class="col-md-6 half" id="breach-graph"></div>
+
+  </div>
+
+  <!-- <script src="{{url_for('static', filename='d3/d3.min.js')}}"></script> -->
+  <script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='highcharts.js')}}"></script>
+
+  <script type="text/javascript">
+  	var econData = {{ econ|tojson }};
+    var nationalData = {{ n|tojson }};
+
+    var natAvg = nationalData.filter(function(d) {
+      return d.city === "India";
+    });
+    
+    drawCheat(econData);
+    drawForgery(econData);
+    drawCounterfeit(econData)
+    drawBreach(econData);
+
+    
+    /* --------------------------------------------------
+    ----------------------- CHEATING -----------------------
+    ----------------------------------------------------*/
+
+    function drawCheat(econData) {
+      var indiaCheat = econData.filter(function(d) {
+        return d.crime_name === "Cheating";
+      });
+
+      var natAvg = indiaCheat.filter(function(d) {
+        return d.city === "India";
+      });
+
+      indiaCheat.sort(function(a,b) {
+        return +b.avg - +a.avg;
+      });
+
+      indiaCheat = indiaCheat.slice(0,10);
+
+      var categs = [],
+          data = [];
+
+      indiaCheat.forEach(function(d) {
+        categs.push(d.city);
+        data.push(+d.avg);
+      });
+
+  		$(function () {
+  			$('#cheat-graph').highcharts({
+          chart: {
+                type: 'column'
+            },
+          title: {
+              text: "Cities with highest cheating rate",
+              x: -20 //center
+          },
+          xAxis: {
+              categories: categs
+          },
+          yAxis: {
+              // max: 175,
+              title: {
+                  text: 'Cheating incidences per 100,000 people'
+              },
+              plotLines: [{
+                  value: +natAvg[0].avg,
+                  color: 'green',
+                  dashStyle: 'shortdash',
+                  width: 2,
+                  label: {
+                      text: 'National average: ' + natAvg[0].avg,
+                      rotation: -90,
+                      y: -5,
+                      x: 50
+                  }
+              }]
+          },
+          tooltip: {
+              valueSuffix: ' crimes per 100,000'
+          },
+          credits: {
+            enabled: false
+          },
+          legend: {
+              layout: 'horizontal',
+              align: 'right',
+              verticalAlign: 'bottom',
+              borderWidth: 0,
+              floating: false
+          },
+          plotOptions: {
+              column: {
+                dataLabels: {
+                    enabled: true
+                }
+              }
+            },
+          series: [{
+            name: 'Cheating',
+            data: data
+          }]
+  	    });
+    	});
+    }
+
+    /* --------------------------------------------------
+    ----------------------- FORGERY -----------------------
+    ----------------------------------------------------*/
+
+    function drawForgery(econData) {
+      var indiaForgery = econData.filter(function(d) {
+        return d.crime_name === "Forgery";
+      });
+
+      var natAvg = indiaForgery.filter(function(d) {
+        return d.city === "India";
+      });
+
+      indiaForgery.sort(function(a,b) {
+        return +b.avg - +a.avg;
+      });
+
+      indiaForgery = indiaForgery.slice(0,10);
+
+      var categs = [],
+          data = [];
+
+      indiaForgery.forEach(function(d) {
+        categs.push(d.city);
+        data.push(+d.avg);
+      });
+
+      $(function () {
+        $('#forgery-graph').highcharts({
+          chart: {
+                type: 'column'
+            },
+          title: {
+              text: "Cities with highest forgery rates (only 2014)",
+              x: -20 //center
+          },
+          xAxis: {
+              categories: categs
+          },
+          yAxis: {
+              title: {
+                  text: 'Forgery incidences per 100,000 people'
+              },
+              plotLines: [{
+                  value: +natAvg[0].avg,
+                  color: 'green',
+                  dashStyle: 'shortdash',
+                  width: 2,
+                  label: {
+                      text: 'National average: ' + natAvg[0].avg,
+                      rotation: -90,
+                      y: -5,
+                      x: 50
+                  }
+              }]
+          },
+          tooltip: {
+              valueSuffix: ' crimes per 100,000'
+          },
+          credits: {
+            enabled: false
+          },
+          legend: {
+              layout: 'horizontal',
+              align: 'right',
+              verticalAlign: 'bottom',
+              borderWidth: 0,
+              floating: false
+          },
+          plotOptions: {
+              column: {
+                dataLabels: {
+                    enabled: true
+                }
+              }
+            },
+          series: [{
+            name: 'Forgery',
+            data: data
+          }]
+        });
+      });
+    }
+
+     /* --------------------------------------------------
+    ------------------- COUNTERFEITING ---------------------
+    ----------------------------------------------------*/
+
+    function drawCounterfeit(econData) {
+      var indiaCounterfeit = econData.filter(function(d) {
+        return d.crime_name === "Counterfeiting";
+      });
+
+      var natAvg = indiaCounterfeit.filter(function(d) {
+        return d.city === "India";
+      });
+
+      indiaCounterfeit.sort(function(a,b) {
+        return +b.avg - +a.avg;
+      });
+
+      indiaCounterfeit = indiaCounterfeit.slice(0,10);
+
+      var categs = [],
+          data = [];
+
+      indiaCounterfeit.forEach(function(d) {
+        categs.push(d.city);
+        data.push(+d.avg);
+      });
+
+      $(function () {
+        $('#counterfeit-graph').highcharts({
+          chart: {
+                type: 'bar'
+            },
+          title: {
+              text: "Cities with highest counterfeiting rates",
+              x: -20 //center
+          },
+          xAxis: {
+              categories: categs
+          },
+          yAxis: {
+              title: {
+                  text: 'Counterfeiting cases per 100,000 people'
+              },
+              plotLines: [{
+                    value: +natAvg[0].avg,
+                    color: 'green',
+                    dashStyle: 'shortdash',
+                    width: 2,
+                    label: {
+                        text: 'National average: ' + natAvg[0].avg,
+                        rotation: 0,
+                        y: -5,
+                        x: -10
+                    }
+              }]
+          },
+          tooltip: {
+              valueSuffix: ' crimes per 100,000'
+          },
+          credits: {
+            enabled: false
+          },
+          legend: {
+              layout: 'horizontal',
+              align: 'right',
+              verticalAlign: 'bottom',
+              borderWidth: 0,
+              floating: false
+          },
+          plotOptions: {
+              bar: {
+                dataLabels: {
+                    enabled: true
+                }
+              }
+            },
+          series: [{
+            name: 'Counterfeiting',
+            data: data
+          }]
+        });
+      });
+    }
+
+    /* ----------------------------------------------------
+    ------------------- BREACH ------------------------------
+    -------------------------------------------------------*/
+
+
+    function drawBreach(econData) {
+      var indiaBreach = econData.filter(function(d) {
+        return d.crime_name === "Criminal breach of trust";
+      });
+
+      var natAvg = indiaBreach.filter(function(d) {
+        return d.city === "India";
+      });
+
+      indiaBreach.sort(function(a,b) {
+        return +b.avg - +a.avg;
+      });
+
+      indiaBreach = indiaBreach.slice(0,10);
+
+      var categs = [],
+          data = [];
+
+      indiaBreach.forEach(function(d) {
+        categs.push(d.city);
+        data.push(+d.avg);
+      });
+
+      $(function () {
+        $('#breach-graph').highcharts({
+          chart: {
+                type: 'bar'
+            },
+          title: {
+              text: "Cities with highest criminal breach rates",
+              x: -20 //center
+          },
+          xAxis: {
+              categories: categs
+          },
+          yAxis: {
+              title: {
+                  text: 'Criminal breach incidences per 100,000 people'
+              },
+              plotLines: [{
+                    value: +natAvg[0].avg,
+                    color: 'green',
+                    dashStyle: 'shortdash',
+                    width: 2,
+                    label: {
+                        text: 'National average: ' + natAvg[0].avg,
+                        rotation: 0,
+                        y: -5,
+                        x: -10
+                    }
+              }]
+          },
+          tooltip: {
+              valueSuffix: ' crimes per 100,000'
+          },
+          credits: {
+            enabled: false
+          },
+          legend: {
+              layout: 'horizontal',
+              align: 'right',
+              verticalAlign: 'bottom',
+              borderWidth: 0,
+              floating: false
+          },
+          plotOptions: {
+              bar: {
+                dataLabels: {
+                    enabled: true
+                }
+              }
+            },
+          series: [{
+            name: 'Criminal breach of trust',
+            data: data
+          }]
+        });
+      });
+    }
+
+    </script>
+</body>
+</html>

@@ -172,6 +172,28 @@ def prop_landing_page():
   
   return render_template(template,prop=prop_data, n=national)
 
+#################################################################
+
+
+# ROUTE FOR ECONOMIC CRIMES PAGE
+@app.route("/economic-crimes")
+def econ_landing_page():
+  DATADIR = './static/data'
+  fname = join(DATADIR, 'total-final-2.csv')
+
+  template = 'econ-page.html'
+
+  # Get national data
+  with open(fname, 'r') as i:
+    national = list(csv.DictReader(i))
+  
+  with open('static/data/crime-categories.csv', 'r') as csvin:
+    categs = list(csv.DictReader(csvin))
+
+  categs = [c['crime'] for c in categs if c['category'] == 'Economic Crime']
+  econ_data = [d for d in national if d['crime_name'] in categs]
+  
+  return render_template(template,econ=econ_data, n=national)
 
 
 #################################################################
