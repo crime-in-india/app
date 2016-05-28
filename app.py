@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Get all data, entire data dump
 def get_data():
-  csv_path = 'static/data/data-v7.csv'
+  csv_path = 'static/data/data-v11.csv'
   with open(csv_path, 'r') as infile:
     datarows = list(csv.DictReader(infile))
   return datarows
@@ -127,8 +127,7 @@ def violent_landing_page():
 #################################################################
 
 
-
-# Route for crimes against women page
+# ROUTE FOR CRIMES AGAINST WOMEN PAGE
 @app.route("/women-crimes")
 def women_landing_page():
   DATADIR = './static/data'
@@ -147,6 +146,31 @@ def women_landing_page():
   data = get_data()
   women_data = [d for d in national if d['crime_name'] in categs]
   return render_template(template,w_data=women_data, n=national)
+
+
+
+#################################################################
+
+
+# ROUTE FOR PROPERTY CRIMES PAGE
+@app.route("/property-crimes")
+def prop_landing_page():
+  DATADIR = './static/data'
+  fname = join(DATADIR, 'total-final-2.csv')
+
+  template = 'property-page.html'
+
+  # Get national data
+  with open(fname, 'r') as i:
+    national = list(csv.DictReader(i))
+  
+  with open('static/data/crime-categories.csv', 'r') as csvin:
+    categs = list(csv.DictReader(csvin))
+
+  categs = [c['crime'] for c in categs if c['category'] == 'Property Crime']
+  prop_data = [d for d in national if d['crime_name'] in categs]
+  
+  return render_template(template,prop=prop_data, n=national)
 
 
 
