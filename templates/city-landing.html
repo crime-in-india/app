@@ -1,119 +1,142 @@
 {% include 'partials/head.html' %}
 
 <body>
-	{% include 'partials/navbar.html' %}
-	<div class="container">
-		<div class="row">
+  {% include 'partials/navbar.html' %}
+  <div class="container">
+    <div class="row">
       <div id="main-header">
         <h1 class="text-center">Cities</h1>
       </div>
-	  </div>
+    </div>
 
-		<h3>Overall crime rate</h3>
-		<p class="desc">The chart below shows the top 10 cities that have an average overall crime rate greater than the national overall average overall crime rate. <strong>Four</strong> of these cities are from <strong>Madhya Pradesh</strong>, two from Chhattisgarh (formerly a part of Madhya Pradesh) and, interestingly, two from Kerala.</p>
-    <div id="cities-graph" class="graph"></div>		
+    <h3>Overall crime rate</h3>
+    <p class="desc">The chart below shows cities with the top 20 highest average crime rate. Kochi tops the list and has a crime rate five times the national average. <strong>Four</strong> cities among the top 10 are from <strong>Madhya Pradesh</strong>.</p>
+    <div id="overall-graph" class="graph"></div>   
 
-		<p class="desc">The table below lists the overall crime rate of all the cities in India and how it has changed from 2010 to 2014. Click on a city name below to navigate to the page for a particular city.</p>
+    <p class="desc">The table below lists the overall crime rate of all the cities in India and how it has changed from 2010 to 2014. Click on a city name below to navigate to the page for a particular city.</p>
 
-		<div class="table-responsive">
-			<h3 class="text-center">Overall crime rates in cities</h3>
-			<table class="table table-condensed table-striped table-bordered">
-				<thead>
-					<tr>
-						<th>City</th>
-						<th>2010</th>
-						<th>2011</th>
-						<th>2012</th>
-						<th>2013</th>
-						<th>2014</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for c in cities %}
-					<tr>
-						<td><a href="/cities/{{ c.city }}" target="_blank">{{ c.city }}</a></td>
-						<td>{{ c['2010'] }}</td>
-						<td>{{ c['2011'] }}</td>
-						<td>{{ c['2012'] }}</td>
-						<td>{{ c['2013'] }}</td>
-						<td>{{ c['2014'] }}</td>
-					</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		</div>
-	</div>
+    <div class="table-responsive">
+      <h3 class="text-center">Overall crime rates in cities</h3>
+      <table class="table table-condensed table-striped table-bordered" id="#city-table">
+        <thead>
+          <tr>
+            <th class="text-center">City</th>
+            <th class="text-right">2010</th>
+            <th class="text-right">2011</th>
+            <th class="text-right">2012</th>
+            <th class="text-right">2013</th>
+            <th class="text-right">2014</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c in cities %}
+          <tr>
+            <td class="text-center"><a href="/cities/{{ c.city }}" target="_blank">{{ c.city }}</a></td>
+            <td class="text-right">{{ c['2010'] }}</td>
+            <td class="text-right">{{ c['2011'] }}</td>
+            <td class="text-right">{{ c['2012'] }}</td>
+            <td class="text-right">{{ c['2013'] }}</td>
+            <td class="text-right">{{ c['2014'] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-	<script src="{{url_for('static', filename='jquery.min.js')}}"></script>
-	<script src="{{url_for('static', filename='highcharts.js')}}"></script>
+  <script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='highcharts.js')}}"></script>
 
-	<script type="text/javascript">
-		var chartData = {{ chartdata|tojson }};
-		var toShow = [];
-		var obj = {};
+  <script type="text/javascript">
+    var cityData = {{ cities|tojson }};
+    var natData = {{ n|tojson }};
 
-		chartData.forEach(function(d) {
-			d['2010'] = +d['2010'];
-			d['2011'] = +d['2011'];
-			d['2012'] = +d['2012'];
-			d['2013'] = +d['2013'];
-			d['2014'] = +d['2014'];
-			d.avg = +d.avg;
-		});
+    drawChart(cityData);
 
-		chartData.sort(function(a,b) { return b.avg - a.avg; });
-		//console.log(chartData);
+    /* --------------------------------------------------
+    ------------------- MAIN CRIME CHART --------------------
+    ----------------------------------------------------*/
 
-		var topTen = chartData.slice(0,10)
-		
-		//Push the India object to the array to show it on the graph
-		topTen.push(chartData[chartData.length-1]); 
+    function drawChart(cityData) {
 
-		topTen.forEach(function(d) {
-			obj = {
-				name: d.city, 
-				data: [d['2010'],d['2011'],d['2012'],d['2013'],d['2014']]
-			};			
-			toShow.push(obj);
-		});
-			
+      var categs = [],
+          data = [];
 
-		$(function () {
-			$('#cities-graph').highcharts({
-        title: {
-            text: "Indian cities with highest crime rates",
-            x: -20 //center
-        },
-        xAxis: {
-        		title: {
-                text: 'Year'
+      var cityData = cityData.sort(function(a,b) {
+        return +b.avg - +a.avg;
+      });
+
+      var natAvg = natData.filter(function(d) {
+        return d.city === "India" 
+      });
+
+      // Get the top 20 cities and build data to display on chart
+      cityData = cityData.slice(0,20);
+      cityData.forEach(function(d) {
+        categs.push(d.city);
+        data.push(+d.avg);
+      });
+
+      $(function () {
+        $('#overall-graph').highcharts({
+          chart: {
+                type: 'column'
             },
-            categories: ['2010', '2011', '2012', '2013', '2014']
-        },
-        yAxis: {
-            title: {
-                text: 'Overall crime rate'
+          title: {
+              text: "Cities with highest crime rates",
+              x: -20 //center
+          },
+          xAxis: {
+              categories: categs
+          },
+          yAxis: {
+              title: {
+                  text: 'Crimes per 100,000 people'
+              },
+              plotLines: [{
+                  value: +natAvg[0].avg,
+                  color: 'green',
+                  dashStyle: 'shortdash',
+                  width: 2,
+                  label: {
+                      text: 'National average: ' + natAvg[0].avg,
+                      rotation: -90,
+                      y: -5,
+                      x: 10
+                  }
+              }]
+          },
+          tooltip: {
+              valueSuffix: ' crimes per 100,000'
+          },
+          credits: {
+            enabled: false
+          },
+          legend: {
+              layout: 'horizontal',
+              align: 'right',
+              verticalAlign: 'bottom',
+              borderWidth: 0,
+              floating: false
+          },
+          plotOptions: {
+              column: {
+                dataLabels: {
+                    enabled: true
+                }
+              }
             },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        tooltip: {
-            valueSuffix: ''
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'left',
-            verticalAlign: 'top',
-            borderWidth: 0,
-            floating: true
-        },
-        series: toShow
-	    });
-	});
-	</script>
+          series: [{
+            name: 'Total crimes',
+            data: data
+          }]
+        });
+      });
 
-</body>	
+    }
 
+  </script>
+
+  {% include 'partials/footer.html' %}
+</body>
+</html>

@@ -260,3 +260,7 @@ p.explainer {
 #crime-select {
   margin-left: 1.5em;
 }
+
+#city-table > th {
+  text-align: center;
+}

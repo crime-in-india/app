@@ -89,16 +89,18 @@ def crime_page(crime):
 @app.route("/city-list")
 def city_landing():
   template = 'city-landing.html'
-  with open('static/data/cities-overall.csv', 'r') as csvin:
+  with open('static/data/total-final-2.csv', 'r') as csvin:
     datarows = list(csv.DictReader(csvin))
 
-  # Don't show India in the table
-  only_cities = datarows[:-1]  
+  datarows = [r for r in datarows if r['crime_name'] == 'Total cognizable crimes under IPC']
 
-  india = datarows[-1]
-  citylist = [c for c in datarows if c['avg'] > india['avg']]
-  citylist.append(india)
-  return render_template(template,cities=only_cities,chartdata=citylist)
+  # Don't show India in the table
+  only_cities = [d for d in datarows if d['city'] != 'India'] 
+
+  # india = [d for d in datarows if d['crime_name'] == 'Total cognizable crimes under IPC' and d['city'] is 'India']
+  # citylist = [c for c in datarows if c['avg'] > india[0]['avg']]
+  # citylist.append(india)
+  return render_template(template,cities=only_cities,n=datarows)
 
 #################################################################
 
@@ -117,7 +119,6 @@ def violent_landing_page():
     categs = list(csv.DictReader(csvin))
 
   categs = [c['crime'] for c in categs if c['category'] == 'Violent Crime']
-  data = get_data()
   violent_data = [d for d in national if d['crime_name'] in categs]
   
   return render_template(template,violent=violent_data,n=national)
