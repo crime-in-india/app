@@ -26,8 +26,8 @@
     <div class="col-md-6 half" id="dacoity-graph"></div>
 
 
-    <h3>Highest arson rates</h3>
-    <p class="desc">Two of the top three cities are from Chhattisgarh &mdash; Raipur and Durg-Bhilainagar.</p>
+    <h3>Arson</h3>
+    <p class="desc">Rate of arson as a crime have been on the lower side as compared to other property crimes in India. Two of the top three cities are from Chhattisgarh &mdash; <strong>Raipur</strong> and <strong>Durg-Bhilainagar</strong>.</p>
     <div class="graph" id="arson-graph"></div>
   </div>
 
@@ -447,16 +447,16 @@
                   text: 'Arson crimes per 100,000 people'
               },
               plotLines: [{
-                    value: +natAvg[0].avg,
-                    color: 'green',
-                    dashStyle: 'shortdash',
-                    width: 2,
-                    label: {
-                        text: 'National average: ' + natAvg[0].avg,
-                        rotation: -90,
-                        y: -5,
-                        x: 20
-                    }
+                  value: +natAvg[0].avg,
+                  color: 'green',
+                  dashStyle: 'shortdash',
+                  width: 2,
+                  label: {
+                      text: 'National average: ' + natAvg[0].avg,
+                      rotation: -90,
+                      y: -5,
+                      x: 20
+                  }
               }]
           },
           tooltip: {

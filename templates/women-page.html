@@ -26,13 +26,14 @@
 		<div class="graph" id="women-graph"></div>
 
 		<h3>Rape</h3>
-		<p class="desc">This chart shows the cities with the highest rape rates. All of the top ten cities are in the northern part of the country. Gwalior, Jabalpur, and Bhopal &mdash; all from Madhya Pradesh &mdash; have the top three cities with highest rape rates in India.</p>
-		<p class="desc">Capital city <strong>Delhi</strong> also emerged as one of the cities with the highest rate of rape crimes in the country. Also notice the jump in Delhi's rape rate after 2012. When the government <a href="http://www.ndtv.com/india-news/anti-rape-bill-cleared-by-lok-sabha-many-ministers-mps-missing-516728">toughened rape laws in 2013</a> and the media attention forced the police to look into complaints more seriously, <a href="http://www.thehindu.com/news/cities/Delhi/rape-cases-double-molestation-up-4-times-in-delhi/article5298622.ece">more victims emerged and the crime rate shot up</a>.</p>
+		<p class="desc">This chart shows the cities with the highest rape rates. All of the top five cities are in the northern part of the country. Gwalior, Jabalpur, and Bhopal &mdash; all from Madhya Pradesh &mdash; have the top three cities with highest rape rates in India.</p>
+		<p class="desc"> Notice the jump in rape rate after 2012. When the government <a href="http://www.ndtv.com/india-news/anti-rape-bill-cleared-by-lok-sabha-many-ministers-mps-missing-516728">toughened rape laws in 2013</a> and the media attention forced the police to look into complaints more seriously, <a href="http://www.thehindu.com/news/cities/Delhi/rape-cases-double-molestation-up-4-times-in-delhi/article5298622.ece">more victims emerged and the crime rate shot up</a>.</p>
 
-		<p class="desc"><a href="#metro-desc">Scroll down</a> to see how metro cities and non-metro cities compare on rape rates.</p>
-		<div class="graph" id="rape-graph"></div>
+		<p class="desc"><a href="#metro-rape">Scroll down</a> to see how metro cities and non-metro cities compare on rape rates.</p>
+		<div class="half col-md-6" id="india-graph"></div>
+    <div class="half col-md-6" id="rape-graph"></div>
 
-		<p class="desc" id="metro-desc">The top ten non-metro cities have a rape crime rate far higher than the national average. Gwalior, which has the highest rate of rapes in the country, is thrice the national average.</p> 
+		<p class="desc" id="metro-desc">The top ten non-metro cities have a rape crime rate far higher than the national average. Gwalior, which has the highest rate of rapes in the country, is thrice the national average. Capital city <strong>Delhi</strong> also emerged as one of the cities with the highest rate of rape crimes in the country.</p> 
 		<div class="half col-md-6" id="metro-rape"></div>
 		<div class="half col-md-6" id="nm-rape"></div>
 
@@ -70,7 +71,7 @@
 		drawRape(womenData);
 		drawDowry(womenData);
     drawMolest(womenData);
-    drawKidnapWomen(womenData);
+    //drawKidnapWomen(womenData);
 
 		/* --------------------------------------------------
     --------------- TOTAL CRIMES AGAINST WOMEN ----------
@@ -158,6 +159,18 @@
       	return d.city === "India";
       });
 
+      var natChartData = [];
+
+      natAvg.forEach(function(d) {
+        chartObj = {
+          name: d.crime_name,
+          data: [+d['2010'], +d['2011'], +d['2012'], +d['2013'], +d['2014']]
+        }
+        natChartData.push(chartObj);
+      });      
+
+      console.log(natChartData)
+
       var metroList = ["Delhi", "Mumbai", "Chennai", "Kolkata", "Pune", "Bengaluru", "Hyderabad", "Ahmedabad", "Chandigarh"];
 
       var metros = indiaRape.filter(function(d) {
@@ -216,7 +229,7 @@
             type: 'column'
           },
           title: {
-              text: "",
+              text: "Cities with highest rape rates",
               x: -20 //center
           },
           xAxis: {
@@ -227,16 +240,16 @@
                   text: 'Rate of rape'
               },
               plotLines: [{
-                    value: +natAvg[0].avg,
-                    color: 'green',
-                    dashStyle: 'shortdash',
-                    width: 2,
-                    label: {
-                        text: 'National average: ' + natAvg[0].avg,
-                        rotation: -90,
-                        y: -5,
-                        x: 20
-                    }
+                  value: +natAvg[0].avg,
+                  color: 'green',
+                  dashStyle: 'shortdash',
+                  width: 2,
+                  label: {
+                      text: 'National average: ' + natAvg[0].avg,
+                      rotation: -90,
+                      y: -5,
+                      x: 20
+                  }
             }]
           },
           credits: {
@@ -245,7 +258,7 @@
           plotOptions: {
               column: {
                 dataLabels: {
-                    enabled: true
+                    enabled: false
                 }
               }
             },
@@ -262,6 +275,55 @@
           series: chartsToShow
         });
       });
+
+      $(function () {
+        $('#india-graph').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Rape rate in India'
+            },
+            
+            xAxis: {
+                categories: ['2010', '2011', '2012', '2013', '2014'],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Rapes per 100,000 people'
+                },
+                plotLines: [{
+                    value: +natAvg[0].avg,
+                    color: 'green',
+                    dashStyle: 'shortdash',
+                    width: 2,
+                    label: {
+                        text: 'National average: ' + natAvg[0].avg,
+                        rotation: 0,
+                        y: -10,
+                        x: 10
+                    }
+                }]
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    dataLabels: {
+                      enabled: true
+                  } 
+                }
+            },
+            credits: {
+               enabled: false
+            },
+            series: natChartData
+          });
+      });
+
+
 
       // Metro graph
       $(function () {
