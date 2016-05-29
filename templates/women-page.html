@@ -48,10 +48,38 @@
 		<h3>Cities with highest rates of sexual harassment and molestation</h3>
 		<p class="desc">Here are the cities where women face the most sexual harassment and molestation in their everyday lives. Vijayawada is the top city i.e. the city with the highest average rate of sexual harassment and molestation cases. Again, note that Kollam, a city from Kerala, a state with a matriarchial societal structure, figures in the top five of the list.</p>
 		<div class="graph col-md-6" id="total-sh"></div>
+    
+    <div class="table-responsive">
+      <h3 class="text-center">Major crimes against women</h3>
+      <table class="table table-condensed table-striped table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center">Crime</th>
+            <th class="text-center">City</th>
+            <th class="text-right">2010</th>
+            <th class="text-right">2011</th>
+            <th class="text-right">2012</th>
+            <th class="text-right">2013</th>
+            <th class="text-right">2014</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for d in w_data %}
+          <tr>
+            <td class="text-center {{ d.class }}"><a href="/{{d.city}}">{{ d.city }}</a></td>
+            <td class="text-center"><a href="/crime/{{ d.crime_name }}">{{ d.crime_name }}</a></td>
+            <td class="text-right">{{ d['2010'] }}</td>
+            <td class="text-right">{{ d['2011'] }}</td>
+            <td class="text-right">{{ d['2012'] }}</td>
+            <td class="text-right">{{ d['2013'] }}</td>
+            <td class="text-right">{{ d['2014'] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+      
 
-<!--     <h3>Cities with highest rates of kidnapping women and girls</h3>
-    <p class="desc">Delhi has the highest rate of abductions of girls and women</p>
-    <div class="graph" id="women-kidnap-graph"></div> -->
 	</div>
 
 	<script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>

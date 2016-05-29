@@ -139,7 +139,11 @@ def city_landing():
   # citylist.append(india)
   return render_template(template,cities=only_cities,n=datarows)
 
+
+
 #################################################################
+
+
 
 # Route for violent crimes page
 @app.route("/violent-crimes")
@@ -181,8 +185,8 @@ def women_landing_page():
     categs = list(csv.DictReader(csvin))
 
   categs = [c['crime'] for c in categs if c['category'] == 'Crime Against Women']
-  data = get_data()
   women_data = [d for d in national if d['crime_name'] in categs]
+  women_data = sorted(women_data,key=lambda r:r['crime_name'])
   return render_template(template,w_data=women_data, n=national)
 
 
