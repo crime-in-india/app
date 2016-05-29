@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <p class="desc">This chart is about top 10 cities with highest {{ crime }} rate</p>
+    <p class="desc">These are the top 10 cities with the highest {{ crime }} rate.</p>
     <div id="main-chart"></div>
     
     <div class="table-responsive">
@@ -16,19 +16,25 @@
       <table class="table table-condensed table-striped table-bordered">
         <thead>
           <tr>
-            <th>City</th>
-            <th>Year</th>
-            <th>Incidences</th>
-            <th>Rate</th>
+            <th class="text-center">City</th>
+            <th class="text-right">2010</th>
+            <th class="text-right">2011</th>
+            <th class="text-right">2012</th>
+            <th class="text-right">2013</th>
+            <th class="text-right">2014</th>
+            <th class="text-right">Average</th>
           </tr>
         </thead>
         <tbody>
           {% for d in crime_data %}
           <tr>
-            <td>{{ d.city }}</td>
-            <td>{{ d.year }}</td>
-            <td>{{ d.incidences }}</td>
-            <td>{{ d.rate }}</td>
+            <td class="text-center"><a href="/cities/{{ d.city }}">{{ d.city}}</a></td>
+            <td class="text-right">{{ d['2010'] }}</td>
+            <td class="text-right">{{ d['2011'] }}</td>
+            <td class="text-right">{{ d['2012'] }}</td>
+            <td class="text-right">{{ d['2013'] }}</td>
+            <td class="text-right">{{ d['2014'] }}</td>
+            <td class="text-right">{{ d.avg }}</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -36,11 +42,96 @@
     </div>
   </div>
 
-  <script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>
+  <!-- <script src="{{url_for('static', filename='d3/d3.min.js')}}"></script> -->
   <script src="{{url_for('static', filename='jquery.min.js')}}"></script>
   <script src="{{url_for('static', filename='highcharts.js')}}"></script>
 
   <script type="text/javascript">
+    var crimeData = {{ crime_data|tojson }};
+
+    drawCrime(crimeData);
+
+
+    /* -----------------------------------------------------
+    ----------------- DRAW CRIME --------------------------
+    ------------------------------------------------------*/
+
+    function drawCrime(crimeData) {
+      var categs = [],
+          data = [];
+
+      var crimeData = crimeData.sort(function(a,b) {
+        return +b.avg - +a.avg;
+      });
+
+      var natAvg = crimeData.filter(function(d) {
+        return d.city === "India" 
+      });
+
+      // Get the top 10 cities and build data to display on chart
+      crimeData = crimeData.slice(0,10);
+      crimeData.forEach(function(d) {
+        categs.push(d.city);
+        data.push(+d.avg);
+      });
+
+      $(function () {
+        $('#main-chart').highcharts({
+          chart: {
+                type: 'column'
+            },
+          title: {
+              text: "Cities with highest crime rates",
+              x: -20 //center
+          },
+          xAxis: {
+              categories: categs
+          },
+          yAxis: {
+              title: {
+                  text: 'Crimes per 100,000 people'
+              },
+              plotLines: [{
+                  value: +natAvg[0].avg,
+                  color: 'green',
+                  dashStyle: 'shortdash',
+                  width: 2,
+                  label: {
+                      text: 'National average: ' + natAvg[0].avg,
+                      rotation: -90,
+                      y: -5,
+                      x: 10
+                  }
+              }]
+          },
+          tooltip: {
+              valueSuffix: ' crimes per 100,000'
+          },
+          credits: {
+            enabled: false
+          },
+          legend: {
+              layout: 'horizontal',
+              align: 'right',
+              verticalAlign: 'bottom',
+              borderWidth: 0,
+              floating: false
+          },
+          plotOptions: {
+              column: {
+                dataLabels: {
+                    enabled: true
+                }
+              }
+            },
+          series: [{
+            name: 'Total crimes',
+            data: data
+          }]
+        });
+      });
+
+    }
   
   </script>
   {% include 'partials/footer.html' %}

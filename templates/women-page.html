@@ -169,7 +169,7 @@
         natChartData.push(chartObj);
       });      
 
-      console.log(natChartData)
+      //console.log(natChartData)
 
       var metroList = ["Delhi", "Mumbai", "Chennai", "Kolkata", "Pune", "Bengaluru", "Hyderabad", "Ahmedabad", "Chandigarh"];
 
@@ -294,18 +294,6 @@
                 title: {
                     text: 'Rapes per 100,000 people'
                 },
-                plotLines: [{
-                    value: +natAvg[0].avg,
-                    color: 'green',
-                    dashStyle: 'shortdash',
-                    width: 2,
-                    label: {
-                        text: 'National average: ' + natAvg[0].avg,
-                        rotation: 0,
-                        y: -10,
-                        x: 10
-                    }
-                }]
             },
             plotOptions: {
                 column: {

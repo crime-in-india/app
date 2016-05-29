@@ -18,7 +18,42 @@ def get_data():
 @app.route("/")
 def homepage():
   template='index.html'
-  return render_template(template)
+  with open('static/data/total-final-2.csv', 'r') as csvin:
+    datarows = list(csv.DictReader(csvin))
+
+    total = [d for d in datarows if d['crime_name'] == 'Total cognizable crimes under IPC' and d['city'] != 'India']
+    total = sorted(total, key=lambda r:float(r['avg']), reverse=True)[:5]
+    
+    assault = [d for d in datarows if d['crime_name'] == 'Hurt' and d['city'] != 'India']
+    assault = sorted(assault, key=lambda r:float(r['avg']), reverse=True)[:5]
+    
+    robbery = [d for d in datarows if d['crime_name'] == 'Robbery' and d['city'] != 'India']
+    robbery = sorted(robbery, key=lambda r:float(r['avg']), reverse=True)[:5]
+
+    murder = [d for d in datarows if d['crime_name'] == 'Murder' and d['city'] != 'India']
+    murder = sorted(murder, key=lambda r:float(r['avg']), reverse=True)[:5]
+
+    kidnapping = [d for d in datarows if d['crime_name'] == 'Kidnapping' and d['city'] != 'India']
+    kidnapping = sorted(kidnapping, key=lambda r:float(r['avg']), reverse=True)[:5]
+
+    cheating = [d for d in datarows if d['crime_name'] == 'Cheating' and d['city'] != 'India']
+    cheating = sorted(cheating, key=lambda r:float(r['avg']), reverse=True)[:5]
+
+    harass = [d for d in datarows if d['crime_name'] == 'Sexual harassment and molestation of women' and d['city'] != 'India']
+    harass = sorted(harass, key=lambda r:float(r['avg']), reverse=True)[:5]
+
+    rape = [d for d in datarows if d['crime_name'] == 'Rape' and d['city'] != 'India']
+    rape = sorted(rape, key=lambda r:float(r['avg']), reverse=True)[:5]
+
+    rash = [d for d in datarows if d['crime_name'] == 'Deaths due to rash/negligent driving' and d['city'] != 'India']
+    rash = sorted(rash, key=lambda r:float(r['avg']), reverse=True)[:5]
+    
+
+    categs = ['Overall crimes', 'Murder', 'Rape', 'Sexual harassment', 'Hurt', 'Robbery', 'Kidnapping', 'Cheating', 'Deaths due to rash driving']
+
+    list_data = [total, murder,rape,harass,assault,robbery,kidnapping,cheating,rash]
+
+  return render_template(template, categs=categs,list_data=list_data)
 
 
 
@@ -75,10 +110,12 @@ def city_page(city):
 @app.route("/crime/<crime>/")
 def crime_page(crime):
   template = 'crime-page.html'
+  with open('static/data/total-final-2.csv', 'r') as csvin:
+    datarows = list(csv.DictReader(csvin))
   temp = get_data()
   data = []
 
-  data = [row for row in temp if row['crime_name'] == crime]
+  data = [row for row in datarows if row['crime_name'] == crime]
   return render_template(template, crime_data=data, total=temp, crime=crime)
 
 

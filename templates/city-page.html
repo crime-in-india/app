@@ -1,538 +1,535 @@
 {% include 'partials/head.html' %}
 <body>
 {% include 'partials/navbar.html' %}
-	<div class="container">
-		<div class="row">
-	      <div id="main-header">
-	        <h1 class="text-center">{{ city }}</h1>
-	      </div>
-	    </div>
-
-    	<div class="categories">
-		  <h3><a href="#violent">Violent Crimes</a></h3>
-		  <h3><a href="#women">Crimes Against Women</a></h3>
-		  <h3><a href="#property">Property Crimes</a></h3>
-		</div>  
-
-		<section id="violent">	
-			<h3>Violent crimes</h3>
-			<p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2011. To compare how {{ city }} fares nationally in violent crimes, click <a href="/violent-crimes">here</a>.</p>
-		  <div id="main-graph" class="graph"></div>
-		</section> 
-
-		<section id="women">
-			<h3>Crimes Against Women</h3>
-			<p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2010.</p>
-		  <div id="women-graph" class="graph"></div>
-
-		  <h3>Comparison with national average</h3>
-		  <p class="desc">The following chart shows a comparison of the heinous crimes against women recorded in {{ city }} to the national average over the past five years. These crimes have been categorized separately since they are more serious in nature.</p>
-
-		  <div id="women-compare" class="graph"></div>			
-		</section> 
-
-		<section id="property">
-			<h3>Property Crimes</h3>
-			<p class="desc">The chart below shows how the rate of property crimes in {{ city }} have changed since 2010.</p>
-		  <div id="property-graph" class="graph"></div>	
-		  <div id="prop-compare" class="graph"></div>	
-		</section>
-
-		<section id="economic">
-			<h3>Economic Crimes</h3>
-			<p class="desc">The chart below shows how the rate of economic crimes in {{ city }} have changed since 2010.</p>
-		  <!-- <div id="econ-graph" class="graph"></div>	 -->
-		  <div id="econ-compare" class="graph"></div>	
-		</section>
-		
-		<div class="table-responsive">
-			<h3 class="text-center">Major Crimes in {{ city }}</h3>
-			<table class="table table-condensed table-striped table-bordered">
-				<thead>
-					<tr>
-						<th class="text-center">Crime</th>
-						<th class="text-center">Category</th>
-						<th class="text-right">2010</th>
-						<th class="text-right">2011</th>
-						<th class="text-right">2012</th>
-						<th class="text-right">2013</th>
-						<th class="text-right">2014</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for d in table_data %}
-					<tr>
-						<td class="text-center"><a href="/crime/{{ d.crime_name }}">{{ d.crime_name }}</a></td>
-						<td class="text-center {{ d.class }}">{{ d.categ }}</td>
-						<td class="text-right">{{ d['2010'] }}</td>
-						<td class="text-right">{{ d['2011'] }}</td>
-						<td class="text-right">{{ d['2012'] }}</td>
-						<td class="text-right">{{ d['2013'] }}</td>
-						<td class="text-right">{{ d['2014'] }}</td>
-					</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		</div>
-	</div>
-
-	<script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>
-	<script src="{{url_for('static', filename='jquery.min.js')}}"></script>
-	<script src="{{url_for('static', filename='highcharts.js')}}"></script>
-
-	<script type="text/javascript">
-		var cityData = {{ data|tojson }};
-		var indiaData = {{ india|tojson }};
-		var violentCrimes = {{ v|tojson }};
-		var womenCrimes = {{ w|tojson }};
-		var propCrimes = {{ p|tojson }};
-		var econCrimes = {{ e|tojson }};
-
-		var violentData = cityData.filter(function(d) {
-			return violentCrimes.indexOf(d.crime_name) > -1; 
-		});
-
-		var cityWomen = cityData.filter(function(d) {
-			return womenCrimes.indexOf(d.crime_name) > -1;
-		});
-		var indiaWomen = indiaData.filter(function(d) {
-			return womenCrimes.indexOf(d.crime_name) > -1;
-		});
-
-		var propData = cityData.filter(function(d) {
-			return propCrimes.indexOf(d.crime_name) > -1;
-		});
-		var indiaProp = indiaData.filter(function(d) {
-			return propCrimes.indexOf(d.crime_name) > -1;
-		});
-
-		var econData = cityData.filter(function(d) {
-			return econCrimes.indexOf(d.crime_name) > -1;
-		});
-		var indiaEcon = indiaData.filter(function(d) {
-			return econCrimes.indexOf(d.crime_name) > -1;
-		});
-
-		drawViolent(violentData);
-		drawWomen(cityWomen);
-		drawNational(cityWomen, indiaWomen);
-		drawProperty(propData, indiaProp);
-		drawEcon(econData, indiaEcon);
-
-		/**************************************************
-		/********** VIOLENT CRIMES ************************
-		**************************************************/
-
-
-		function drawViolent(violentData) {
-
-			var chartsToShow = [];
-			var chartObj = {};
-			var chartTitle = 'Rate of violent crimes in {{ city }}';
-
-			violentData.forEach(function(d) {
-				chartObj = { 
-					name: d.crime_name, 
-					data: [+d['2010'], +d['2011'], +d['2012'], +d['2013'], +d['2014']] 
-				};
-				chartsToShow.push(chartObj);
-			});
-
-			$(function () {
-				$('#main-graph').highcharts({
-					chart: {
-						type: 'column'
-					},
-	        title: {
-	            text: chartTitle,
-	            x: -20 //center
-	        },
-	        xAxis: {
-	            categories: ['2010', '2011', '2012', '2013', '2014']
-	        },
-	        yAxis: {
-	            title: {
-	                text: 'Rate of violent crimes'
-	            },
-	            plotLines: [{
-	                value: 0,
-	                width: 1,
-	                color: '#808080'
-	            }]
-	        },
-	        credits: {
-						enabled: false
-			  	},
-			  	plotOptions: {
-	            column: {
-	                pointPadding: 0.2,
-	                borderWidth: 0,
-	                dataLabels: {
-			            	enabled: true
-			            }
-	            },
-	            
-		        },
-	        tooltip: {
-	            valueSuffix: ''
-	        },
-	        legend: {
-	            layout: 'horizontal',
-	            align: 'right',
-	            verticalAlign: 'bottom',
-	            borderWidth: 0,
-	            floating: false
-	        },
-	        series: chartsToShow
-		    });
-			});
-		}
-
-		/*****************************************************
-		/**********  CRIMES AGAINST WOMEN ************************
-		*****************************************************/
-		
-
-		function drawWomen(womenData) {
-
-			var chartsToShow = [];
-			var chartObj = {};
-			var chartTitle = 'Rates of crimes against women in {{ city }}';
-
-			womenData.forEach(function(d) {
-				chartObj = { 
-					name: d.crime_name, 
-					data: [+d['2010'], +d['2011'], +d['2012'], +d['2013'], +d['2014']] 
-				};
-				chartsToShow.push(chartObj);
-			});
-
-			$(function () {
-				$('#women-graph').highcharts({
-					chart: {
-						type: 'column'
-					},
-	        title: {
-	            text: chartTitle,
-	            x: -20 //center
-	        },
-	        xAxis: {
-	            categories: ['2010', '2011', '2012', '2013', '2014']
-	        },
-	        yAxis: {
-	            title: {
-	                text: 'Rate of crimes against women'
-	            },
-	            plotLines: [{
-	                value: 0,
-	                width: 1,
-	                color: '#808080'
-	            }]
-	        },
-	        credits: {
-						enabled: false
-			  	},
-	        tooltip: {
-	            valueSuffix: ''
-	        },
-	        legend: {
-	            layout: 'horizontal',
-	            align: 'right',
-	            verticalAlign: 'bottom',
-	            borderWidth: 0,
-	            floating: false
-	        },
-	        series: chartsToShow
-		    });
-			});
-
-		}
-
-		/*****************************************************
-		/**********  WOMEN CRIMES V/S NATIONAL AVG ************
-		*****************************************************/
-
-		function drawNational(cityWomen, indiaWomen) {
-
-			var categories = [],
-					cityData = [],
-					natData = [];
-
-			cityWomen.forEach(function(d) {
-				categories.push(d.crime_name);
-				cityData.push(+d.avg); 
-			});
-			
-			indiaWomen.forEach(function(d) {
-				natData.push(+d.avg);
-			})
-
-			var chartObj = {};
-			var chartTitle = 'Crimes against women in {{ city }} v/s India';
-
-			var cityChart = {
-				name: '{{ city }}',
-				data: cityData 
-			};
-
-			var indiaChart = {
-				name: 'India',
-				data: natData
-			};
-
-			var chartsToShow = [cityChart, indiaChart];
-
-
-			$(function () {
-		    $('#women-compare').highcharts({
-		        chart: {
-		            type: 'column'
-		        },
-		        title: {
-		            text: chartTitle
-		        },
-		        // subtitle: {
-		        //     text: 'Source: WorldClimate.com'
-		        // },
-		        xAxis: {
-		            categories: categories,
-		            crosshair: true
-		        },
-		        yAxis: {
-		            min: 0,
-		            title: {
-		                text: 'Crime rate per 100,000 people'
-		            }
-		        },
-		        credits: {
-							enabled: false
-						},
-		        plotOptions: {
-		            column: {
-		                pointPadding: 0.2,
-		                borderWidth: 0
-		            }
-		        },
-		        series: chartsToShow
-		    });
-			});
-
-		}
-
-		/*****************************************************
-		/*****************  PROPERTY CRIMES ******************
-		*****************************************************/
-
-		function drawProperty(propData, indiaProp) {
-			var categories = [],
-					cityData = [],
-					natData = [];
-
-			var chartsToShow = [];
-			var chartObj = {};
-			var chartTitle = 'Rate of property crimes in {{ city }}';
-
-			propData.forEach(function(d) {
-				chartObj = { 
-					name: d.crime_name, 
-					data: [+d['2010'], +d['2011'], +d['2012'], +d['2013'], +d['2014']] 
-				};
-				chartsToShow.push(chartObj);
-			});
-
-			propData.forEach(function(d) {
-				categories.push(d.crime_name);
-				cityData.push(+d.avg); 
-			});
-			
-			indiaProp.forEach(function(d) {
-				natData.push(+d.avg);
-			});
-
-			var chartObj = {};
-			var chartTitle = 'Crimes against women in {{ city }} v/s India';
-
-			var cityChart = {
-				name: '{{ city }}',
-				data: cityData 
-			};
-
-			var indiaChart = {
-				name: 'India',
-				data: natData
-			};
-
-			var compCharts = [cityChart, indiaChart];
-
-			$(function () {
-				$('#property-graph').highcharts({
-					chart: {
-						type: 'column'
-					},
-	        title: {
-	            text: chartTitle,
-	            x: -20 //center
-	        },
-	        xAxis: {
-	            categories: ['2010', '2011', '2012', '2013', '2014']
-	        },
-	        yAxis: {
-	            title: {
-	                text: 'Crime rate per 100,000 people'
-	            },
-	            plotLines: [{
-	                value: 0,
-	                width: 1,
-	                color: '#808080'
-	            }]
-	        },
-	        credits: {
-						enabled: false
-			  	},
-			  	plotOptions: {
-	            column: {
-	                pointPadding: 0.2,
-	                borderWidth: 0,
-	                dataLabels: {
-	                	enabled: true
-	                }
-	            }
-		      },
-
-	        legend: {
-	            layout: 'horizontal',
-	            align: 'right',
-	            verticalAlign: 'bottom',
-	            borderWidth: 0,
-	            floating: false
-	        },
-	        series: chartsToShow
-		    });
-		  });
-
-		  // Comparison with national average
-			$(function () {
-		    $('#prop-compare').highcharts({
-		        chart: {
-		            type: 'column'
-		        },
-		        title: {
-		            text: 'Property crimes in {{ city }} v/s India'
-		        },
-		        xAxis: {
-		            categories: categories,
-		            crosshair: true
-		        },
-		        yAxis: {
-		            min: 0,
-		            title: {
-		                text: 'Crime rate per 100,000 people'
-		            }
-		        },
-		        credits: {
-							enabled: false
-						},
-						legend: {
-	            layout: 'horizontal',
-	            align: 'right',
-	            verticalAlign: 'bottom',
-	            borderWidth: 0,
-	            floating: false
-	        	},
-		        plotOptions: {
-		            column: {
-		                pointPadding: 0.2,
-		                borderWidth: 0
-		            }
-		        },
-		        series: compCharts
-		    });
-			});
-	 	}
-
-	 	/*****************************************************
-		/**********  WOMEN CRIMES V/S NATIONAL AVG ************
-		*****************************************************/
-
-		function drawEcon(econData, indiaEcon) {
-
-			var categories = [],
-					cityData = [],
-					natData = [];
-
-			econData.forEach(function(d) {
-				categories.push(d.crime_name);
-				cityData.push(+d.avg); 
-			});
-			
-			indiaEcon.forEach(function(d) {
-				natData.push(+d.avg);
-			})
-
-			var chartObj = {};
-			var chartTitle = 'Economic crimes in {{ city }} v/s India';
-
-			var cityChart = {
-				name: '{{ city }}',
-				data: cityData 
-			};
-
-			var indiaChart = {
-				name: 'India',
-				data: natData
-			};
-
-			var chartsToShow = [cityChart, indiaChart];
-
-
-			$(function () {
-		    $('#econ-compare').highcharts({
-		        chart: {
-		            type: 'column'
-		        },
-		        title: {
-		            text: chartTitle
-		        },
-		        xAxis: {
-		            categories: categories,
-		            crosshair: true
-		        },
-		        yAxis: {
-		            min: 0,
-		            title: {
-		                text: 'Crime rate per 100,000 people'
-		            }
-		        },
-		        credits: {
-							enabled: false
-						},
-		        plotOptions: {
-		            column: {
-		                pointPadding: 0.2,
-		                borderWidth: 0
-		            }
-		        },
-		        series: chartsToShow
-		    });
-			});
-
-		}
-
-		$('a[href^="#"]').on('click',function (e) {
-	    e.preventDefault();
-
-	    var target = this.hash;
-	    var $target = $(target);
-
-	    $('html, body').stop().animate({
-	        'scrollTop': $target.offset().top
-	    }, 900, 'swing', function () {
-	        window.location.hash = target;
-	    });
-		});
-
-		
-	</script>
-	{% include 'partials/footer.html' %}	
+  <div class="container">
+    <div class="row">
+        <div id="main-header">
+          <h1 class="text-center">{{ city }}</h1>
+        </div>
+      </div>
+
+      <div class="categories">
+      <h3><a href="#violent">Violent Crimes</a></h3>
+      <h3><a href="#women">Crimes Against Women</a></h3>
+      <h3><a href="#property">Property Crimes</a></h3>
+    </div>  
+
+    <section id="violent">  
+      <h3>Violent crimes</h3>
+      <p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2011. To compare how {{ city }} fares nationally in violent crimes, click <a href="/violent-crimes">here</a>.</p>
+      <div id="main-graph" class="graph"></div>
+    </section> 
+
+    <section id="women">
+      <h3>Crimes Against Women</h3>
+      <p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2010.</p>
+      <div id="women-graph" class="graph"></div>
+
+      <h3>Comparison with national average</h3>
+      <p class="desc">The following chart shows a comparison of the heinous crimes against women recorded in {{ city }} to the national average over the past five years. These crimes have been categorized separately since they are more serious in nature.</p>
+
+      <div id="women-compare" class="graph"></div>      
+    </section> 
+
+    <section id="property">
+      <h3>Property Crimes</h3>
+      <p class="desc">The chart below shows how the rate of property crimes in {{ city }} have changed since 2010.</p>
+      <div id="property-graph" class="graph"></div> 
+      <div id="prop-compare" class="graph"></div> 
+    </section>
+
+    <section id="economic">
+      <h3>Economic Crimes</h3>
+      <p class="desc">The chart below shows how the rate of economic crimes in {{ city }} have changed since 2010.</p>
+      <!-- <div id="econ-graph" class="graph"></div>   -->
+      <div id="econ-compare" class="graph"></div> 
+    </section>
+    
+    <div class="table-responsive">
+      <h3 class="text-center">Major Crimes in {{ city }}</h3>
+      <table class="table table-condensed table-striped table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center">Crime</th>
+            <th class="text-center">Category</th>
+            <th class="text-right">2010</th>
+            <th class="text-right">2011</th>
+            <th class="text-right">2012</th>
+            <th class="text-right">2013</th>
+            <th class="text-right">2014</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for d in table_data %}
+          <tr>
+            <td class="text-center"><a href="/crime/{{ d.crime_name }}">{{ d.crime_name }}</a></td>
+            <td class="text-center {{ d.class }}">{{ d.categ }}</td>
+            <td class="text-right">{{ d['2010'] }}</td>
+            <td class="text-right">{{ d['2011'] }}</td>
+            <td class="text-right">{{ d['2012'] }}</td>
+            <td class="text-right">{{ d['2013'] }}</td>
+            <td class="text-right">{{ d['2014'] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>
+  <script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='highcharts.js')}}"></script>
+
+  <script type="text/javascript">
+    var cityData = {{ data|tojson }};
+    var indiaData = {{ india|tojson }};
+    var violentCrimes = {{ v|tojson }};
+    var womenCrimes = {{ w|tojson }};
+    var propCrimes = {{ p|tojson }};
+    var econCrimes = {{ e|tojson }};
+
+    var violentData = cityData.filter(function(d) {
+      return violentCrimes.indexOf(d.crime_name) > -1; 
+    });
+
+    var cityWomen = cityData.filter(function(d) {
+      return womenCrimes.indexOf(d.crime_name) > -1;
+    });
+    var indiaWomen = indiaData.filter(function(d) {
+      return womenCrimes.indexOf(d.crime_name) > -1;
+    });
+
+    var propData = cityData.filter(function(d) {
+      return propCrimes.indexOf(d.crime_name) > -1;
+    });
+    var indiaProp = indiaData.filter(function(d) {
+      return propCrimes.indexOf(d.crime_name) > -1;
+    });
+
+    var econData = cityData.filter(function(d) {
+      return econCrimes.indexOf(d.crime_name) > -1;
+    });
+    var indiaEcon = indiaData.filter(function(d) {
+      return econCrimes.indexOf(d.crime_name) > -1;
+    });
+
+    drawViolent(violentData);
+    drawWomen(cityWomen);
+    drawNational(cityWomen, indiaWomen);
+    drawProperty(propData, indiaProp);
+    drawEcon(econData, indiaEcon);
+
+    /**************************************************
+    /********** VIOLENT CRIMES ************************
+    **************************************************/
+
+
+    function drawViolent(violentData) {
+
+      var chartsToShow = [];
+      var chartObj = {};
+      var chartTitle = 'Rate of violent crimes in {{ city }}';
+
+      violentData.forEach(function(d) {
+        chartObj = { 
+          name: d.crime_name, 
+          data: [+d['2010'], +d['2011'], +d['2012'], +d['2013'], +d['2014']] 
+        };
+        chartsToShow.push(chartObj);
+      });
+
+      $(function () {
+        $('#main-graph').highcharts({
+          chart: {
+            type: 'column'
+          },
+          title: {
+              text: chartTitle,
+              x: -20 //center
+          },
+          xAxis: {
+              categories: ['2010', '2011', '2012', '2013', '2014']
+          },
+          yAxis: {
+              title: {
+                  text: 'Rate of violent crimes'
+              },
+              plotLines: [{
+                  value: 0,
+                  width: 1,
+                  color: '#808080'
+              }]
+          },
+          credits: {
+            enabled: false
+          },
+          plotOptions: {
+              column: {
+                  pointPadding: 0.2,
+                  borderWidth: 0,
+                  dataLabels: {
+                    enabled: true
+                  }
+              },
+              
+            },
+          tooltip: {
+              valueSuffix: ''
+          },
+          legend: {
+              layout: 'horizontal',
+              align: 'right',
+              verticalAlign: 'bottom',
+              borderWidth: 0,
+              floating: false
+          },
+          series: chartsToShow
+        });
+      });
+    }
+
+    /*****************************************************
+    /**********  CRIMES AGAINST WOMEN ************************
+    *****************************************************/
+    
+
+    function drawWomen(womenData) {
+
+      var chartsToShow = [];
+      var chartObj = {};
+      var chartTitle = 'Rates of crimes against women in {{ city }}';
+
+      womenData.forEach(function(d) {
+        chartObj = { 
+          name: d.crime_name, 
+          data: [+d['2010'], +d['2011'], +d['2012'], +d['2013'], +d['2014']] 
+        };
+        chartsToShow.push(chartObj);
+      });
+
+      $(function () {
+        $('#women-graph').highcharts({
+          chart: {
+            type: 'column'
+          },
+          title: {
+              text: chartTitle,
+              x: -20 //center
+          },
+          xAxis: {
+              categories: ['2010', '2011', '2012', '2013', '2014']
+          },
+          yAxis: {
+              title: {
+                  text: 'Rate of crimes against women'
+              },
+              plotLines: [{
+                  value: 0,
+                  width: 1,
+                  color: '#808080'
+              }]
+          },
+          credits: {
+            enabled: false
+          },
+          tooltip: {
+              valueSuffix: ''
+          },
+          legend: {
+              layout: 'horizontal',
+              align: 'right',
+              verticalAlign: 'bottom',
+              borderWidth: 0,
+              floating: false
+          },
+          series: chartsToShow
+        });
+      });
+
+    }
+
+    /*****************************************************
+    /**********  WOMEN CRIMES V/S NATIONAL AVG ************
+    *****************************************************/
+
+    function drawNational(cityWomen, indiaWomen) {
+
+      var categories = [],
+          cityData = [],
+          natData = [];
+
+      cityWomen.forEach(function(d) {
+        categories.push(d.crime_name);
+        cityData.push(+d.avg); 
+      });
+      
+      indiaWomen.forEach(function(d) {
+        natData.push(+d.avg);
+      })
+
+      var chartObj = {};
+      var chartTitle = 'Crimes against women in {{ city }} v/s India';
+
+      var cityChart = {
+        name: '{{ city }}',
+        data: cityData 
+      };
+
+      var indiaChart = {
+        name: 'India',
+        data: natData
+      };
+
+      var chartsToShow = [cityChart, indiaChart];
+
+
+      $(function () {
+        $('#women-compare').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: chartTitle
+            },
+            // subtitle: {
+            //     text: 'Source: WorldClimate.com'
+            // },
+            xAxis: {
+                categories: categories,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Crime rate per 100,000 people'
+                }
+            },
+            credits: {
+              enabled: false
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: chartsToShow
+        });
+      });
+
+    }
+
+    /*****************************************************
+    /*****************  PROPERTY CRIMES ******************
+    *****************************************************/
+
+    function drawProperty(propData, indiaProp) {
+      var categories = [],
+          cityData = [],
+          natData = [];
+
+      var chartsToShow = [];
+      var chartObj = {};
+      var chartTitle = 'Rate of property crimes in {{ city }}';
+
+      propData.forEach(function(d) {
+        chartObj = { 
+          name: d.crime_name, 
+          data: [+d['2010'], +d['2011'], +d['2012'], +d['2013'], +d['2014']] 
+        };
+        chartsToShow.push(chartObj);
+      });
+
+      propData.forEach(function(d) {
+        categories.push(d.crime_name);
+        cityData.push(+d.avg); 
+      });
+      
+      indiaProp.forEach(function(d) {
+        natData.push(+d.avg);
+      });
+
+      var cityChart = {
+        name: '{{ city }}',
+        data: cityData 
+      };
+
+      var indiaChart = {
+        name: 'India',
+        data: natData
+      };
+
+      var compCharts = [cityChart, indiaChart];
+
+      $(function () {
+        $('#property-graph').highcharts({
+          chart: {
+            type: 'column'
+          },
+          title: {
+              text: chartTitle,
+              x: -20 //center
+          },
+          xAxis: {
+              categories: ['2010', '2011', '2012', '2013', '2014']
+          },
+          yAxis: {
+              title: {
+                  text: 'Crime rate per 100,000 people'
+              },
+              plotLines: [{
+                  value: 0,
+                  width: 1,
+                  color: '#808080'
+              }]
+          },
+          credits: {
+            enabled: false
+          },
+          plotOptions: {
+              column: {
+                  pointPadding: 0.2,
+                  borderWidth: 0,
+                  dataLabels: {
+                    enabled: true
+                  }
+              }
+          },
+
+          legend: {
+              layout: 'horizontal',
+              align: 'right',
+              verticalAlign: 'bottom',
+              borderWidth: 0,
+              floating: false
+          },
+          series: chartsToShow
+        });
+      });
+
+      // Comparison with national average
+      $(function () {
+        $('#prop-compare').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Property crimes in {{ city }} v/s India'
+            },
+            xAxis: {
+                categories: categories,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Crime rate per 100,000 people'
+                }
+            },
+            credits: {
+              enabled: false
+            },
+            legend: {
+              layout: 'horizontal',
+              align: 'right',
+              verticalAlign: 'bottom',
+              borderWidth: 0,
+              floating: false
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: compCharts
+        });
+      });
+    }
+
+    /*****************************************************
+    /**********  WOMEN CRIMES V/S NATIONAL AVG ************
+    *****************************************************/
+
+    function drawEcon(econData, indiaEcon) {
+
+      var categories = [],
+          cityData = [],
+          natData = [];
+
+      econData.forEach(function(d) {
+        categories.push(d.crime_name);
+        cityData.push(+d.avg); 
+      });
+      
+      indiaEcon.forEach(function(d) {
+        natData.push(+d.avg);
+      })
+
+      var chartObj = {};
+      var chartTitle = 'Economic crimes in {{ city }} v/s India';
+
+      var cityChart = {
+        name: '{{ city }}',
+        data: cityData 
+      };
+
+      var indiaChart = {
+        name: 'India',
+        data: natData
+      };
+
+      var chartsToShow = [cityChart, indiaChart];
+
+
+      $(function () {
+        $('#econ-compare').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: chartTitle
+            },
+            xAxis: {
+                categories: categories,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Crime rate per 100,000 people'
+                }
+            },
+            credits: {
+              enabled: false
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: chartsToShow
+        });
+      });
+
+    }
+
+    $('a[href^="#"]').on('click',function (e) {
+      e.preventDefault();
+
+      var target = this.hash;
+      var $target = $(target);
+
+      $('html, body').stop().animate({
+          'scrollTop': $target.offset().top
+      }, 900, 'swing', function () {
+          window.location.hash = target;
+      });
+    });
+
+    
+  </script>
+  {% include 'partials/footer.html' %}  
 </body>
 </html>
