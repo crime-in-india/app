@@ -257,9 +257,13 @@ def data_table():
   template = 'data.html'
 
   with open(indiapath, 'r') as i:
-    data = list(csv.DictReader(i))  
+    data = list(csv.DictReader(i))
 
-  return render_template(template, master=data)
+  total = [d for d in data if d['crime_name'] == 'Total cognizable crimes under IPC']
+
+  data = [d for d in data if d['crime_name'] != 'Total cognizable crimes under IPC']   
+
+  return render_template(template, master=data, total=total)
 
 
 
