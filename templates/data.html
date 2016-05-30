@@ -8,14 +8,50 @@
       </div>
     </div>
 
+    <h3>Glossary</h3>
+    <p class="desc">Want to look up what some of the crimes mean? Here is a glossary of some of the terms.</p>
+
     <p class="desc">Here is a table of the entire crime data for India. You can download it <a href="#">here</a>.</p>
+
+    <ul class="about">
+      <li class="about">
+        <p><strong>Attempt to murder</strong>: You are booked for attempt to murder when you try to kill someone and do not succeed.</p>
+      </li>
+      <li class="about">
+        <p><strong>Culpable homicide not amounting to murder</strong>: This means your actions have killed someone but you didn't mean to. The most famous case is the <a href="">Salman Khan case</a>.</p>
+      </li>
+      <li class="about">
+        <p><strong>Robbery</strong>: Robbery is a form of theft in which the offender, during the act, causes, or attempts to cause, death or injury to the victim, according to <a href="">Indian Kanoon</a>.</p>
+      </li>
+      <li class="about">
+        <p><strong>Dacoity</strong>: When five or more people commit robbery, it is considered a dacoity.</p>
+      </li>
+      <li class="about">
+        <p><strong>Sexual harassment and molestation</strong>: This is a custom category we have created to combine two crimes: Assault with intent to outrage modesty of women, and insult to the modesty of women.</p>
+      </li>
+
+      <li class="about">
+        <p><strong>Assault with intent to outrage modesty of women</strong>: These crimes entail sexual harassment of women. The offenders booked under this section will have stalked women, committed acts of physically harassing women in a sexual way or molesting them (groping, etc).</p>
+      </li>
+      <li class="about">
+        <p><strong>Insult to the modesty of women</strong>: Offenders booked under this category will have passed lewd comments, made gestures or other such acts.</p>
+      </li>
+      <li class="about">
+        <p><strong>Arson</strong>: Setting fire to property, either public or private.</p>
+      </li>
+      <li class="about">
+        <p></p>
+      </li>
+
+
+    </ul>
     
     <div class="table-responsive">
       <table class="table table-condensed table-striped table-bordered">
         <thead>
           <tr>
-            <th>City</th>
-            <th>Crime</th>
+            <th class="text-center">City</th>
+            <th class="text-center">Crime</th>
             <th class="text-right">2010</th>
             <th class="text-right">2011</th>
             <th class="text-right">2012</th>
@@ -27,8 +63,8 @@
         <tbody>
           {% for d in master %}
           <tr>
-            <td>{{ d.city }}</td>
-            <td>{{ d.crime_name }}</td>
+            <td class="text-center"><a href="/cities/{{d.city}}">{{ d.city }}</a></td>
+            <td class="text-center"><a href="/crime/{{d.crime_name}}">{{ d.crime_name }}</a></td>
             <td class="text-right">{{ d['2010'] }}</td>
             <td class="text-right">{{ d['2011'] }}</td>
             <td class="text-right">{{ d['2012'] }}</td>
