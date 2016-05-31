@@ -7,7 +7,7 @@
 	  height = 700;
 
 	var proj = d3.geo.mercator()
-	.center([81, 27])
+	.center([83, 27])
 	.scale(1200);
 
 	var path = d3.geo.path()

@@ -1,90 +1,94 @@
 {% include 'partials/head.html' %}
 
 <body>
-  {% include 'partials/navbar.html' %}
+{% include 'partials/navbar.html' %}  
   
   <!--Main content-->
   <div class="container">
-    <div class="row">
-      <div id="main-header">
-        <h1 class="text-center">Crime in India</h1>
-        <h3 class="text-center">Opening up India's crime data</h3>
-      </div>
+
+    <div id="main-header">
+      <h1 class="text-center">Crime in India</h1>
+      <h3 class="text-center">Opening up India's crime data</h3>
     </div>
 
     <section id="map-section">
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
-          <p class="desc">Crime in India is an effort to make India's crime records more meaningful and easier to access. We have the most updated data from the National Crime Records Bureau &mdash; 2010 to 2014.</p> 
-
-          <p class="desc">Know your city and its crime history. Keep track of different kinds of crimes.</p>
-          
-          <p class="desc">Click on a city on the map or choose from the menu to get started. Look at crimes in <a href="#scroll-point"> different categories</a>. Or you can simply <a href="#story-section">read our stories</a>.</p>
-
-          <form id="user-location">  
-            <select name="/city/" class="form-control" id="city-name">
-              <option value="Agra">Agra</option>
-              <option value="Ahmedabad">Ahmedabad</option>
-              <option value="Allahabad">Allahabad</option>
-              <option value="Amritsar">Amritsar</option>
-              <option value="Asansol">Asansol</option>
-              <option value="Aurangabad">Aurangabad</option>
-              <option value="Bengaluru">Bengaluru</option>
-              <option value="Bhopal">Bhopal</option>
-              <option value="Chandigarh">Chandigarh</option>
-              <option value="Chennai">Chennai</option>
-              <option value="Coimbatore">Coimbatore</option>
-              <option value="Delhi">Delhi</option>
-              <option value="Dhanbad">Dhanbad</option>
-              <option value="Durg-Bhilainagar">Durg-Bhilainagar</option>
-              <option value="Faridabad">Faridabad</option>
-              <option value="Ghaziabad">Ghaziabad</option>
-              <option value="Gwalior">Gwalior</option>
-              <option value="Hyderabad">Hyderabad</option>
-              <option value="Indore">Indore</option>
-              <option value="Jabalpur">Jabalpur</option>
-              <option value="Jaipur">Jaipur</option>
-              <option value="Jamshedpur">Jamshedpur</option>
-              <option value="Jodhpur">Jodhpur</option>
-              <option value="Kannur">Kannur</option>
-              <option value="Kanpur">Kanpur</option>
-              <option value="Kochi">Kochi</option>
-              <option value="Kolkata">Kolkata</option>
-              <option value="Kollam">Kollam</option>
-              <option value="Kota">Kota</option>
-              <option value="Kozhikode">Kozhikode</option>
-              <option value="Lucknow">Lucknow</option>
-              <option value="Ludhiana">Ludhiana</option>
-              <option value="Madurai">Madurai</option>
-              <option value="Malappuram">Malappuram</option>
-              <option value="Meerut">Meerut</option>
-              <option value="Mumbai">Mumbai</option>
-              <option value="Nagpur">Nagpur</option>
-              <option value="Nasik">Nasik</option>
-              <option value="Patna">Patna</option>
-              <option value="Pune">Pune</option>
-              <option value="Raipur">Raipur</option>
-              <option value="Rajkot">Rajkot</option>
-              <option value="Ranchi">Ranchi</option>
-              <option value="Srinagar">Srinagar</option>
-              <option value="Surat">Surat</option>
-              <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-              <option value="Thrissur">Thrissur</option>
-              <option value="Tiruchirappalli">Tiruchirappalli</option>
-              <option value="Vadodara">Vadodara</option>
-              <option value="Varanasi">Varanasi</option>
-              <option value="Vasai-Virar">Vasai-Virar</option>
-              <option value="Vijayawada">Vijayawada</option>
-              <option value="Vishakhapatnam">Vishakhapatnam</option>
-            </select>
-            <input type="submit" id="city-button" class="btn btn-primary" value="Show me" />
-          </form>
-
-          <!-- <p class="intro">You can also <a href="#scroll-point">choose crime categories</p></a> -->
-          
-          <div id="map"></div>        
+          <p class="intro-text text-justify"> Crime data in India has always been buried in long PDF documents that are difficult to read and analyze. <span class="highlight">Crime in India</span> makes India's crime records more meaningful and easy to use. With five years' worth of the most updated data from the National Crime Records Bureau &mdash; 2010 to 2014 &mdash; you can now access information that governs your lives.</p>
         </div>
       </div>
+
+      <div id="big-wrapper">
+        <p class="big-text text-justify">Know your city and its crime history. Track different kinds of crimes.</p>
+        
+        <p class="text-center">Click on a city on the map or choose from the menu. Choose <a href="#scroll-point"> crime categories</a>. Or read <a href="#story-section"> our stories</a>.</p>
+      </div>
+      
+      <form id="user-location">  
+        <select name="/city/" class="form-control" id="city-name">
+          <option value="Agra">Agra</option>
+          <option value="Ahmedabad">Ahmedabad</option>
+          <option value="Allahabad">Allahabad</option>
+          <option value="Amritsar">Amritsar</option>
+          <option value="Asansol">Asansol</option>
+          <option value="Aurangabad">Aurangabad</option>
+          <option value="Bengaluru">Bengaluru</option>
+          <option value="Bhopal">Bhopal</option>
+          <option value="Chandigarh">Chandigarh</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Coimbatore">Coimbatore</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Dhanbad">Dhanbad</option>
+          <option value="Durg-Bhilainagar">Durg-Bhilainagar</option>
+          <option value="Faridabad">Faridabad</option>
+          <option value="Ghaziabad">Ghaziabad</option>
+          <option value="Gwalior">Gwalior</option>
+          <option value="Hyderabad">Hyderabad</option>
+          <option value="Indore">Indore</option>
+          <option value="Jabalpur">Jabalpur</option>
+          <option value="Jaipur">Jaipur</option>
+          <option value="Jamshedpur">Jamshedpur</option>
+          <option value="Jodhpur">Jodhpur</option>
+          <option value="Kannur">Kannur</option>
+          <option value="Kanpur">Kanpur</option>
+          <option value="Kochi">Kochi</option>
+          <option value="Kolkata">Kolkata</option>
+          <option value="Kollam">Kollam</option>
+          <option value="Kota">Kota</option>
+          <option value="Kozhikode">Kozhikode</option>
+          <option value="Lucknow">Lucknow</option>
+          <option value="Ludhiana">Ludhiana</option>
+          <option value="Madurai">Madurai</option>
+          <option value="Malappuram">Malappuram</option>
+          <option value="Meerut">Meerut</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Nagpur">Nagpur</option>
+          <option value="Nasik">Nasik</option>
+          <option value="Patna">Patna</option>
+          <option value="Pune">Pune</option>
+          <option value="Raipur">Raipur</option>
+          <option value="Rajkot">Rajkot</option>
+          <option value="Ranchi">Ranchi</option>
+          <option value="Srinagar">Srinagar</option>
+          <option value="Surat">Surat</option>
+          <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+          <option value="Thrissur">Thrissur</option>
+          <option value="Tiruchirappalli">Tiruchirappalli</option>
+          <option value="Vadodara">Vadodara</option>
+          <option value="Varanasi">Varanasi</option>
+          <option value="Vasai-Virar">Vasai-Virar</option>
+          <option value="Vijayawada">Vijayawada</option>
+          <option value="Vishakhapatnam">Vishakhapatnam</option>
+        </select>
+        <input type="submit" id="city-button" class="btn btn-primary" value="Show me" />
+      </form>  
+            
+      <div class="row">
+        <div class="col-md-offset-2">
+          <div id="map"></div>
+        </div>
+      </div>    
+
     </section>
     
     <section id="crime-section">
