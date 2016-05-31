@@ -266,6 +266,15 @@ def data_table():
   return render_template(template, master=data, total=total)
 
 
+#################################################################
+
+# Route to the story page
+@app.route("/stories")
+def story_page():
+  template = 'stories.html'
+  return render_template(template)
+
+
 
 if __name__ == '__main__':
   app.run(debug=True, use_reloader=True)

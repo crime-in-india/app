@@ -1,0 +1,118 @@
+{% include 'partials/head.html' %}
+
+<body>
+  {% include 'partials/navbar.html' %}
+  <div class="container">
+    <div class="row">
+      <div id="main-header">
+        <h1 class="text-center">Stories</h1>
+      </div>
+    </div>
+
+    <hr>
+
+    <article>
+      <h3>Two cities from Kerala among those with highest crime rates</h3>
+      <p class="desc">Kochi and Kollam, both cities from the southern state of Kerala, are among the top ten cities with the highest average crime rate, according to the latest data available with the National Records Bureau.</p>
+
+      <p class="desc">Kochi has an overall average crime rate of 1,159 crimes per 100,000 people, more than five times the national average. The city has a population of 2.1 million, according to the 2011 Census. Kollam, with a population of 1.1 million, is fifth on the list of cities with highest overall crime rate, with a rate of 689.1 crimes per 100,000 people.</p>
+
+      <p class="desc">Kerala boasts of nearly a <a href="http://www.censusindia.gov.in/2011-prov-results/data_files/india/Final_PPT_2011_chapter6.pdf">94 percent literacy rate (pdf)</a>, according to the 2011 Census and has the highest <a href="http://www.im4change.org/docs/340IHDR_Summary.pdf">Human Development Index (pdf)</a> in the country, according to a report by the Institute of Applied Manpower Research, a Government of India labor research wing. The state is considered one of the most progressive in the country.</p>
+
+      <p class="desc">The average crime rate for each city was calculated using crime data from the latest five years available with the National Crime Records Bureau i.e. from 2010 to 2014.</p>
+
+      <div id="story1"></div>
+
+      <p class="desc">This does bring us to the key question: does Kochi really have a crime problem, or is it simply better at recording crimes? Looking at the data highlights the lack of a standardized method of recording crimes in India.</p>
+
+      <h4>Central cities have high crime rates</h4>
+      <p class="desc">Indore (799.2 crimes per 100,000) and Gwalior (740.3 crimes per 100,000) are number two and three respectively when it comes to overall crime rates &mdash; both cities from the central state of Madhya Pradesh. Bhopal and Jabalpur, also from MP, figure on the list. Durg-Bhilainagar and Raipur, two states from Chhattisgarh, a state formerly a part of Madhya Pradesh, also have high overall crime rates.</p>
+
+      <p class="desc">Cities in central India have a higher crime rate than all of the metropolitan cities &mdash; even Delhi, which has a reputation for being an "unsafe city".</p>
+
+
+
+      <p class="desc"></p>
+    </article>
+
+    <hr>
+    
+    <article>
+      <h3></h3>
+    </article>
+    
+    <article>
+      <h3></h3>
+    </article>
+    
+    <article>
+      <h3></h3>
+    </article>
+    
+    <article>
+      <h3></h3>
+    </article>
+  </div>
+
+  <script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='highcharts.js')}}"></script>
+  <script type="text/javascript">
+
+    $(function () {
+        $('#story1').highcharts({
+          chart: {
+                type: 'column'
+            },
+          title: {
+              text: "Cities with highest crime rates",
+              x: -20 //center
+          },
+          xAxis: {
+              categories: ['Kochi', 'Indore', 'Gwalior', 'Jaipur', 'Kollam', 'Bhopal', 'Patna', 'Durg-Bhilainagar', 'Jabalpur', 'Raipur']
+          },
+          yAxis: {
+              title: {
+                  text: 'Crimes per 100,000 people'
+              },
+              plotLines: [{
+                  value: 204.2, // National average
+                  color: 'green',
+                  dashStyle: 'shortdash',
+                  width: 2,
+                  label: {
+                      text: 'National average: 204.2',
+                      rotation: 0,
+                      y: -180,
+                      x: 50
+                  }
+              }]
+          },
+          tooltip: {
+              valueSuffix: ' crimes per 100,000'
+          },
+          credits: {
+            enabled: false
+          },
+          legend: {
+              layout: 'horizontal',
+              align: 'right',
+              verticalAlign: 'bottom',
+              borderWidth: 0,
+              floating: false
+          },
+          plotOptions: {
+              column: {
+                dataLabels: {
+                    enabled: true
+                }
+              }
+            },
+          series: [{
+            name: 'Total overall crime rate',
+            data: [1159,799.2,740.3,714.2,689.1,680.1,592.4,584,570.8,549]
+          }]
+        });
+      });
+    
+  </script>
+</body>
