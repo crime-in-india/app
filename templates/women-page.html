@@ -2,11 +2,10 @@
 <body>
 	{% include 'partials/navbar.html' %}
 	<div class="container">
-		<div class="row">
 			<div id="main-header">
 				<h1 class="text-center">Crimes Against Women in India</h1>
 			</div>
-		</div>
+
 
 		<p class="desc">Crimes against women include, among others, the following: <strong>Rape, dowry deaths, cruelty by husbands and relatives, sexual harassment and molestation of women</strong>. We have chosen particularly to highlight these crimes because of their serious nature.</p>
 
@@ -30,10 +29,20 @@
 		<p class="desc"> Notice the jump in rape rate after 2012. When the government <a href="http://www.ndtv.com/india-news/anti-rape-bill-cleared-by-lok-sabha-many-ministers-mps-missing-516728">toughened rape laws in 2013</a> and the media attention forced the police to look into complaints more seriously, <a href="http://www.thehindu.com/news/cities/Delhi/rape-cases-double-molestation-up-4-times-in-delhi/article5298622.ece">more victims emerged and the crime rate shot up</a>.</p>
 
 		<p class="desc"><a href="#metro-rape">Scroll down</a> to see how metro cities and non-metro cities compare on rape rates.</p>
-		<div class="half col-md-6" id="india-graph"></div>
-    <div class="half col-md-6" id="rape-graph"></div>
 
-		<p class="desc" id="metro-desc">The top ten non-metro cities have a rape crime rate far higher than the national average. Gwalior, which has the highest rate of rapes in the country, is thrice the national average. Capital city <strong>Delhi</strong> also emerged as one of the cities with the highest rate of rape crimes in the country.</p> 
+    <div class="row">
+  		<div class="col-sm-6">
+        <div class="" id="india-graph">
+
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="" id="rape-graph">
+
+        </div>
+      </div>
+    </div>
+		<p class="desc" id="metro-desc">The top ten non-metro cities have a rape crime rate far higher than the national average. Gwalior, which has the highest rate of rapes in the country, is thrice the national average. Capital city <strong>Delhi</strong> also emerged as one of the cities with the highest rate of rape crimes in the country.</p>
 		<div class="half col-md-6" id="metro-rape"></div>
 		<div class="half col-md-6" id="nm-rape"></div>
 
@@ -47,8 +56,8 @@
 
 		<h3>Cities with highest rates of sexual harassment and molestation</h3>
 		<p class="desc">Here are the cities where women face the most sexual harassment and molestation in their everyday lives. Vijayawada is the top city i.e. the city with the highest average rate of sexual harassment and molestation cases. Again, note that Kollam, a city from Kerala, a state with a matriarchial societal structure, figures in the top five of the list.</p>
-		<div class="graph col-md-6" id="total-sh"></div>
-    
+		<div class="graph" id="total-sh"></div>
+
     <div class="table-responsive">
       <h3 class="text-center">Major crimes against women</h3>
       <table class="table table-condensed table-striped table-bordered">
@@ -78,7 +87,7 @@
         </tbody>
       </table>
     </div>
-      
+
 
 	</div>
 
@@ -195,7 +204,7 @@
           data: [+d['2010'], +d['2011'], +d['2012'], +d['2013'], +d['2014']]
         }
         natChartData.push(chartObj);
-      });      
+      });
 
       //console.log(natChartData)
 
@@ -213,7 +222,7 @@
           metroData = [],
           nonMetroCategs = [],
           nonMetroData = [];
-      
+
       indiaRape = indiaRape.sort(function(a,b) {
         return +b.avg - +a.avg;
       });
@@ -312,7 +321,7 @@
             title: {
                 text: 'Rape rate in India'
             },
-            
+
             xAxis: {
                 categories: ['2010', '2011', '2012', '2013', '2014'],
                 crosshair: true
@@ -329,7 +338,7 @@
                     borderWidth: 0,
                     dataLabels: {
                       enabled: true
-                  } 
+                  }
                 }
             },
             credits: {
@@ -481,7 +490,7 @@
           metroData = [],
           nonMetroCategs = [],
           nonMetroData = [];
-      
+
       indiaDowry = indiaDowry.sort(function(a,b) {
         return +b.avg - +a.avg;
       });
@@ -722,7 +731,7 @@
             title: {
                 text: 'Rate of sexual harassment crimes'
             },
-            
+
             xAxis: {
                 categories: harassCategs,
                 crosshair: true,
@@ -751,7 +760,7 @@
                     borderWidth: 0,
                     dataLabels: {
                       enabled: true
-                  } 
+                  }
                 }
             },
             credits: {
@@ -775,7 +784,7 @@
       //       title: {
       //           text: 'Rate of molestation'
       //       },
-            
+
       //       xAxis: {
       //           categories: molestCategs,
       //           crosshair: true
@@ -836,6 +845,6 @@
 	</script>
 
   {% include 'partials/footer.html' %}
-	
+
 </body>
 </html>

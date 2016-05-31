@@ -48,7 +48,7 @@
     </ul>
 
     <p class="desc">Here is a table of the entire crime data for India. You can download it <a href="#">here</a>.</p>
-    
+
     <div class="table-responsive">
       <table class="table table-condensed table-striped table-bordered">
         <thead>
@@ -67,7 +67,7 @@
           {% for d in master %}
           <tr>
             <td class="text-center"><a href="/cities/{{d.city}}">{{ d.city }}</a></td>
-            <td class="text-center"><a href="/crime/{{d.crime_name}}">{{ d.crime_name }}</a></td>
+            <td class="text-center"><a href="{{url_for('crime_page', crime=d.crime_name)}}">{{ d.crime_name }}</a></td>
             <td class="text-right">{{ d['2010'] }}</td>
             <td class="text-right">{{ d['2011'] }}</td>
             <td class="text-right">{{ d['2012'] }}</td>
