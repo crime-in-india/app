@@ -271,8 +271,15 @@ def data_table():
 # Route to the story page
 @app.route("/stories")
 def story_page():
+  DATADIR = './static/data'
+  fpath = join(DATADIR, 'total-final-2.csv')
+
+  with open(fpath, 'r') as i:
+    data = list(csv.DictReader(i))  
+
   template = 'stories.html'
-  return render_template(template)
+  
+  return render_template(template,data=data)
 
 
 

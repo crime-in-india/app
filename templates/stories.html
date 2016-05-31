@@ -30,15 +30,27 @@
 
       <p class="desc">Cities in central India have a higher crime rate than all of the metropolitan cities &mdash; even Delhi, which has a reputation for being an "unsafe city".</p>
 
-
-
-      <p class="desc"></p>
+      <!-- <p class="desc"></p> -->
     </article>
 
     <hr>
     
     <article>
-      <h3></h3>
+      <h3>Delhi bad for women, but Vijaywada, Gwalior are worse</h3>
+      <p class="desc">Capital city Delhi always gets tagged as unsafe for women, but it is two other cities that have higher rates of crimes against women &mdash; Vijaywada and Gwalior &mdash; an analysis of the last five years of crime data from the National Crime Records Bureau show.</p>
+
+      <p class="desc">Gwalior has the highest average rate of rape crimes from 2011 to 2014, at 16.1 rapes per 100,000 women. This is more than thrice the national average for the same period. Vijaywada has the highest rate of sexual harassment and molestation crimes &mdash; 76.5 per 100,000 women &mdash; putting it at a whopping seven times the national average. Our composite crime category of sexual harassment and molestation includes crimes recorded under Sections 354 and 509 of the Indian Penal Code, which encompass all kinds of sexual harassment crimes women face other than rape i.e. stalking, teasing, molestation, passing lewd remarks, etc.</p>
+
+      <div id="story21"></div>
+
+      <p class="desc">From 2010 to 2012, the National Crime Records Bureau reported crime rates for rape and other crimes against women using the total population. We calculated the <a href="/about">actual crime rates using 2011 Census population totals</a>.</p>
+
+      <h4>Rape</h4>
+      <p class="desc">Delhi does have the highest rape rate among the metro cities. But when compared to all cities, Delhi is sixth on the list. Gwalior, with a female population of 513,229, consistently features in the top five every year from 2011 to 2014. Jabalpur, another city from Madhya Pradesh, has the second-highest average rape rate in the country &mdash; 15.2 per 100,000 women &mdash; for a female population of 604,468.</p>
+
+      <p class="desc">When it comes to sexual harassment and molestation, too, Gwalior is one of the top three cities. The worst city here, however, is Vijayawada, with a sexual harassment crime rate of 76.5 per 100,000 women. The city had a population of 740,432 women during the 2011 Census. Even in this list, Delhi is left far behind by the smaller cities of the country.</p>
+
+      <div id="story22"></div>
     </article>
     
     <article>
@@ -57,6 +69,14 @@
   <script src="{{url_for('static', filename='jquery.min.js')}}"></script>
   <script src="{{url_for('static', filename='highcharts.js')}}"></script>
   <script type="text/javascript">
+
+    var totalData = {{ data|tojson }};
+    var story2Data = totalData.filter(function(d) {
+      return d.crime_name == "Rape" || d.crime_name == "Sexual harassment and molestation of women";
+    });
+
+    drawStory2(story2Data);
+
 
     $(function () {
         $('#story1').highcharts({
@@ -113,6 +133,173 @@
           }]
         });
       });
+
+    function drawStory2(story2Data) {
+      var rapeData = story2Data.filter(function(d) {
+        return d.crime_name === "Rape";
+      });
+      var harassData = story2Data.filter(function(d) {
+        return d.crime_name === "Sexual harassment and molestation of women";
+      });
+
+      var natAvgRape = rapeData.filter(function(d) {
+        return d.city === "India";
+      });
+      var natAvgHarass = harassData.filter(function(d) {
+        return d.city === "India";
+      });
+
+      
+      // Top 10 rape and harass data
+      rapeData.sort(function(a,b) {
+        return +b.avg - +a.avg;
+      });
+      rapeData = rapeData.slice(0,10);
+
+      harassData.sort(function(a,b) {
+        return +b.avg - +a.avg;
+      });
+      harassData = harassData.slice(0,10);
+      
+      
+      // Arrays for building chart 
+      var categs = [],
+          data = [];
+
+      rapeData.forEach(function(d) {
+        categs.push(d.city);
+        data.push(+d.avg);
+      });
+
+      // Rape chart
+      $(function () {
+        $('#story21').highcharts({
+          chart: {
+                type: 'bar'
+            },
+          title: {
+              text: "Rape",
+              x: -20 //center
+          },
+          xAxis: {
+              categories: categs
+          },
+          yAxis: {
+              // max: 175,
+              title: {
+                  text: 'Rape incidences per 100,000 people'
+              },
+              plotLines: [{
+                  value: +natAvgRape[0].avg,
+                  color: 'green',
+                  dashStyle: 'shortdash',
+                  width: 2,
+                  label: {
+                      text: 'National average: ' + natAvgRape[0].avg,
+                      rotation: 0,
+                      y: 0,
+                      x: 10
+                  }
+              }]
+          },
+          tooltip: {
+              valueSuffix: ' crimes per 100,000'
+          },
+          credits: {
+            enabled: false
+          },
+          legend: {
+              layout: 'horizontal',
+              align: 'right',
+              verticalAlign: 'bottom',
+              borderWidth: 0,
+              floating: false
+          },
+          plotOptions: {
+              bar: {
+                dataLabels: {
+                    enabled: true
+                }
+              }
+            },
+          series: [{
+            name: 'Rape',
+            data: data
+          }]
+        });
+      });
+
+      var c = [],
+          d = [];
+
+      // Plot data for sexual harassment
+      harassData.forEach(function(i) {
+        c.push(i.city);
+        d.push(+i.avg);
+      });
+
+      console.log(c)
+      console.log(d)
+
+
+      $(function () {
+        $('#story22').highcharts({
+          chart: {
+                type: 'column'
+            },
+          title: {
+              text: "Sexual harassment and molestation",
+              x: -20 //center
+          },
+          xAxis: {
+              categories: c
+          },
+          yAxis: {
+              // max: 175,
+              title: {
+                  text: 'Sexual harassment/molestation incidences per 100,000 people'
+              },
+              plotLines: [{
+                  value: +natAvgHarass[0].avg,
+                  color: 'green',
+                  dashStyle: 'shortdash',
+                  width: 2,
+                  label: {
+                      text: 'National average: ' + natAvgHarass[0].avg,
+                      rotation: -90,
+                      y: -5,
+                      x: 10
+                  }
+              }]
+          },
+          tooltip: {
+              valueSuffix: ' crimes per 100,000'
+          },
+          credits: {
+            enabled: false
+          },
+          legend: {
+              layout: 'horizontal',
+              align: 'right',
+              verticalAlign: 'bottom',
+              borderWidth: 0,
+              floating: false
+          },
+          plotOptions: {
+              column: {
+                dataLabels: {
+                    enabled: true
+                }
+              }
+            },
+          series: [{
+            name: 'Sexual harassment and molestation',
+            data: d
+          }]
+        });
+      });
+
+    }
     
   </script>
 </body>
