@@ -1,108 +1,115 @@
-	var cities = cities;
+  var cities = cities;
 
-	var margin = {top: 10, right: 100, bottom: 10, left: 40};
-	var div = d3.select('#map').node().getBoundingClientRect();
+  var margin = {top: 10, right: 100, bottom: 10, left: 40};
+  var div = d3.select('#map').node().getBoundingClientRect();
 
-	var width = div.width - margin.left - margin.right,
-	  height = 700;
+  var width = div.width - margin.left - margin.right,
+    height = 700;
 
-	var proj = d3.geo.mercator()
-	.center([83, 27])
-	.scale(1200);
+  // Define the div for the tooltip
+ var tip = d3.tip().html(function(d){ return d.city; });
 
-	var path = d3.geo.path()
-	.projection(proj);
 
-	var zoom = d3.behavior.zoom()
-	  .on("zoom", zoomed);
+  var proj = d3.geo.mercator()
+  .center([83, 27])
+  .scale(1200);
 
-	var map = d3.select("#map")
-	.append("svg")
-	.attr("width", "100%")
-	.attr("height", "100%")
-	.attr("viewBox", "0 0 " + width + " " + height)
-	.attr("preserveAspectRatio", "xMinYMin");
+  var path = d3.geo.path()
+  .projection(proj);
 
-	// Make sure all elements load together
-	// var q = d3_queue.queue();
+  var zoom = d3.behavior.zoom()
+    .on("zoom", zoomed);
 
-	// q.defer(d3.json, "static/data/india-states.json")
-	// 	.await(makeMap);
+  var map = d3.select("#map")
+  .append("svg")
+  .attr("width", "100%")
+  .attr("height", "100%")
+  .attr("viewBox", "0 0 " + width + " " + height)
+  .attr("preserveAspectRatio", "xMinYMin");
 
-	var india = map.append("svg:g")
-	.attr("id", "india");
+  // Make sure all elements load together
+  // var q = d3_queue.queue();
 
-	var colors = ['#ffffb2','#fecc5c','#fd8d3c','#f03b20','#bd0026'];
+  // q.defer(d3.json, "static/data/india-states.json")
+  //  .await(makeMap);
 
-	var heatmapColour = d3.scale.linear()
-	  .domain(d3.range(0, 1, 1.0 / (colors.length - 1)))
-	  .range(colors);
+  var india = map.append("svg:g")
+  .attr("id", "india");
 
-	var colorScale = d3.scale.linear()
-	.domain([127.9,1159])
-	.range([0,1]);
+  var colors = ['#ffffb2','#fecc5c','#fd8d3c','#f03b20','#bd0026'];
 
-	d3.json("static/data/india-states.json", makeMap);	
+  var heatmapColour = d3.scale.linear()
+    .domain(d3.range(0, 1, 1.0 / (colors.length - 1)))
+    .range(colors);
 
-	// Call the zoom function on svg
-	//map.call(zoom);
+  var colorScale = d3.scale.linear()
+  .domain([127.9,1159])
+  .range([0,1]);
 
-	function makeMap(err, json) {
-		if (err) console.error(err);
+  d3.json("static/data/india-states.json", makeMap);  
 
-		var india_geojson = topojson.feature(json, json.objects.Admin2);
+  // Call the zoom function on svg
+  //map.call(zoom);
+  map.call(tip);
 
-		// Make the map with state boundary lines
-		india.selectAll("path")
-		.data(india_geojson.features)
-		.enter()
-		.append("path")
-		.attr("class", "state")
-		.attr("d", path);
+  function makeMap(err, json) {
+    if (err) console.error(err);
 
-		// Plot the city points on the map
-		india.selectAll("a")
-		.data(cities)
-		.enter()
-		.append("a")
-		.attr("xlink:href", function (d) { return 'cities/' + d.city; })
-		.attr("xlink:target", "_blank")
-		.attr("class", "city-dot")
-		.append("circle")
-		.attr("cx", function (d) { return proj([d.longitude,d.latitude])[0]; })
-		.attr("cy", function (d) { return proj([d.longitude,d.latitude])[1]; })
-		.attr("r", 7)
-		.style("fill", function(d) {
-			return heatmapColour(colorScale(d.rate));
-		});
-	}
+    var india_geojson = topojson.feature(json, json.objects.Admin2);
 
-	function zoomed() {
-		india.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-		india.selectAll("circle")
-	  .attr("d", path.projection(proj));
-	}
+    // Make the map with state boundary lines
+    india.selectAll("path")
+    .data(india_geojson.features)
+    .enter()
+    .append("path")
+    .attr("class", "state")
+    .attr("d", path);
 
-$(document).ready(function(){ 	
-	$('form').submit(function(e) {
-		var city = $('#city-name').val();
-		e.preventDefault();
+    // Plot the city points on the map
+    india.selectAll("a")
+    .data(cities)
+    .enter()
+    .append("a")
+    .attr("xlink:href", function (d) { return 'cities/' + d.city; })
+    .attr("xlink:target", "_blank")
+    .attr("class", "city-dot")
+    .append("circle")
+    .attr("cx", function (d) { return proj([d.longitude,d.latitude])[0]; })
+    .attr("cy", function (d) { return proj([d.longitude,d.latitude])[1]; })
+    .attr("r", 7)
+    .style("fill", function(d) {
+      return heatmapColour(colorScale(d.rate));
+    })
+    .on("mouseover", tip.show)
+    .on("mouseout", tip.hide);
+  }
 
-		var url = window.location.href;
-		window.location.href = url + 'cities/' + city;
-		//console.log(window.location.url)
-	});
+  function zoomed() {
+    india.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+    india.selectAll("circle")
+    .attr("d", path.projection(proj));
+  }
 
-	$('a[href^="#"]').on('click',function (e) {
-	  e.preventDefault();
+$(document).ready(function(){   
+  $('form').submit(function(e) {
+    var city = $('#city-name').val();
+    e.preventDefault();
 
-	  var target = this.hash;
-	  var $target = $(target);
+    var url = window.location.href;
+    window.location.href = url + 'cities/' + city;
+    //console.log(window.location.url)
+  });
 
-	  $('html, body').stop().animate({
-	      'scrollTop': $target.offset().top
-	  }, 900, 'swing', function () {
-	      window.location.hash = target;
-	  });
-	});
+  $('a[href^="#"]').on('click',function (e) {
+    e.preventDefault();
+
+    var target = this.hash;
+    var $target = $(target);
+
+    $('html, body').stop().animate({
+        'scrollTop': $target.offset().top
+    }, 900, 'swing', function () {
+        window.location.hash = target;
+    });
+  });
 });

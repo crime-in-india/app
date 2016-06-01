@@ -21,7 +21,7 @@
       <div id="big-wrapper">
         <p class="big-text text-justify">Know your city and its crime history. Track different kinds of crimes.</p>
         
-        <p class="text-center">Click on a city on the map or choose from the menu. Choose <a href="#scroll-point"> crime categories</a>. Or read <a href="#story-section"> our stories</a>.</p>
+        <p class="text-center">Click on a city on the map or choose from the menu. Choose <a href="#scroll-point"> crime categories</a>. Or read <a href="{{url_for('story_page')}}"> our stories</a>.</p>
       </div>
       
       <form id="user-location">  
@@ -92,13 +92,14 @@
     </section>
     
     <section id="crime-section">
-      <div class="row">
-        <div id="main-header">
-          <h2 class="text-center head" id="scroll-point">Crimes</h2>
-          <p class="explainer">Choose a category of crime</p>
-          <p class="desc" id="crime-select">'Violent crimes' include crimes like murder, attempt to commit murder, riots. 'Crimes against women' include rape, molestation, kidnapping of women. Burglary, arson, car thefts are among those classified as 'property crimes'. Economic crimes include, among others, cheating and forgery.</p>
-        </div>
+      
+      <div id="main-header">
+        <h2 class="head" id="scroll-point">Crimes</h2>
+        <p class="explainer">Choose a category of crime</p>
+        <p class="desc" id="crime-select">'Violent crimes' include crimes like murder, attempt to commit murder, riots. 'Crimes against women' include rape, sexual harassment and molestation, dowry deaths. Burglary, arson, car thefts are among those classified as 'property crimes'. Economic crimes include, among others, cheating and forgery.</p>
+      </div>
 
+      <div class="row">
         <a href="/violent-crimes">
           <div class="col-md-3 col-sm-6 col-xs-6">        
             <div class="crime-box">
@@ -182,6 +183,7 @@
   <script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>
   <!-- <script src="{{url_for('static', filename='d3/d3-queue.min.js')}}"></script> -->
   <script src="{{url_for('static', filename='d3/topojson.v1.js')}}"></script>
+  <script src="{{url_for('static', filename='d3/d3-tip.js')}}"></script>
   <script src="{{url_for('static', filename='data/cities.js')}}"></script>
   <script src="{{url_for('static', filename='script.js')}}"></script>
 
