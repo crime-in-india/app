@@ -1,3 +1,16 @@
+"""
+To deploy app:
+
+1. Clear out any existing build/ subdirectory
+2. Run: `$ python freeze.py` to build the build/ subdirectory
+3. Copy the files in build/ into whatever directory contains the github.io pages repo:
+
+    $ cp -r app/build/* crime-in-india.github.io/
+
+4. Git add/commit/push to Github
+5. Site should automatically update.
+"""
+
 from flask_frozen import Freezer
 from app import app
 freezer = Freezer(app)
