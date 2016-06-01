@@ -10,20 +10,7 @@
 
     <p class="desc">We have classified the following crimes as violent crimes: <strong>murder, attempt to commit murder, culpable homicide not amounting to murder, kidnapping & abduction, and riots</strong>.</p>
 
-    <p class="desc">Rape, attempt to rape, dowry deaths have been categorized into crimes against women. Dowry deaths are counted separately in the Indian Penal Code and we have decided to follow the same nomenclature.</p>
-
-    <p class="desc">Here is how these crimes have been defined.</p>
-    <ul class="about">
-      <li class="about">
-        <p><strong>Attempt to murder</strong>: This is defined as an act that is committed knowing that if the act caused death, you would be guilty of murder.<a href="https://indiankanoon.org/doc/1779567/">Indian Kanoon defines an example</a> where person A purchases poison and mixes it in food intending to murder Z. If A places this food on Z's table or delivers it through a servant, this offence has been committed.</p>
-      </li>
-      <li class="about">
-        <p><strong>Culpable homicide not amounting to murder</strong>: This has been defined in the <a href="https://indiankanoon.org/doc/409589/">Indian Penal Code</a> as an act done with the intention of causing death, or of causing such bodily injury as is likely to cause death. <a href="http://timesofindia.indiatimes.com/india/Salman-Khans-hit-and-run-case-What-is-culpable-homicide/articleshow/47173696.cms">Here</a> is an explanation of the section by The Times of India. The most famous case of people having been charged under this section is Bollywood actor  <a href="http://timesofindia.indiatimes.com/city/mumbai/Salman-Khan-charged-with-culpable-homicide-not-amounting-to-murder-pleads-not-guilty/articleshow/21299214.cms">Salman Khan's hit-and-run incident</a>.</p>
-      </li>
-      <li class="about">
-        <p><strong>Riot</strong>: Rioting has been defined as the <a href="https://indiankanoon.org/doc/1601950/">use of violence of force by an unlawful assembly</a> i.e. assembling together without valid permission.</p>
-      </li>
-    </ul>
+    <p class="desc">Rape, attempt to rape, dowry deaths have been categorized into crimes against women. Dowry deaths are counted separately in the Indian Penal Code and we have decided to follow the same nomenclature. See our notes about the data <a href="#violent-notes">here</a>.</p>    
 
     <strong><p class="desc">Please note that all rates are per 100,000 people.</p></strong>
 
@@ -66,10 +53,23 @@
       </div>
     </div>
 
-
     <h3>Highest riot rates</h3>
     <p class="desc">This chart shows the cities with the highest riot rates. What is stunning is that the top five cities in this list are all from Kerala. The state, also called "God's own country", boasts a 100 percent literacy rate.</p>
     <div class="graph" id="riot-graph"></div>
+
+    <h3 id="violent-notes">Notes about the data</h3>
+    <p class="desc">Here is how these crimes have been defined.</p>
+    <ul class="about">
+      <li class="about">
+        <p><strong>Attempt to murder</strong>: This is defined as an act that is committed knowing that if the act caused death, you would be guilty of murder.<a href="https://indiankanoon.org/doc/1779567/">Indian Kanoon defines an example</a> where person A purchases poison and mixes it in food intending to murder Z. If A places this food on Z's table or delivers it through a servant, this offence has been committed.</p>
+      </li>
+      <li class="about">
+        <p><strong>Culpable homicide not amounting to murder</strong>: This has been defined in the <a href="https://indiankanoon.org/doc/409589/">Indian Penal Code</a> as an act done with the intention of causing death, or of causing such bodily injury as is likely to cause death. <a href="http://timesofindia.indiatimes.com/india/Salman-Khans-hit-and-run-case-What-is-culpable-homicide/articleshow/47173696.cms">Here</a> is an explanation of the section by The Times of India. The most famous case of people having been charged under this section is Bollywood actor  <a href="http://timesofindia.indiatimes.com/city/mumbai/Salman-Khan-charged-with-culpable-homicide-not-amounting-to-murder-pleads-not-guilty/articleshow/21299214.cms">Salman Khan's hit-and-run incident</a>.</p>
+      </li>
+      <li class="about">
+        <p><strong>Riot</strong>: Rioting has been defined as the <a href="https://indiankanoon.org/doc/1601950/">use of violence of force by an unlawful assembly</a> i.e. assembling together without valid permission.</p>
+      </li>
+    </ul>
   </div>
 
   <script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>
@@ -631,6 +631,20 @@
         });
       });
     }
+
+    // Smooth scroll
+    $('a[href^="#"]').on('click',function (e) {
+      e.preventDefault();
+
+      var target = this.hash;
+      var $target = $(target);
+
+      $('html, body').stop().animate({
+          'scrollTop': $target.offset().top
+      }, 900, 'swing', function () {
+          window.location.hash = target;
+      });
+    });
 
     </script>
 

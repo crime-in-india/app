@@ -10,8 +10,6 @@
 
     <p class="desc">We have classified the following crimes as economic crimes: <strong>Cheating, criminal breach of trust, counterfeiting, and forgery</strong>.</p>
 
-    <p class="desc"><strong>Cheating</strong>: Cheating has been defined as the <a href="https://indiankanoon.org/doc/1306824/">using dishonest or fraudulent means to get a person to deliver some property or to deceive him</a>. One example would be if A puts a counterfeit mark of a brand on an article and sells it to B, who believes that the article is a genuine product of the brand.</p>
-
     <strong><p class="desc">Please note that all rates are per 100,000 people</p></strong>
 
     <h3>Cheating and forgery</h3>
@@ -49,6 +47,15 @@
         </div>
       </div>
     </div>
+
+    
+    <h3 id="econ-notes">Notes about the data</h3>
+    <p class="desc">Here is how the crimes have been defined.</p>
+    <ul class="about">
+      <li class="about">
+        <p><strong>Cheating</strong>: Cheating has been defined as the <a href="https://indiankanoon.org/doc/1306824/">using dishonest or fraudulent means to get a person to deliver some property or to deceive him</a>. One example would be if A puts a counterfeit mark of a brand on an article and sells it to B, who believes that the article is a genuine product of the brand.</p>
+      </li>
+    </ul>      
 
   </div>
 
@@ -407,6 +414,20 @@
         });
       });
     }
+
+    // Smooth scroll
+    $('a[href^="#"]').on('click',function (e) {
+      e.preventDefault();
+
+      var target = this.hash;
+      var $target = $(target);
+
+      $('html, body').stop().animate({
+          'scrollTop': $target.offset().top
+      }, 900, 'swing', function () {
+          window.location.hash = target;
+      });
+    });
 
     </script>
 </body>

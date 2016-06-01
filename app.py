@@ -45,7 +45,7 @@ def homepage():
     rape = [d for d in datarows if d['crime_name'] == 'Rape' and d['city'] != 'India']
     rape = sorted(rape, key=lambda r:float(r['avg']), reverse=True)[:5]
 
-    rash = [d for d in datarows if d['crime_name'] == 'Deaths due to rash/negligent driving' and d['city'] != 'India']
+    rash = [d for d in datarows if d['crime_name'] == 'Deaths due to rash or negligent driving' and d['city'] != 'India']
     rash = sorted(rash, key=lambda r:float(r['avg']), reverse=True)[:5]
 
 

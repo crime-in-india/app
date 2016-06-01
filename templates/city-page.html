@@ -17,7 +17,7 @@
 
     <section id="violent">  
       <h3>Violent crimes</h3>
-      <p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2010. To compare how {{ city }} fares nationally in violent crimes, click <a href="/violent-crimes">here</a>.</p>
+      <p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2010. To compare how {{ city }} fares nationally in violent crimes, click <a href="{{ url_for('violent_landing_page') }}">here</a>.</p>
       <div id="main-graph" class="graph"></div>
     </section> 
 
@@ -45,10 +45,7 @@
       <p class="desc">The chart below shows how the rate of economic crimes in {{ city }} have changed since 2010. Crime rate represents the number of crime incidences per 100,000 of the population of the city. Please note that forgery as a crime was only recorded in 2014.</p>
       <!-- <div id="econ-graph" class="graph"></div>   -->
       <div id="econ-compare" class="graph"></div> 
-    </section>
-
-    <h3>Notes</h3>
-    <p class="desc">From 2010 to 2012, the Bureau recorded rates for crimes against women using the total population. This does not reflect the true picture. Hence, we did our own computation of crime rates for all crimes against women using the population of women as per the <a href="http://www.censusindia.gov.in/2011-prov-results/paper2-vol2/data_files/India2/Table_3_PR_UA_Citiees_1Lakh_and_Above.xls" target="_blank">2011 Census provisional population totals<sup>[xls]</sup></a>.</p>
+    </section>    
     
     <div class="table-responsive">
       <h3 class="text-center">Major Crimes in {{ city }}</h3>
@@ -80,6 +77,24 @@
         </tbody>
       </table>
     </div>
+
+    <h3 id="about-notes">Notes</h3>
+    <ul class="about">
+      <li class="about">
+        <p>From 2010 to 2012, the Bureau recorded rates for crimes against women using the total population. This does not reflect the true picture. Hence, we did our own computation of crime rates for all crimes against women using the population of women as per the <a href="http://www.censusindia.gov.in/2011-prov-results/paper2-vol2/data_files/India2/Table_3_PR_UA_Citiees_1Lakh_and_Above.xls" target="_blank">2011 Census provisional population totals<sup>[xls]</sup></a>.</p>
+      </li>
+      <li class="about">
+        <p>We have also added a new category for crimes against women: <span class="highlight">'Sexual harassment and molestation of women' </span>. This is because of the lack of consistency in the way the Bureau reports sexual crimes against women that are not rape i.e. Section 354 and Section 509. In 2010 and 2011, crimes recorded under these sections were reported as 'Molestation' and 'Sexual harassment' respectively. The following years, they were reported as 'Assault on women with intent to outrage modesty' and 'Insult to the modesty of women'.
+        </p>  
+
+        <p>
+          We first standardized the nomenclature across all years. Section 354 crimes were named 'Assault on women with intent to outrage modesty' and Section 509 crimes were placed under the 'Insult to the modesty of women' head.
+        </p>
+
+        <p>
+          We then added our new category <span class="highlight">'Sexual harassment and molestation of women' </span> by adding the number of incidences for crimes under the aforementioned two sections. We then calculated the crime rate for this new composite category using the  2011 Census population numbers.
+        </p>
+    </ul>
   </div>
 
   <script src="{{url_for('static', filename='d3/d3.min.js')}}"></script>
