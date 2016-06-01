@@ -260,8 +260,11 @@ def data_table():
     data = list(csv.DictReader(i))
 
   total = [d for d in data if d['crime_name'] == 'Total cognizable crimes under IPC']
+  india = [d for d in data if d['city'] == 'India']
+  data = [d for d in data if d['crime_name'] != 'Total cognizable crimes under IPC' and d['city'] != 'India']
 
-  data = [d for d in data if d['crime_name'] != 'Total cognizable crimes under IPC']
+  for row in india:
+    data.append(row)
 
   return render_template(template, master=data, total=total)
 
