@@ -23,10 +23,10 @@ def homepage():
 
     total = [d for d in datarows if d['crime_name'] == 'Total cognizable crimes under IPC' and d['city'] != 'India']
     total = sorted(total, key=lambda r:float(r['avg']), reverse=True)[:5]
-    
+
     assault = [d for d in datarows if d['crime_name'] == 'Hurt' and d['city'] != 'India']
     assault = sorted(assault, key=lambda r:float(r['avg']), reverse=True)[:5]
-    
+
     robbery = [d for d in datarows if d['crime_name'] == 'Robbery' and d['city'] != 'India']
     robbery = sorted(robbery, key=lambda r:float(r['avg']), reverse=True)[:5]
 
@@ -47,7 +47,7 @@ def homepage():
 
     rash = [d for d in datarows if d['crime_name'] == 'Deaths due to rash/negligent driving' and d['city'] != 'India']
     rash = sorted(rash, key=lambda r:float(r['avg']), reverse=True)[:5]
-    
+
 
     categs = ['Overall crimes', 'Murder', 'Rape', 'Sexual harassment', 'Hurt', 'Robbery', 'Kidnapping', 'Cheating', 'Deaths due to rash driving']
 
@@ -85,11 +85,11 @@ def city_page(city):
   total_categs = violent_categs + women_categs + prop_categs + econ_categs
 
   template = 'city-page.html'
-  
+
   # Get data of selected city
   with open(citypath, 'r') as csvin:
     data = list(csv.DictReader(csvin))
-  
+
   for r in data:
     if r['crime_name'] in total_categs:
       r['categ'] = cat_list[r['crime_name']]
@@ -123,7 +123,7 @@ def crime_page(crime):
 
 
 # Route to the city landing page
-@app.route("/city-list")
+@app.route("/city-list/")
 def city_landing():
   template = 'city-landing.html'
   with open('static/data/total-final-2.csv', 'r') as csvin:
@@ -132,7 +132,7 @@ def city_landing():
   datarows = [r for r in datarows if r['crime_name'] == 'Total cognizable crimes under IPC']
 
   # Don't show India in the table
-  only_cities = [d for d in datarows if d['city'] != 'India'] 
+  only_cities = [d for d in datarows if d['city'] != 'India']
 
   # india = [d for d in datarows if d['crime_name'] == 'Total cognizable crimes under IPC' and d['city'] is 'India']
   # citylist = [c for c in datarows if c['avg'] > india[0]['avg']]
@@ -146,22 +146,22 @@ def city_landing():
 
 
 # Route for violent crimes page
-@app.route("/violent-crimes")
+@app.route("/violent-crimes/")
 def violent_landing_page():
   DATADIR = './static/data'
   fname = join(DATADIR, 'total-final-2.csv')
 
   # Get national data
   with open(fname, 'r') as i:
-    national = list(csv.DictReader(i)) 
-  
+    national = list(csv.DictReader(i))
+
   template = 'violent-page.html'
   with open('static/data/crime-categories.csv', 'r') as csvin:
     categs = list(csv.DictReader(csvin))
 
   categs = [c['crime'] for c in categs if c['category'] == 'Violent Crime']
   violent_data = [d for d in national if d['crime_name'] in categs]
-  
+
   return render_template(template,violent=violent_data,n=national)
 
 
@@ -170,7 +170,7 @@ def violent_landing_page():
 
 
 # ROUTE FOR CRIMES AGAINST WOMEN PAGE
-@app.route("/women-crimes")
+@app.route("/women-crimes/")
 def women_landing_page():
   DATADIR = './static/data'
   fname = join(DATADIR, 'total-final-2.csv')
@@ -180,7 +180,7 @@ def women_landing_page():
   # Get national data
   with open(fname, 'r') as i:
     national = list(csv.DictReader(i))
-  
+
   with open('static/data/crime-categories.csv', 'r') as csvin:
     categs = list(csv.DictReader(csvin))
 
@@ -195,7 +195,7 @@ def women_landing_page():
 
 
 # ROUTE FOR PROPERTY CRIMES PAGE
-@app.route("/property-crimes")
+@app.route("/property-crimes/")
 def prop_landing_page():
   DATADIR = './static/data'
   fname = join(DATADIR, 'total-final-2.csv')
@@ -205,20 +205,20 @@ def prop_landing_page():
   # Get national data
   with open(fname, 'r') as i:
     national = list(csv.DictReader(i))
-  
+
   with open('static/data/crime-categories.csv', 'r') as csvin:
     categs = list(csv.DictReader(csvin))
 
   categs = [c['crime'] for c in categs if c['category'] == 'Property Crime']
   prop_data = [d for d in national if d['crime_name'] in categs]
-  
+
   return render_template(template,prop=prop_data, n=national)
 
 #################################################################
 
 
 # ROUTE FOR ECONOMIC CRIMES PAGE
-@app.route("/economic-crimes")
+@app.route("/economic-crimes/")
 def econ_landing_page():
   DATADIR = './static/data'
   fname = join(DATADIR, 'total-final-2.csv')
@@ -228,20 +228,20 @@ def econ_landing_page():
   # Get national data
   with open(fname, 'r') as i:
     national = list(csv.DictReader(i))
-  
+
   with open('static/data/crime-categories.csv', 'r') as csvin:
     categs = list(csv.DictReader(csvin))
 
   categs = [c['crime'] for c in categs if c['category'] == 'Economic Crime']
   econ_data = [d for d in national if d['crime_name'] in categs]
-  
+
   return render_template(template,econ=econ_data, n=national)
 
 
 #################################################################
 # ROUTE FOR ABOUT PAGE
 
-@app.route("/about")
+@app.route("/about/")
 def about():
   template = 'about.html'
   return render_template(template)
@@ -250,7 +250,7 @@ def about():
 #################################################################
 
 # Route to the data dump page
-@app.route("/data")
+@app.route("/data/")
 def data_table():
   DATADIR = './static/data'
   indiapath = join(DATADIR, 'total-final-2.csv')
@@ -261,7 +261,7 @@ def data_table():
 
   total = [d for d in data if d['crime_name'] == 'Total cognizable crimes under IPC']
 
-  data = [d for d in data if d['crime_name'] != 'Total cognizable crimes under IPC']   
+  data = [d for d in data if d['crime_name'] != 'Total cognizable crimes under IPC']
 
   return render_template(template, master=data, total=total)
 
@@ -269,25 +269,25 @@ def data_table():
 #################################################################
 
 # Route to the story page
-@app.route("/stories")
+@app.route("/stories/")
 def story_page():
   DATADIR = './static/data'
   fpath = join(DATADIR, 'total-final-2.csv')
 
   with open(fpath, 'r') as i:
-    data = list(csv.DictReader(i))  
+    data = list(csv.DictReader(i))
 
   template = 'stories.html'
-  
+
   return render_template(template,data=data)
 
 #################################################################
 
 # Route to the references page
-@app.route("/references")
+@app.route("/references/")
 def ref_page():
   template = 'reference.html'
-  return render_template(template) 
+  return render_template(template)
 
 if __name__ == '__main__':
   app.run(debug=True, use_reloader=True)
