@@ -3,19 +3,26 @@
 {% include 'partials/navbar.html' %}
   <div class="container">
     <div class="row">
-      <div id="main-header">
-        <h1 class="text-center">About the data</h1>
+      <div class="main-header">
+        <h1 class="text-center">About the project</h1>
       </div>
     </div>
 
-    <h3>Introduction</h3>
-    <p class="desc">This application was built by <a href="http://ssdatar.github.io" target="_blank">Saurabh Datar</a> as part of his thesis project for the <a href="http://journalism.stanford.edu/" target="_blank">Stanford Journalism</a> program. It would not have been possible without the guidance of <a href="https://stanford.edu/~dun/" target="_blank">Dan Nguyen</a> and all other professors at the Department of Communication at Stanford University.</p>
+    <h3>Why this project?</h3>
+    <p class="desc">Accessing India's crime data has always been painful. The <a href="http://ncrb.gov.in">National Crime Records Bureau</a> releases a report more than 600 pages long, detailing the different kinds of crimes recorded in the country. Below is a screenshot from the latest report i.e. 2014.</p>
 
-    <p class="desc">The icons used on the home page have been designed by <a href="https://thenounproject.com/naripuru/collection/crimes-and-justice-outlines/" target="_blank">parkjisun from The Noun Project</a>.</p>
+    <img class="img-responsive screenshot" src="{{url_for('static', filename='assets/table2.jpg')}}">
 
-    <p class="desc">The map of India is courtesy <a href="https://github.com/datameet/maps/tree/master/States" target="_blank">Datameet</a>. It was converted to a TopoJSON using <a href="http://mapshaper.org/" target="_blank">mapshaper</a>.</p>
+    <p class="desc">This report goes on for hundreds of pages with different tables. Every year, journalists, social scientists, academics and anybody else interested in this data spend hours ploughing through these dense PDF documents to analyze the data.</p>    
 
-    <h3>Data</h3>
+    <p class="desc">And if you want to compare crimes across cities and different years, all you can do is download the PDFs for each year and keep switching screens.</p>
+
+    <h3>How does this website help?</h3>
+    <p class="desc">This application frees the data trapped in these PDFs, so that you can easily <span class="highlight">compare crimes in different cities and across different years</span>. You can choose a city and know which crimes are affecting its people the most. Or you can choose a crime and know which cities have the highest rates of that particular crime.</p>
+    
+    <p class="desc">We've made it easy for you to discern trends and patterns from the five latest available data sets for crimes in India i.e. 2010 to 2014. You don't have to download any PDF documents or convert them into spreadsheets.</p>    
+
+    <h3>The data</h3>
     <p class="desc">The data comes from India's <a href="http://ncrb.gov.in">National Crime Records Bureau</a>, which releases a compiled report of crimes recorded by police stations all around the country. The app has data from 2010 to 2014 i.e. the five latest years of data available. The latest report can be found <a href="http://ncrb.gov.in/StatPublications/CII/CII2014/cii2014.asp" target="_blank">here</a>. Reports from the previous years can be found <a href="http://ncrb.gov.in/StatPublications/CII/PrevPublications.htm" target="_blank">here</a>.</p>
 
     <p class="desc">There are some assumptions and modifications to the data that are necessary to point out.</p>
@@ -65,6 +72,13 @@
         <p><strong>Economic crimes</strong>: Cheating, criminal breach of trust, counterfeiting and forgery</p>
       </li>
     </ul>
+
+    <h3>Credits</h3>
+    <p class="desc">This application was built by <a href="http://ssdatar.github.io" target="_blank">Saurabh Datar</a> as part of his thesis project for the <a href="http://journalism.stanford.edu/" target="_blank">Stanford Journalism</a> program. It would not have been possible without the guidance of <a href="https://stanford.edu/~dun/" target="_blank">Dan Nguyen</a> and all other professors at the Department of Communication at Stanford University.</p>
+
+    <p class="desc">The icons used on the home page have been designed by <a href="https://thenounproject.com/naripuru/collection/crimes-and-justice-outlines/" target="_blank">parkjisun from The Noun Project</a>.</p>
+
+    <p class="desc">The map of India is courtesy <a href="https://github.com/datameet/maps/tree/master/States" target="_blank">Datameet</a>. It was converted to a TopoJSON using <a href="http://mapshaper.org/" target="_blank">mapshaper</a>.</p>
 
     <h3>Technical details</h3>
     <p class="desc">Since the data came in PDFs, ABBYY FineReader (courtesy <a href="https://stanford.edu/~dun/" target="_blank">Dan Nguyen</a>) was used to convert them into spreadsheet format. The data cleaning was done in Python, with the occasional use of <a href="http://pandas.pydata.org/" target="_blank">Pandas</a> for wrangling and pivot tables.</p>

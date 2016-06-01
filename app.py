@@ -281,7 +281,13 @@ def story_page():
   
   return render_template(template,data=data)
 
+#################################################################
 
+# Route to the references page
+@app.route("/references")
+def ref_page():
+  template = 'reference.html'
+  return render_template(template) 
 
 if __name__ == '__main__':
   app.run(debug=True, use_reloader=True)
