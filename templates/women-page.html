@@ -3,22 +3,12 @@
 	{% include 'partials/navbar.html' %}
 	<div class="container">
 		<div class="main-header">
-			<h1 class="text-center">Crimes Against Women in India</h1>
+			<h1 class="text-center">Crimes against women in India</h1>
 		</div>
-
 
 		<p class="desc">Crimes against women include, among others, the following: <strong>Rape, dowry deaths, cruelty by husbands and relatives, sexual harassment and molestation of women</strong>. We have chosen particularly to highlight these crimes because of their serious nature.</p>
 
-		<p class="desc">All crime rates are per <strong>100,000</strong>.</p>
-
-		<p><em>Please note that the way the National Crime Records Bureau reported sexual crimes (Section 354, Section 509 of the Indian Penal Code) against women has not been constant. In 2010 and 2011, the bureau reported crimes under the head of 'Sexual harassment' and 'Molestation'. In 2012 and 2013, this was changed to 'Assault on women with intent to outrage her modesty' and 'Insult to the modesty of women'. In 2014, after the Criminal Amendment Act (2013), the counting schema further expanded to include 'Stalking' and 'Voyeurism'.</em></p>
-    <p><em>We have renamed crimes under Section 354 as 'Assault on women with intent to outrage her modesty' and those under Section 509 as 'Insult to the modesty of women'. We then combined both of these crimes under one common head: 'Sexual harassment and molestation of women'. This head counts all sort of sexual harassment crimes faced by women, except rape. This metric gives us an easy way of comoparison across all years.</em></p>
-
-		<strong><p class="note">Please also note that from 2010 to 2012, the National Crime Records Bureau inexplicably recorded the rate of crimes against women using total population. We have normalized the rates to reflect the actual crime rate using women's population. The
-		<a href="http://www.censusindia.gov.in/2011-prov-results/paper2-vol2/data_files/India2/Table_3_PR_UA_Citiees_1Lakh_and_Above.xls">2011 population census<sup>[Excel]</sup></a> was used to calculate crime rates for the above crimes.</p>
-    </p></strong>
-
-    <p class="note">Also note that the bureau didn't have data for some cities in 2010. Those cities may not be shown or may appear as 0. But this doesn't mean the crime rate was zero for 2010. It only means we lack data to show.</p>
+		<p class="desc">All crime rates are per <strong>100,000</strong>. See our notes on how the <a href="#notes">data was recorded and how we computed the crime rates for women to correct the error made by the Bureau</a>.</p>
 
 		<h3>Crimes against women</h3>
 		<p class="desc">The chart below shows the rate of crimes committed against women in the entire country. <strong>Cruelty by husband and relatives</strong> was the most common crime against women in India from 2010 to 2014.<strong>Sexual harassment and molestation of women and girls</strong> is the second-most common crime women face. <strong>Rape</strong> is another commmon crime committed against women in the country.</p>
@@ -42,7 +32,7 @@
         </div>
       </div>
     </div>
-    
+
 		<p class="desc" id="metro-desc">The top ten non-metro cities have a rape crime rate far higher than the national average. Gwalior, which has the highest rate of rapes in the country, is thrice the national average. Capital city <strong>Delhi</strong> also emerged as one of the cities with the highest rate of rape crimes in the country.</p>
 		<div class="half col-md-6" id="metro-rape"></div>
 		<div class="half col-md-6" id="nm-rape"></div>
@@ -59,13 +49,34 @@
 		<p class="desc">Here are the cities where women face the most sexual harassment and molestation in their everyday lives. Vijayawada is the top city i.e. the city with the highest average rate of sexual harassment and molestation cases. Again, note that Kollam, a city from Kerala, a state with a matriarchial societal structure, figures in the top five of the list.</p>
 		<div class="graph" id="total-sh"></div>
 
+    <h3 id="notes">Notes about the data</h3>
+      <ul>
+        <li class="about">
+          <p>From 2010 to 2012, the Bureau recorded rate of crimes against women using the total population. This does not reflect the true picture. Hence, we did our own calculations of crime rates for all crimes against women using the <a href="http://www.censusindia.gov.in/2011-prov-results/paper2-vol2/data_files/India2/Table_3_PR_UA_Citiees_1Lakh_and_Above.xls" target="_blank">2011 Census provisional population totals<sup>[xls]</sup></a>.</p>
+        </li>
+
+        <li class="about">
+          <p>We have also added a new category for crimes against women: <span class="highlight">'Sexual harassment and molestation of women' </span>. This is because of the lack of consistency in the way the Bureau reports sexual crimes against women that are not rape i.e. Section 354 and Section 509. In 2010 and 2011, crimes recorded under these sections were reported as 'Molestation' and 'Sexual harassment' respectively. The following years, they were reported as 'Assault on women with intent to outrage modesty' and 'Insult to the modesty of women'.
+          </p>  
+
+          <p>
+            We first standardized the nomenclature across all years. Section 354 crimes were named 'Assault on women with intent to outrage modesty' and Section 509 crimes were placed under the 'Insult to the modesty of women' head.
+          </p>
+
+          <p>
+            We then added our new category <span class="highlight">'Sexual harassment and molestation of women' </span> by adding the number of incidences for crimes under the aforementioned two sections. We then calculated the crime rate for this new composite category using the  2011 Census population numbers.
+          </p>
+        </li> 
+      </ul> 
+
     <div class="table-responsive">
       <h3 class="text-center">Major crimes against women</h3>
+      <p class="desc">The following table shows all the major crimes against women recorded in India. This is not an exhaustive list, but covers most of the serious crimes committed against women. If you wish to see the complete crime table, you can <a href="{{url_for('data_table')}}">go here</a>.</p>
       <table class="table table-condensed table-striped table-bordered">
         <thead>
           <tr>
-            <th class="text-center">Crime</th>
             <th class="text-center">City</th>
+            <th class="text-center">Crime</th>
             <th class="text-right">2010</th>
             <th class="text-right">2011</th>
             <th class="text-right">2012</th>
@@ -76,7 +87,7 @@
         <tbody>
           {% for d in w_data %}
           <tr>
-            <td class="text-center {{ d.class }}"><a href="/{{d.city}}">{{ d.city }}</a></td>
+            <td class="text-center {{ d.class }}"><a href="{{url_for('city_page', city=d.city)}}">{{ d.city }}</a></td>
             <td class="text-center"><a href="/crime/{{ d.crime_name }}">{{ d.crime_name }}</a></td>
             <td class="text-right">{{ d['2010'] }}</td>
             <td class="text-right">{{ d['2011'] }}</td>
