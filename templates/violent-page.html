@@ -4,7 +4,7 @@
 	<div class="container">
 		<div class="row">
       <div class="main-header">
-        <h1 class="text-center">Violent Crimes in India</h1>
+        <h1 class="text-center">Violent crimes in India</h1>
       </div>
     </div>
 
@@ -12,25 +12,59 @@
 
     <p class="desc">Rape, attempt to rape, dowry deaths have been categorized into crimes against women. Dowry deaths are counted separately in the Indian Penal Code and we have decided to follow the same nomenclature.</p>
 
-    <strong><p class="desc">Please note that all rates are per 100,000 people</p></strong>
+    <p class="desc">Here is how these crimes have been defined.</p>
+    <ul class="about">
+      <li class="about">
+        <p><strong>Attempt to murder</strong>: This is defined as an act that is committed knowing that if the act caused death, you would be guilty of murder.<a href="https://indiankanoon.org/doc/1779567/">Indian Kanoon defines an example</a> where person A purchases poison and mixes it in food intending to murder Z. If A places this food on Z's table or delivers it through a servant, this offence has been committed.</p>
+      </li>
+      <li class="about">
+        <p><strong>Culpable homicide not amounting to murder</strong>: This has been defined in the <a href="https://indiankanoon.org/doc/409589/">Indian Penal Code</a> as an act done with the intention of causing death, or of causing such bodily injury as is likely to cause death. <a href="http://timesofindia.indiatimes.com/india/Salman-Khans-hit-and-run-case-What-is-culpable-homicide/articleshow/47173696.cms">Here</a> is an explanation of the section by The Times of India. The most famous case of people having been charged under this section is Bollywood actor  <a href="http://timesofindia.indiatimes.com/city/mumbai/Salman-Khan-charged-with-culpable-homicide-not-amounting-to-murder-pleads-not-guilty/articleshow/21299214.cms">Salman Khan's hit-and-run incident</a>.</p>
+      </li>
+      <li class="about">
+        <p><strong>Riot</strong>: Rioting has been defined as the <a href="https://indiankanoon.org/doc/1601950/">use of violence of force by an unlawful assembly</a> i.e. assembling together without valid permission.</p>
+      </li>
+    </ul>
+
+    <strong><p class="desc">Please note that all rates are per 100,000 people.</p></strong>
 
     <h3>Violent crimes in India</h3>
     <p class="desc">The chart below shows the rate of violent crimes in the entire country.</p>
     <div class="graph" id="violent-graph"></div>
 
     <h3>Highest murder &amp; attempt to murder rates</h3>
-    <p class="desc">The charts below show the top ten cities in the country with the highest average crime rates of murder and attempt to murder, from 2011 to 2014.<strong> Patna</strong> has the highest murder rate &mdash; more than thrice the national average. <strong>Ranchi</strong> and <strong>Meerut</strong> follow suit, with rates double the national average.</p>
-    <div class="col-md-6 half" id="murder-graph"></div>
-    <div class="col-md-6 half" id="attempt-graph"></div>
+    <p class="desc">The charts below show the top ten cities in the country with the highest average crime rates of murder and attempt to murder, from 2011 to 2014. <strong> Patna</strong> has the highest murder rate &mdash; more than thrice the national average. <strong>Ranchi</strong> and <strong>Meerut</strong> follow suit, with rates double the national average.</p>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="" id="murder-graph">
+
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="" id="attempt-graph">
+
+        </div>
+      </div>
+    </div>
 
     <h3>Highest kidnapping rates</h3>
     <p class="desc">This chart shows the cities with the highest kidnapping rates. You can also compare the rate of kidnapping in the cities with the national average. <strong>All</strong> of the top ten cities on the list are from north India.</p>
 
-    <p class="desc">Capital city <strong>Delhi</strong> tops the list. According to the lastest recorded data i.e. 2014, Delhi's kidnapping rate was <mark>six times</mark> the national average.Patna and Agra are second and third on this list.</p>
+    <p class="desc">Capital city <strong>Delhi</strong> tops the list. According to the lastest recorded data i.e. 2014, Delhi's kidnapping rate was <strong>six times</strong> the national average. Patna and Agra are second and third on this list.</p>
     <div class="graph" id="kidnap-graph"></div>
 
-    <div class="col-md-6 half" id="metro-graph"></div>
-    <div class="col-md-6 half" id="smaller-graph"></div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="" id="metro-graph">
+
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="" id="smaller-graph">
+
+        </div>
+      </div>
+    </div>
 
 
     <h3>Highest riot rates</h3>
@@ -120,10 +154,17 @@
           },
           legend: {
               layout: 'horizontal',
-              align: 'left',
+              align: 'right',
               verticalAlign: 'bottom',
               borderWidth: 0,
               floating: false
+          },
+         plotOptions: {
+            column: {
+              dataLabels: {
+                  enabled: true
+              }
+            }
           },
           series: chartsToShow
   	    });
@@ -178,7 +219,7 @@
        $(function () {
           $('#murder-graph').highcharts({
             chart: {
-                type: 'bar'
+                type: 'column'
             },
             title: {
                 text: 'Top 10 average murder rates'
@@ -206,8 +247,8 @@
                     label: {
                         text: 'National average: ' + natAvg[1].avg,
                         rotation: 0,
-                        y: -5,
-                        x: -10
+                        y: -150,
+                        x: 40
                     }
                 }]
             },
@@ -215,7 +256,7 @@
               enabled: false
             },
             plotOptions: {
-              bar: {
+              column: {
                 dataLabels: {
                     enabled: true
                 }
@@ -231,7 +272,7 @@
        $(function () {
         $('#attempt-graph').highcharts({
             chart: {
-                type: 'bar'
+                type: 'column'
             },
             title: {
                 text: 'Top 10 average attempt to murder rates'
@@ -259,8 +300,8 @@
                     label: {
                         text: 'National average: ' + natAvg[0].avg,
                         rotation: 0,
-                        y: -5,
-                        x: -10
+                        y: -155,
+                        x: 40
                   }
               }]
             },
@@ -268,7 +309,7 @@
               enabled: false
             },
             plotOptions: {
-              bar: {
+              column: {
                 dataLabels: {
                     enabled: true
                 }
@@ -553,18 +594,18 @@
               title: {
                   text: 'Crime rate'
               },
-              plotLines: [{
-                    value: +natAvg[0].avg,
-                    color: 'green',
-                    dashStyle: 'shortdash',
-                    width: 2,
-                    label: {
-                        text: 'National average: ' + natAvg[0].avg,
-                        rotation: -90,
-                        y: -5,
-                        x: 30
-                    }
-                }],
+              // plotLines: [{
+              //       value: +natAvg[0].avg,
+              //       color: 'green',
+              //       dashStyle: 'shortdash',
+              //       width: 2,
+              //       label: {
+              //           text: 'National average: ' + natAvg[0].avg,
+              //           rotation: -90,
+              //           y: -5,
+              //           x: 30
+              //       }
+              //   }],
           },
           tooltip: {
               valueSuffix: ' crimes per 100,000'
@@ -572,10 +613,16 @@
           credits: {
             enabled: false
           },
-          
+          plotOptions: {
+            column: {
+              dataLabels: {
+                  enabled: true
+              }
+            }
+          },          
           legend: {
               layout: 'horizontal',
-              align: 'left',
+              align: 'right',
               verticalAlign: 'bottom',
               borderWidth: 0,
               floating: false

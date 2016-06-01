@@ -27,7 +27,7 @@
         <tbody>
           {% for d in master %}
           <tr>
-            <td class="text-center"><a href="/cities/{{d.city}}">{{ d.city }}</a></td>
+            <td class="text-center"><a href="{{ url_for('city_page', city=d.city) }}">{{ d.city }}</a></td>
             <td class="text-center"><a href="{{url_for('crime_page', crime=d.crime_name)}}">{{ d.crime_name }}</a></td>
             <td class="text-right">{{ d['2010'] }}</td>
             <td class="text-right">{{ d['2011'] }}</td>

@@ -3,50 +3,54 @@
 {% include 'partials/navbar.html' %}
   <div class="container">
     <div class="row">
-        <div class="main-header">
-          <h1 class="text-center">{{ city }}</h1>
-        </div>
+      <div class="main-header">
+        <h1 class="text-center">{{ city }}</h1>
       </div>
+    </div>
 
-      <div class="categories">
-      <h3><a href="#violent">Violent Crimes</a></h3>
-      <h3><a href="#women">Crimes Against Women</a></h3>
-      <h3><a href="#property">Property Crimes</a></h3>
+    <div class="categories">
+      <h3><a href="#violent">Violent crimes</a></h3>
+      <h3><a href="#women">Crimes against women</a></h3>
+      <h3><a href="#property">Property crimes</a></h3>
+      <h3><a href="#economic">Economic crimes</a></h3>
     </div>  
 
     <section id="violent">  
       <h3>Violent crimes</h3>
-      <p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2011. To compare how {{ city }} fares nationally in violent crimes, click <a href="/violent-crimes">here</a>.</p>
+      <p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2010. To compare how {{ city }} fares nationally in violent crimes, click <a href="/violent-crimes">here</a>.</p>
       <div id="main-graph" class="graph"></div>
     </section> 
 
     <section id="women">
       <h3>Crimes Against Women</h3>
-      <p class="desc">The chart below shows how the rate of violent crimes in {{ city }} have changed since 2010.</p>
+      <p class="desc">The chart below shows how the rate of crimes against women in {{ city }} have changed since 2010. The crime rate represents the number of crime incidences per 100,000 women in the city.</p>
+
+      <p class="desc">From 2010 to 2012, the Bureau recorded rates for crimes against women using the total population. This does not reflect the true picture. Hence, we did our own computation of crime rates for all crimes against women using the population of women as per the <a href="http://www.censusindia.gov.in/2011-prov-results/paper2-vol2/data_files/India2/Table_3_PR_UA_Citiees_1Lakh_and_Above.xls" target="_blank">2011 Census provisional population totals<sup>[xls]</sup></a>.</p>
       <div id="women-graph" class="graph"></div>
 
       <h3>Comparison with national average</h3>
-      <p class="desc">The following chart shows a comparison of the heinous crimes against women recorded in {{ city }} to the national average over the past five years. These crimes have been categorized separately since they are more serious in nature.</p>
+      <p class="desc">The following chart shows a comparison of the heinous crimes against women recorded in {{ city }} to the national average over the past five years. These crimes have been categorized separately since they are more serious in nature. Crime rate represents the number of crime incidences per 100,000 of the population of the city.</p>
 
       <div id="women-compare" class="graph"></div>      
     </section> 
 
     <section id="property">
       <h3>Property Crimes</h3>
-      <p class="desc">The chart below shows how the rate of property crimes in {{ city }} have changed since 2010.</p>
+      <p class="desc">The chart below shows how the rate of property crimes in {{ city }} have changed since 2010. Crime rate represents the number of crime incidences per 100,000 of the population of the city.</p>
       <div id="property-graph" class="graph"></div> 
       <div id="prop-compare" class="graph"></div> 
     </section>
 
     <section id="economic">
       <h3>Economic Crimes</h3>
-      <p class="desc">The chart below shows how the rate of economic crimes in {{ city }} have changed since 2010.</p>
+      <p class="desc">The chart below shows how the rate of economic crimes in {{ city }} have changed since 2010. Crime rate represents the number of crime incidences per 100,000 of the population of the city. Please note that forgery as a crime was only recorded in 2014.</p>
       <!-- <div id="econ-graph" class="graph"></div>   -->
       <div id="econ-compare" class="graph"></div> 
     </section>
     
     <div class="table-responsive">
       <h3 class="text-center">Major Crimes in {{ city }}</h3>
+      <p class="desc">The following table shows the major crimes in {{ city }} that fall under our four categories.</p>
       <table class="table table-condensed table-striped table-bordered">
         <thead>
           <tr>
@@ -62,7 +66,7 @@
         <tbody>
           {% for d in table_data %}
           <tr>
-            <td class="text-center"><a href="/crime/{{ d.crime_name }}">{{ d.crime_name }}</a></td>
+            <td class="text-center"><a href="{{ url_for('crime_page', crime=d.crime_name) }}">{{ d.crime_name }}</a></td>
             <td class="text-center {{ d.class }}">{{ d.categ }}</td>
             <td class="text-right">{{ d['2010'] }}</td>
             <td class="text-right">{{ d['2011'] }}</td>
@@ -448,7 +452,7 @@
     }
 
     /*****************************************************
-    /**********  WOMEN CRIMES V/S NATIONAL AVG ************
+    /**********  ECON CRIMES V/S NATIONAL AVG ************
     *****************************************************/
 
     function drawEcon(econData, indiaEcon) {

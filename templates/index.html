@@ -100,7 +100,7 @@
       </div>
 
       <div class="row">
-        <a href="/violent-crimes">
+        <a href="{{ url_for('violent_landing_page') }}">
           <div class="col-md-3 col-sm-6 col-xs-6">        
             <div class="crime-box">
               <h3 class="crime-categ">Violent Crimes</h3>
@@ -109,7 +109,7 @@
           </div>
         </a>  
         
-        <a href="/women-crimes">
+        <a href="{{ url_for('women_landing_page') }}">
           <div class="col-md-3 col-sm-6 col-xs-6">        
             <div class="crime-box">
               <h3 class="crime-categ">Crimes Against Women</h3>
@@ -118,7 +118,7 @@
           </div>
         </a> 
 
-        <a href="/property-crimes">  
+        <a href="{{ url_for('prop_landing_page') }}">  
           <div class="col-md-3 col-sm-6 col-xs-6">        
             <div class="crime-box">
               <h3 class="crime-categ">Property Crimes</h3>
@@ -127,7 +127,7 @@
           </div>
         </a>  
 
-        <a href="/economic-crimes">  
+        <a href="{{ url_for('econ_landing_page') }}">  
           <div class="col-md-3 col-sm-6 col-xs-6">        
             <div class="crime-box">
               <h3 class="crime-categ">Economic Crimes</h3>
@@ -142,7 +142,7 @@
       <div class="row">
 
         <h2 class="head">Crime rates in cities</h2>
-        <p class="desc">Here are the top five cities with the highest average crime rates in different crime categories. The average has been calculated using crime rates from 2010 to 2014. You can <a href="/city-list">click here to see the entire list of cities</a>.</p>
+        <p class="desc">Here are the top five cities with the highest average crime rates in different crime categories. The average has been calculated using crime rates from 2010 to 2014. You can <a href="{{ url_for('city_landing') }}">click here to see the entire list of cities</a>.</p>
         
        {% for l in list_data %} 
           <div class="col-md-4 col-sm-6 col-xs-6">
@@ -150,7 +150,7 @@
             <ul class="list">
               {% for d in l %}
               <li>
-                <a href="/cities/{{ d.city }}">{{ d.city }}</a>
+                <a href="{{ url_for('city_page', city=d.city) }}">{{ d.city }}</a>
                 <p class="list-sub">{{ d.avg }} per 100,000 people</p>
               </li>
               {% endfor %}
