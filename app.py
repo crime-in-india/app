@@ -307,8 +307,9 @@ def sitemap():
     template = 'sitemap.xml'
     # static pages
     for rule in app.url_map.iter_rules():
-      if "GET" in rule.methods and len(rule.arguments)==0:
-          pages.append([rule.rule])
+        if "GET" in rule.methods and len(rule.arguments)==0:
+            pages.append([rule.rule])
+
     sitemap_xml = render_template(template, pages=pages)
     response = make_response(sitemap_xml)
     response.headers["Content-Type"] = "application/xml"
