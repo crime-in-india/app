@@ -2,8 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     {% for page in pages %}
     <url>
-        <loc>{{ page[0]|safe }}</loc>
-        <lastmod>{{ page[1] }}</lastmod>
+        <loc>{{ page[0] | safe }}</loc>
     </url>
     {% endfor %}
 </urlset>

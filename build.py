@@ -2,7 +2,7 @@
 This script is used to deploy the app in the following steps.
 1. Delete the old build directory
 2. Convert the app into static files
-3. Make a new build
+3. Make a new build directory
 4. Copy the build into the crime-in-india directory for live hosting.
 
 '''

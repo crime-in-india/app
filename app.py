@@ -294,12 +294,11 @@ def ref_page():
     template = 'reference.html'
     return render_template(template)
 
-if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
-
 #################################################################
 
+
 # Route to sitemap
+
 @app.route("/sitemap.xml", methods=['GET'])
 def sitemap():
     """Generate sitemap.xml. Makes a list of urls and date modified."""
@@ -308,10 +307,19 @@ def sitemap():
     # static pages
     for rule in app.url_map.iter_rules():
         if "GET" in rule.methods and len(rule.arguments)==0:
-            pages.append([rule.rule])
+            abs_url = 'https://crime-in-india.github.io' + rule.rule
+            pages.append([abs_url])
 
     sitemap_xml = render_template(template, pages=pages)
     response = make_response(sitemap_xml)
     response.headers["Content-Type"] = "application/xml"
 
     return response
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True, use_reloader=True)
+
+#################################################################
+

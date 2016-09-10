@@ -1,14 +1,7 @@
 """
-To deploy app:
 
-1. Clear out any existing build/ subdirectory
-2. Run: `$ python freeze.py` to build the build/ subdirectory
-3. Copy the files in build/ into whatever directory contains the github.io pages repo:
+This script freezes the app. i.e converts it into static pages to be served.
 
-    $ cp -r app/build/* crime-in-india.github.io/
-
-4. Git add/commit/push to Github
-5. Site should automatically update.
 """
 
 import csv
